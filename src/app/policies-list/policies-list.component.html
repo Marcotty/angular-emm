@@ -3,7 +3,7 @@
 		<mat-card-title>
 			Politiques
 		</mat-card-title>
-		<div *ngIf="policies">
+		<div *ngIf="policies else loading">
 			<div *ngFor="let pol of policies; index as policyId">
 				<mat-card>
 					<mat-card-title>
@@ -62,16 +62,17 @@
 						</mat-tab>
 						<mat-tab label="Applications">
 							<div class="apps-tab">
-								<div *ngFor="let app of pol.applications; index as policyId">
+								<div *ngFor="let app of pol.applications; index as appId">
 									{{app.packageName}}
 									<mat-form-field appearance="fill">
 										<mat-label>{{app.installType}}</mat-label>
-										<mat-select>
-											<mat-option *ngFor="let val of installTypeValues | keyvalue" [value]="val.value">
+										<mat-select [(value)]="policies[policyId].applications[appId].installType">
+											<mat-option *ngFor="let val of installTypeValues | keyvalue" [value] = "val.value">
+                         {{val.value}}
 											</mat-option>
 										</mat-select>
 									</mat-form-field>
-									{{app.installType}}
+									<p>Selected:{{policies[policyId].applications[appId].installType}}</p>
 								</div>
 							</div>
 						</mat-tab>
@@ -83,6 +84,7 @@
 				</mat-card>
 			</div>
 		</div>
+    <ng-template #loading>Chargement liste...</ng-template>
 	</mat-card>
 	<div *ngIf="policies">
 		<div *ngFor="let policy of policies | keyvalue; index as policyId">
