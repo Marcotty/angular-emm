@@ -27,22 +27,20 @@ export class DevicesListComponent implements OnInit {
       this.client = clients[+params.get("clientId")];
       this.clientId = params.get("clientId");
     });
-    this.devicesListSubs = this.devicesApi
-      .getDevicesE(this.client.entreprise_name)
-      .subscribe(res => {
-        this.devicesList = res;
-        console.log("devices de " + this.client.entreprise_name + " chargés");
-        clients[this.clientId].count = this.devicesList.length;
-      }, console.error);
+    this.getDevices();
 
   }
-  refresh() {
+  getDevices()
+  {
     this.devicesListSubs = this.devicesApi
-      .getDevicesE(this.client.entreprise_name)
+      .getDevices(this.client.entreprise_name)
       .subscribe(res => {
         this.devicesList = res;
         console.log("devices de " + this.client.entreprise_name + " chargés");
       }, console.error);
+  }
+  refresh() {
+    this.getDevices();
   }
   new()
   {
@@ -50,6 +48,6 @@ export class DevicesListComponent implements OnInit {
   }
   deleteDevice(deviceId)
   {
-    
+
   }
 }

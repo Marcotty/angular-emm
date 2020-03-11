@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { throwError } from 'rxjs';
@@ -8,6 +8,12 @@ import { Device } from "../devices-list/device.model";
 import { Policy } from "./policies-list/policies.model";
 import { Enterprise } from "./enterprise-details/enterprise.model";
 
+const URL = "http://localhost:5000/";
+const httpOptions = {
+  headers: new HttpHeaders ({
+  'Content-Type': 'application/json',
+  })
+};
 @Injectable()
 export class FLASKAPIService {
   constructor(private http: HttpClient) {}
@@ -17,27 +23,39 @@ export class FLASKAPIService {
       err.message || "Error: Unable to complete request."
     );
   }
-  getDevicesE(enterprise_name): Observable<Device[]> {
-    //doit etre localhost:5000/entreprise_name/devices
+  getDevices(enterprise_name): Observable<Device[]> {
     return this.http
-      .get<Device[]>(`http://localhost:5000/` + enterprise_name + `/devices`)
+      .get<Device[]>(URL + enterprise_name + `/devices`)
       .pipe(catchError(FLASKAPIService._handleError));
   }
-  // GET list of public, future events
-  getDevices(): Observable<Device[]> {
-    //doit etre localhost:5000/entreprise_name/devices
+  updateDevice(device): Observable<Device[]>{
     return this.http
-      .get<Device[]>(`http://localhost:5000/devices`)
+      .post<Device[]>(URL + device.name, device, httpOptions)
       .pipe(catchError(FLASKAPIService._handleError));
   }
-  getPolicies(): Observable<Policy[]> {
+  deleteDevice(device_name): Observable<Device[]>{
     return this.http
-      .get<Policy[]>(`http://localhost:5000/policies`)
+      .delete<Device[]>(URL + device_name)
       .pipe(catchError(FLASKAPIService._handleError));
   }
-  getEnterprise(): Observable<Enterprise[]> {
+  getPolicies(enterprise_name): Observable<Policy[]> {
     return this.http
-      .get<Enterprise[]>(`http://localhost:5000/enterprise`)
+      .get<Policy[]>(URL + enterprise_name + `/policies`)
+      .pipe(catchError(FLASKAPIService._handleError));
+  }
+  updatePolicy(policy): Observable<Device[]>{
+    return this.http
+      .post<Policy[]>(URL + policy.name, policy, httpOptions)
+      .pipe(catchError(FLASKAPIService._handleError));
+  }
+  deletePolicy(policy_name): Observable<Device[]>{
+    return this.http
+      .delete<Policy[]>(URL + policy_name)
+      .pipe(catchError(FLASKAPIService._handleError));
+  }
+  getEnterprise(enterprise_name): Observable<Enterprise[]> {
+    return this.http
+      .get<Enterprise[]>(URL + enterprise_name + `/enterprise`)
       .pipe(catchError(FLASKAPIService._handleError));
   }
 }
