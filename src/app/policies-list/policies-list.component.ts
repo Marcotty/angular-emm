@@ -3,7 +3,7 @@ import { FLASKAPIService } from "../flask-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { clients } from "../client-list/clients";
-import { Policy } from "./policies.model";
+import { Policy, installTypeValues } from "./policies.model";
 @Component({
   selector: 'app-policies-list',
   templateUrl: './policies-list.component.html',
@@ -14,6 +14,7 @@ export class PoliciesListComponent implements OnInit {
   clientId;
   policiesListSubs: Subscription;
   policies: Policy[];
+  installTypeValues = installTypeValues;
 
   constructor(
     private route: ActivatedRoute,

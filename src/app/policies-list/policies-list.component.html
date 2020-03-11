@@ -11,16 +11,66 @@
 					</mat-card-title>
 					<mat-tab-group>
 						<mat-tab label="Infos">
-							<div class="infos-tab" <p>Version : {{pol.version}}</p>
-								<p>UserName : {{pol.userName}}</p>
+							<div class="infos-tab">
+								<p>Version : {{pol.version}}</p>
 								<p>appAutoUpdate : {{pol.appAutoUpdatePolicy}}</p>
-								<p>Bluetooth : {{pol.bluetoothDisabled}}</p>
+								<p>Bluetooth désactivé : {{pol.bluetoothDisabled}}</p>
+								<p>Ajouter Utilisateur : {{pol.addUserDisabled}}</p>
+								<p>Ajuster volume : {{pol.adjustVolumeDisabled}}</p>
+								<p>Factory Reset : {{pol.factoryResetDisabled}}</p>
+								<p>Instaler apps : {{pol.installAppsDisabled}}</p>
+								<p>Monter carte SD : {{pol.mountPhysicalMediaDisabled}}</p>
+								<p>Modifier compte : {{pol.modifyAccountsDisabled}}</p>
+								<p>Safe boot : {{pol.safeBootDisabled}}</p>
+								<p>Désinstaller apps : {{pol.uninstallAppsDisabled}}</p>
+								<p>Status bar : {{pol.statusBarDisabled}}</p>
+								<p>Keyguard : {{pol.keyguardDisabled}}</p>
+								<p>Min API Level : {{pol.minimumApiLevel}}</p>
+								<p>Contact Sharing : {{pol.bluetoothContactSharingDisabled}}</p>
+								<p>ShortSupportMessage : {{pol.shortSupportMessage}}</p>
+								<p>LongSupportMessage : {{pol.longSupportMessage}}</p>
+								<p>Wifi Config LockDown : {{pol.wifiConfigsLockdownEnabled}}</p>
+								<p>BluetoothConfig : {{pol.bluetoothConfigDisabled}}</p>
+								<p>COnfig Réseau : {{pol.cellBroadcastsConfigDisabled}}</p>
+								<p>Config crédits : {{pol.credentialsConfigDisabled}}</p>
+								<p>Config réseau mobile : {{pol.mobileNetworksConfigDisabled}}</p>
+								<p>Config VON : {{pol.vpnConfigDisabled}}</p>
+								<p>Config wif : {{pol.wifiConfigDisabled}}</p>
+								<p>CreateWindows : {{pol.createWindowsDisabled}}</p>
+								<p>NetworkReset : {{pol.networkResetDisabled}}</p>
+								<p>OutgoingBeam : {{pol.outgoingBeamDisabled}}</p>
+								<p>outgoingCalls : {{pol.outgoingCallsDisabled}}</p>
+								<p>RemoveUser : {{pol.removeUserDisabled}}</p>
+								<p>ShareLocation : {{pol.shareLocationDisabled}}</p>
+								<p>SMS : {{pol.smsDisabled}}</p>
+								<p>Unmuted Micro : {{pol.unmuteMicrophoneDisabled}}</p>
+								<p>USB File Transfer : {{pol.usbFileTransferDisabled}}</p>
+								<p>Ensure Verify Apps : {{pol.ensureVerifyAppsEnabled}}</p>
+								<p>UserIcons : {{pol.setUserIconDisabled}}</p>
+								<p>Wallpaper : {{pol.setWallpaperDisabled}}</p>
+								<p>DataRoaming : {{pol.dataRoamingDisabled}}</p>
+								<p>NetworkEscape : {{pol.networkEscapeHatchEnabled}}</p>
+								<p>Block Application : {{pol.blockApplicationsEnabled}}</p>
+								<p>InstallUnknownSources : {{pol.installUnknownSourcesAllowed}}</p>
+								<p>Fun (easterEgg) : {{pol.funDisabled}}</p>
+								<p>AutoTime : {{pol.autoTimeRequired}}</p>
+								<p>KioskCustomLauncher : {{pol.kioskCustomLauncherEnabled}}</p>
+								<p>SkipFirstUseHints : {{pol.skipFirstUseHintsEnabled}}</p>
+								<p>privateKeySelection : {{pol.privateKeySelectionEnabled}}</p>
+								<p>USB Mass Storage : {{pol.usbMassStorageEnabled}}</p>
 							</div>
 						</mat-tab>
 						<mat-tab label="Applications">
 							<div class="apps-tab">
 								<div *ngFor="let app of pol.applications; index as policyId">
 									{{app.packageName}}
+									<mat-form-field appearance="fill">
+										<mat-label>{{app.installType}}</mat-label>
+										<mat-select>
+											<mat-option *ngFor="let val of installTypeValues | keyvalue" [value]="val.value">
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
 									{{app.installType}}
 								</div>
 							</div>

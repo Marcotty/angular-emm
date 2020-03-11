@@ -1,3 +1,13 @@
+export enum installTypeValues
+{
+  KIOSK = "KIOSK",
+  PREINSTALLED = "PREINSTALLED",
+  FORCE_INSTALLED = "FORCE_INSTALLED",
+  BLOCKED = "BLOCKED",
+  AVAILABLE = "AVAILABLE",
+  REQUIRED_FOR_SETUP = "REQUIRED_FOR_SETUP",
+  INSTALL_TYPE_UNSPECIFIED = "INSTALL_TYPE_UNSPECIFIED",
+}
 export class Policy {
   constructor(
     public name: string,
