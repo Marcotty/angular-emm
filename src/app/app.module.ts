@@ -14,6 +14,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 import { AppComponent } from "./app.component";
@@ -44,6 +45,7 @@ import { ClientNewComponent } from './client-new/client-new.component';
     MatExpansionModule,
     MatStepperModule,
     MatFormFieldModule,
+    MatTabsModule,
     RouterModule.forRoot([
       { path: '', component: ClientListComponent },
       { path: 'client/:clientId', component: ClientDetailsComponent },

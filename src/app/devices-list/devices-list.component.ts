@@ -44,4 +44,12 @@ export class DevicesListComponent implements OnInit {
         console.log("devices de " + this.client.entreprise_name + " chargés");
       }, console.error);
   }
+  new()
+  {
+
+  }
+  deleteDevice(deviceId)
+  {
+    
+  }
 }

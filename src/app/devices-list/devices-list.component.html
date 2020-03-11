@@ -1,27 +1,122 @@
 <div *ngIf="client">
 	<header>
-		<h1>
-			Devices
-		</h1>
-		<button mat-button (click)="refresh()" > Refresh</button>
-		<app-client-details></app-client-details>
+		<!--<app-client-details></app-client-details>-->
 	</header>
 
 	<body>
-		<div *ngIf="devicesList" class="devicesCards">
-			<mat-card class="device-card">
-				<mat-expansion-panel class="devicePanel">
-					<mat-expansion-panel-header>
-						<mat-panel-title>
-							Devices
-						</mat-panel-title>
-						<mat-panel-description>
-							Liste devices inscrits
-						</mat-panel-description>
-					</mat-expansion-panel-header>
-					<mat-accordion>
-						<div *ngFor="let device of devicesList; index as deviceId">
 
+		<mat-card class="device-card-background">
+			<mat-card-title>
+				<button mat-button (click)="refresh()" > Actualiser</button>
+				<button mat-button (click)="new()" > Nouveau</button>
+			</mat-card-title>
+			<mat-card class="device-card">
+				<mat-card-title>
+					Devices
+				</mat-card-title>
+				<mat-card-subtitle>
+					Liste devices inscrits
+				</mat-card-subtitle>
+				<div *ngIf="devicesList else loading">
+					<div *ngFor="let device of devicesList; index as deviceId">
+						<mat-card>
+							<mat-card-title>
+								{{deviceId}})
+								{{device.hardwareInfo.brand}}
+								{{device.hardwareInfo.model}}
+							</mat-card-title>
+							<mat-card-subtitle>
+								{{device.networkInfo.wifiMacAddress}}
+								<br>
+                {{device.policyName}}
+              </mat-card-subtitle>
+								<mat-card-content>
+									<mat-expansion-panel>
+										<mat-expansion-panel-header>
+											<mat-panel-title>
+												Infos
+											</mat-panel-title>
+										</mat-expansion-panel-header>
+										<mat-tab-group>
+											<mat-tab label="Modifier">
+												<div class="modify-tab">
+													<p> Politique : </p>
+													<p> Etat : </p>
+													<p> Raison : </p>
+													<button mat-button (click)="deleteDevice(deviceId)" > Supprimer</button>
+												</div>
+											</mat-tab>
+											<mat-tab label="Informations">
+												<div class="infos">
+													<p class="infos-champs"> Nom : {{device.name}} </p>
+													<p class="infos-champs"> Marque : {{device.hardwareInfo.brand}}
+													</p>
+													<p class="infos-champs"> Modèle : {{device.hardwareInfo.model}}
+													</p>
+													<p class="infos-champs"> N° Série :
+														{{device.hardwareInfo.serialNumber}} </p>
+													<p class="infos-champs"> Management : {{device.managementMode}}
+													</p>
+													<p class="infos-champs"> State : {{device.state}} </p>
+													<p class="infos-champs"> Compliant : {{device.policyCompliant}}
+													</p>
+													<p class="infos-champs"> Version Android :
+														{{device.softwareInfo.androidVersion}} </p>
+													<br>
+													<p class="infos-champs"> IMEI : {{device.networkInfo.imei}} </p>
+													<p class="infos-champs"> MAC :
+														{{device.networkInfo.wifiMacAddress}}
+													</p>
+													<p class="infos-champs"> Opérateur :
+														{{device.networkInfo.networkOperatorName}} </p>
+													<p class="infos-champs"> API Level : {{device.apiLevel}} </p>
+													<p class="infos-champs"> RAM : {{device.memoryInfo.totalRam}}
+													</p>
+													<p class="infos-champs"> Stockage :
+														{{device.memoryInfo.totalInternalStorage}} </p>
+												</div>
+											</mat-tab>
+											<mat-tab label="Events">
+												<mat-tab-group>
+													<mat-tab label="Memory">
+														<div class="events-tab">
+															<div
+																*ngFor="let event of device.memoryEvents; index as eventId">
+																<mat-expansion-panel>
+																	<mat-expansion-panel-header>
+																		<mat-panel-title>
+																			<p> {{event.eventType}} </p>
+																		</mat-panel-title>
+																	</mat-expansion-panel-header>
+																	Date : {{event.createTime}} <br>
+																Capacity : {{event.byteCount}}bytes
+															</mat-expansion-panel>
+															</div>
+														</div>
+													</mat-tab>
+													<mat-tab label="Applications">
+														<div class="events-tab">
+															<div
+																*ngFor="let app of device.applicationReports; index as appId">
+																<mat-expansion-panel>
+																	<mat-expansion-panel-header>
+																		<mat-panel-title>
+																			<p> {{app.packageName}} </p>
+																		</mat-panel-title>
+																	</mat-expansion-panel-header>
+																	DisplayName : {{app.displayName}} <br>
+																Installer : {{app.installerPackageName}}
+															</mat-expansion-panel>
+															</div>
+														</div>
+													</mat-tab>
+												</mat-tab-group>
+											</mat-tab>
+										</mat-tab-group>
+									</mat-expansion-panel>
+								</mat-card-content>
+						</mat-card>
+						<!--
 							<mat-expansion-panel>
 								<mat-expansion-panel-header>
 									<mat-panel-title>
@@ -86,15 +181,15 @@
 									{{device.policyName}}
 								</mat-expansion-panel>
 
-                <mat-expansion-panel>
+								<mat-expansion-panel>
 									<mat-expansion-panel-header>
 										<mat-panel-title>
 											<p> Paramètres </p>
 										</mat-panel-title>
 									</mat-expansion-panel-header>
 									{{device.deviceSettings.isDeviceSecure}}
-                  {{device.deviceSettings.unknownSourcesEnabled}}
-                  {{device.deviceSettings.adbEnabled}}
+									{{device.deviceSettings.unknownSourcesEnabled}}
+									{{device.deviceSettings.adbEnabled}}
 								</mat-expansion-panel>
 
 								<mat-expansion-panel>
@@ -111,23 +206,22 @@
 												</mat-panel-title>
 											</mat-expansion-panel-header>
 											DisplayName : {{app.displayName}}
-                      Installer : {{app.installerPackageName}}
+											Installer : {{app.installerPackageName}}
 										</mat-expansion-panel>
 									</div>
 								</mat-expansion-panel>
 
-							</mat-expansion-panel>
-						</div>
-					</mat-accordion>
-
-				</mat-expansion-panel>
+							</mat-expansion-panel>-->
+					</div>
+				</div>
 			</mat-card>
-		</div>
-		<p> Aucun device trouvé |Pas de réponse du serveur ? </p>
+		</mat-card>
+		<ng-template #loading>Chargement liste...</ng-template>
 	</body>
+	<!--
 	<div *ngFor="let device of devicesList; index as deviceId">
 		<div *ngFor="let item of device | keyvalue">
 			{{item.key}}:{{item.value | json}}<br>
     </div>
-		</div>
-	</div>
+		</div>-->
+</div>
