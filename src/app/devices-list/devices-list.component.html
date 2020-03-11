@@ -40,9 +40,9 @@
 										<mat-tab-group>
 											<mat-tab label="Modifier">
 												<div class="modify-tab">
-													<p> Politique : </p>
-													<p> Etat : </p>
-													<p> Raison : </p>
+													<p> Politique : {{device.policyName}}</p>
+													<p> Etat : {{device.state}}</p>
+													<p> Raison : {{device.disabledReason}}</p>
 													<button mat-button (click)="deleteDevice(device.name)" > Supprimer</button>
 												</div>
 											</mat-tab>

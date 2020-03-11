@@ -32,5 +32,13 @@ export class PoliciesListComponent implements OnInit {
 
     }, console.error);
   }
+  update(policyId)
+  {
+    this.devicesApi.updatePolicy(this.policies[policyId]).subscribe(res =>
+    {
+      this.policies[policyId] = res;
+      console.log("update effectuée");
+    }, console.error);
+  }
 
 }

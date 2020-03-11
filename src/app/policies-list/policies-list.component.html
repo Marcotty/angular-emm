@@ -31,7 +31,7 @@
 								<p>LongSupportMessage : {{pol.longSupportMessage}}</p>
 								<p>Wifi Config LockDown : {{pol.wifiConfigsLockdownEnabled}}</p>
 								<p>BluetoothConfig : {{pol.bluetoothConfigDisabled}}</p>
-								<p>COnfig Réseau : {{pol.cellBroadcastsConfigDisabled}}</p>
+								<p>Config Réseau : {{pol.cellBroadcastsConfigDisabled}}</p>
 								<p>Config crédits : {{pol.credentialsConfigDisabled}}</p>
 								<p>Config réseau mobile : {{pol.mobileNetworksConfigDisabled}}</p>
 								<p>Config VON : {{pol.vpnConfigDisabled}}</p>
@@ -66,7 +66,7 @@
 									{{app.packageName}}
 									<mat-form-field appearance="fill">
 										<mat-label>{{app.installType}}</mat-label>
-										<mat-select [(value)]="policies[policyId].applications[appId].installType">
+										<mat-select (change)="update(policyId)" [(value)]="policies[policyId].applications[appId].installType">
 											<mat-option *ngFor="let val of installTypeValues | keyvalue" [value] = "val.value">
                          {{val.value}}
 											</mat-option>
