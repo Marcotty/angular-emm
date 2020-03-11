@@ -2,3 +2,11 @@
 {
   height:200px;
 }
+.apps-tab> div{
+  display:flex;
+  flex-wrap:wrap;
+}
+.select 
+{
+  background : gray;
+}

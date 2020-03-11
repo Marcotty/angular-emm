@@ -66,7 +66,7 @@
 									{{app.packageName}}
 									<mat-form-field appearance="fill">
 										<mat-label>{{app.installType}}</mat-label>
-										<mat-select (change)="update(policyId)" [(value)]="policies[policyId].applications[appId].installType">
+										<mat-select (selectionChange)="update(policyId)" [(value)]="policies[policyId].applications[appId].installType">
 											<mat-option *ngFor="let val of installTypeValues | keyvalue" [value] = "val.value">
                          {{val.value}}
 											</mat-option>

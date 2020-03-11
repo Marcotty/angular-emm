@@ -43,12 +43,12 @@ export class FLASKAPIService {
       .get<Policy[]>(URL + enterprise_name + `/policies`)
       .pipe(catchError(FLASKAPIService._handleError));
   }
-  updatePolicy(policy): Observable<Device[]>{
+  updatePolicy(policy): Observable<Policy[]>{
     return this.http
       .post<Policy[]>(URL + policy.name, policy, httpOptions)
       .pipe(catchError(FLASKAPIService._handleError));
   }
-  deletePolicy(policy_name): Observable<Device[]>{
+  deletePolicy(policy_name): Observable<Policy[]>{
     return this.http
       .delete<Policy[]>(URL + policy_name)
       .pipe(catchError(FLASKAPIService._handleError));
