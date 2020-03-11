@@ -46,8 +46,11 @@ export class DevicesListComponent implements OnInit {
   {
 
   }
-  deleteDevice(deviceId)
+  deleteDevice(deviceName)
   {
-
+    this.devicesApi
+    .deleteDevice(deviceName)
+    .subscribe(res => {
+    }, console.error);
   }
 }

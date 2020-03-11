@@ -25,7 +25,7 @@ export class PoliciesListComponent implements OnInit {
       this.client = clients[+params.get("clientId")];
       this.clientId = params.get("clientId");
     });
-    this.policiesListSubs = this.devicesApi.getPolicies().subscribe(res => {
+    this.policiesListSubs = this.devicesApi.getPolicies(this.client.entreprise_name).subscribe(res => {
       this.policies = res;
       console.log("politiques chargées");
 

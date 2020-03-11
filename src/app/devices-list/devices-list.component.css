@@ -11,8 +11,6 @@ h1{
 }
 .infos
 {
-  display:flex;
-  flex-wrap: wrap;
   height:200px;
 }
 .modify-tab

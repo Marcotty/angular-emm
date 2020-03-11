@@ -1,10 +1,45 @@
 <div *ngIf="client">
-	<div *ngIf="policies" class="policiesCards">
+	<mat-card>
+		<mat-card-title>
+			Politiques
+		</mat-card-title>
+		<div *ngIf="policies">
+			<div *ngFor="let pol of policies; index as policyId">
+				<mat-card>
+					<mat-card-title>
+						{{pol.name}}
+					</mat-card-title>
+					<mat-tab-group>
+						<mat-tab label="Infos">
+							<div class="infos-tab" <p>Version : {{pol.version}}</p>
+								<p>UserName : {{pol.userName}}</p>
+								<p>appAutoUpdate : {{pol.appAutoUpdatePolicy}}</p>
+								<p>Bluetooth : {{pol.bluetoothDisabled}}</p>
+							</div>
+						</mat-tab>
+						<mat-tab label="Applications">
+							<div class="apps-tab">
+								<div *ngFor="let app of pol.applications; index as policyId">
+									{{app.packageName}}
+									{{app.installType}}
+								</div>
+							</div>
+						</mat-tab>
+						<mat-tab label="Network">
+							<div class="net-tab">
+							</div>
+						</mat-tab>
+					</mat-tab-group>
+				</mat-card>
+			</div>
+		</div>
+	</mat-card>
+	<div *ngIf="policies">
 		<div *ngFor="let policy of policies | keyvalue; index as policyId">
-        Nom de la politique : {{policy.name}} <br>
-      <div *ngFor="let item of policy | keyvalue">
-        {{item.key}}:{{item.value | json}}<br>
+			Nom de la politique : {{policy.name}} <br>
+			<div *ngFor="let item of policy | keyvalue">
+				{{item.key}}:{{item.value | json}}<br>
     </div>
+			</div>
 		</div>
 	</div>
-</div>
