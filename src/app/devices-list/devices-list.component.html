@@ -1,0 +1,133 @@
+<div *ngIf="client">
+	<header>
+		<h1>
+			Devices
+		</h1>
+		<button mat-button (click)="refresh()" > Refresh</button>
+		<app-client-details></app-client-details>
+	</header>
+
+	<body>
+		<div *ngIf="devicesList" class="devicesCards">
+			<mat-card class="device-card">
+				<mat-expansion-panel class="devicePanel">
+					<mat-expansion-panel-header>
+						<mat-panel-title>
+							Devices
+						</mat-panel-title>
+						<mat-panel-description>
+							Liste devices inscrits
+						</mat-panel-description>
+					</mat-expansion-panel-header>
+					<mat-accordion>
+						<div *ngFor="let device of devicesList; index as deviceId">
+
+							<mat-expansion-panel>
+								<mat-expansion-panel-header>
+									<mat-panel-title>
+										{{device.hardwareInfo.brand}}
+										{{device.hardwareInfo.model}}
+										<br>
+										{{device.name}}
+									</mat-panel-title>
+								</mat-expansion-panel-header>
+								<mat-expansion-panel>
+									<mat-expansion-panel-header>
+										<mat-panel-title>
+											<p> Infos </p>
+										</mat-panel-title>
+									</mat-expansion-panel-header>
+									<mat-expansion-panel>
+										<mat-expansion-panel-header>
+											<mat-panel-title>
+												<p> Hardware </p>
+											</mat-panel-title>
+										</mat-expansion-panel-header>
+
+										<p>Marque : {{device.hardwareInfo.brand}} <p>
+												<p>Modèle : {{device.hardwareInfo.model}} </p>
+												<p>N° série : {{device.hardwareInfo.serialNumber}} </p>
+												<mat-divider [inset]="true"></mat-divider>
+												<p>Ecran : {{device.displays.height}}x{{device.displays.width}} </p>
+												<p>API Level : {{device.apiLevel}} </p>
+												<div>
+													<p>nonComplianceDetails:
+														{{device.nonComplianceDetails.nonComplianceReason}} </p>
+												</div>
+									</mat-expansion-panel>
+									<mat-expansion-panel>
+										<mat-expansion-panel-header>
+											<mat-panel-title>
+												<p> Software </p>
+											</mat-panel-title>
+										</mat-expansion-panel-header>
+										<p> Version Android : {{device.softwareInfo.androidVersion}} </p>
+										<mat-divider [inset]="true"></mat-divider>
+										<p> Langage : {{device.softwareInfo.primaryLanguageCode}} </p>
+									</mat-expansion-panel>
+									<mat-expansion-panel>
+										<mat-expansion-panel-header>
+											<mat-panel-title>
+												<p> Network </p>
+											</mat-panel-title>
+										</mat-expansion-panel-header>
+										<p> N°IMEI : {{device.networkInfo.imei}} </p>
+										<mat-divider [inset]="true"></mat-divider>
+										<p> MAC WIFI : {{device.networkInfo.wifiMacAddress}} </p>
+									</mat-expansion-panel>
+								</mat-expansion-panel>
+
+								<mat-expansion-panel>
+									<mat-expansion-panel-header>
+										<mat-panel-title>
+											<p> Politiques </p>
+										</mat-panel-title>
+									</mat-expansion-panel-header>
+									{{device.policyName}}
+								</mat-expansion-panel>
+
+                <mat-expansion-panel>
+									<mat-expansion-panel-header>
+										<mat-panel-title>
+											<p> Paramètres </p>
+										</mat-panel-title>
+									</mat-expansion-panel-header>
+									{{device.deviceSettings.isDeviceSecure}}
+                  {{device.deviceSettings.unknownSourcesEnabled}}
+                  {{device.deviceSettings.adbEnabled}}
+								</mat-expansion-panel>
+
+								<mat-expansion-panel>
+									<mat-expansion-panel-header>
+										<mat-panel-title>
+											<p> Applications Reports </p>
+										</mat-panel-title>
+									</mat-expansion-panel-header>
+									<div *ngFor="let app of device.applicationReports; index as appId">
+										<mat-expansion-panel>
+											<mat-expansion-panel-header>
+												<mat-panel-title>
+													<p> {{app.packageName}} </p>
+												</mat-panel-title>
+											</mat-expansion-panel-header>
+											DisplayName : {{app.displayName}}
+                      Installer : {{app.installerPackageName}}
+										</mat-expansion-panel>
+									</div>
+								</mat-expansion-panel>
+
+							</mat-expansion-panel>
+						</div>
+					</mat-accordion>
+
+				</mat-expansion-panel>
+			</mat-card>
+		</div>
+		<p> Aucun device trouvé |Pas de réponse du serveur ? </p>
+	</body>
+	<div *ngFor="let device of devicesList; index as deviceId">
+		<div *ngFor="let item of device | keyvalue">
+			{{item.key}}:{{item.value | json}}<br>
+    </div>
+		</div>
+	</div>

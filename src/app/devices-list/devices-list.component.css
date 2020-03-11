@@ -1,0 +1,34 @@
+h1{
+  text-align:center;
+}
+.devicesCards
+{
+  display:flex;
+  flex-wrap: wrap;
+  width:100%;
+    min-width:200px;
+
+}
+.device-card
+{
+  width: 50%;
+  min-width:200px;
+  height: 50px;
+  margin:15px;
+  background: rgb(192, 189, 189);
+}
+device-card-header
+{
+  justify-content: center;
+}
+#logo
+{
+  max-height: 50px;
+  max-width: 50px;
+}
+.infosButton
+{
+  justify-content:left;
+  width:100%;
+  text-align:left;
+}

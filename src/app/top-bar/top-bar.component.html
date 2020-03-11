@@ -1,0 +1,21 @@
+<div class="bandeau">
+	<div class="mainTitle">
+		<a [routerLink]="['/']">
+			<h1 title="Home">Console EMM</h1>
+		</a>
+	</div>
+
+	<div class="logos">
+		<a [routerLink]="['/Settings']" title="Paramètres de la Console">
+			<img id="logo_settings" src="https://img.icons8.com/flat_round/64/000000/settings--v1.png">
+    </a>
+
+			<button id="menuButton" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon><img id="logo_menu" src="https://img.icons8.com/ios/50/000000/squared-menu.png"></mat-icon>
+      </button>
+			<mat-menu id="menuFull" #menu="matMenu">
+				<button mat-menu-item [routerLink]="['/newClient']" title="Ajouter un client">Nouveau Client</button>
+				<button mat-menu-item>Help</button>
+			</mat-menu>
+	</div>
+</div>

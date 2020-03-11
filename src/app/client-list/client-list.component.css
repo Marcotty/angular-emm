@@ -1,0 +1,66 @@
+mat-card-header
+{
+  justify-content: center;
+
+}
+.gererButton
+{
+  background: rgb(216, 216, 216);
+}
+.example-header-image {
+  background-size: cover;
+  margin-right:10px;
+  margin-left:-90px;
+}
+#logo
+{
+  max-height: 50px;
+  max-width: 50px;
+}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(173, 173, 173);
+  margin:20px;
+  justify-content: center;
+}
+
+.flex-container > div {
+  background-color: #f1f1f1;
+  width: 380px;
+  margin: 10px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 30px;
+}
+.gererMenu > a, .gererMenuElem > a
+{
+  text-decoration: none;
+  cursor: pointer;
+  color: grey;
+  font-size: 16px;
+  margin: 8px;
+}
+.gererMenu
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.gererMenuElem {
+  line-height: 1px;
+  margin:1px;
+  background-color:rgb(245, 235, 220);
+}
+.lienDetails
+{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+a:-webkit-any-link {
+    color: grey;
+    cursor: pointer;
+    text-decoration: none;
+}

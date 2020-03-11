@@ -1,0 +1,63 @@
+<div *ngIf="client">
+	<h1>
+		Détails du client {{client.name}}
+	</h1>
+
+	<mat-card class="detail-card">
+		<mat-card-header>
+			<div mat-card-avatar class="detail-header-image">
+				<img src={{client.icone}}>
+        </div>
+				<mat-card-title>
+					Nom client : {{ client.name }}
+				</mat-card-title>
+				<mat-card-subtitle>Titre : Subtitle</mat-card-subtitle>
+
+		</mat-card-header>
+		<mat-card-content>
+			<p>
+				Description : {{ client.description }}
+			</p>
+			<p>
+				Téléphones : {{ client.count }} devices gérés
+			</p>
+			<p>
+				lien icone : {{client.icone}}
+			</p>
+			<p>
+				Nom de l'entreprise : {{client.entreprise_name}}
+			</p>
+			<p>
+				Chemin vers clé compte de service : {{client.path_key}}
+			</p>
+			<p>
+				Compte gmail : {{client.gmail}}
+			</p>
+
+      <form class="details-form">
+        <mat-form-field class="champForm">
+					<mat-label>Nom du client</mat-label>
+					<input matInput placeholder="Entrez le nom du client " value={{client.name}}>
+        </mat-form-field>
+      </form>
+
+		</mat-card-content>
+
+		<mat-card-actions>
+			<mat-card class="gererMenu">
+				<div class="gererMenu">
+					<a title="Modifier ce client" [routerLink]="['/client', clientId/modify]">
+						Modifier
+					</a>
+					<a title="Supprimer ce client (Ne peut être annulé)" [routerLink]="['/client', clientId/delete]">
+						Supprimer
+					</a>
+				</div>
+			</mat-card>
+		</mat-card-actions>
+	</mat-card>
+
+</div>
+<ng-template #notFound>
+	Une erreur est survenue.
+</ng-template>

@@ -1,0 +1,10 @@
+<div *ngIf="client">
+	<div *ngIf="policies" class="policiesCards">
+		<div *ngFor="let policy of policies | keyvalue; index as policyId">
+        Nom de la politique : {{policy.name}} <br>
+      <div *ngFor="let item of policy | keyvalue">
+        {{item.key}}:{{item.value | json}}<br>
+    </div>
+		</div>
+	</div>
+</div>
