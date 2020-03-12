@@ -28,6 +28,7 @@ import { DeviceDetailsComponent } from './device-details/device-details.componen
 import { PoliciesListComponent } from './policies-list/policies-list.component';
 import { EnterpriseDetailsComponent } from './enterprise-details/enterprise-details.component';
 import { ClientNewComponent } from './client-new/client-new.component';
+import { BoolInputComponent } from './policies-list/bool-input/bool-input.component';
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import { ClientNewComponent } from './client-new/client-new.component';
     PoliciesListComponent,
     EnterpriseDetailsComponent,
     ClientNewComponent,
+    BoolInputComponent,
   ],
   bootstrap: [AppComponent],
   providers: [FLASKAPIService]

@@ -8,6 +8,12 @@ export enum installTypeValues
   REQUIRED_FOR_SETUP = "REQUIRED_FOR_SETUP",
   INSTALL_TYPE_UNSPECIFIED = "INSTALL_TYPE_UNSPECIFIED",
 }
+export enum boolDisabled
+{
+  true = "Désactivé",
+  false = "Activé",
+  undefined = "Undefined"
+}
 export class Policy {
   constructor(
     public name: string,

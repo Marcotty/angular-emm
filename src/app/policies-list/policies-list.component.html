@@ -15,7 +15,14 @@
 								<p>Version : {{pol.version}}</p>
 								<p>appAutoUpdate : {{pol.appAutoUpdatePolicy}}</p>
 								<p>Bluetooth désactivé : {{pol.bluetoothDisabled}}</p>
-								<p>Ajouter Utilisateur : {{pol.addUserDisabled}}</p>
+								<p>Bluetooth désactivé : <app-bool-input></app-bool-input>
+
+                </p>
+                <p>Ajouter Utilisateur :</p> 
+                <div *ngIf="(pol.addUserDisabled) !== undefined else NonDef">
+                  {{pol.addUserDisabled}}
+								</div>
+                
 								<p>Ajuster volume : {{pol.adjustVolumeDisabled}}</p>
 								<p>Factory Reset : {{pol.factoryResetDisabled}}</p>
 								<p>Instaler apps : {{pol.installAppsDisabled}}</p>
@@ -59,20 +66,28 @@
 								<p>privateKeySelection : {{pol.privateKeySelectionEnabled}}</p>
 								<p>USB Mass Storage : {{pol.usbMassStorageEnabled}}</p>
 							</div>
+              <ng-template #NonDef><div class ="undefined" >undefined </div></ng-template>
 						</mat-tab>
 						<mat-tab label="Applications">
 							<div class="apps-tab">
 								<div *ngFor="let app of pol.applications; index as appId">
-									{{app.packageName}}
+                  <mat-form-field appearance = "fill">
+                    <mat-label>PackageName</mat-label>
+                    <input matInput [(ngModel)]="policies[policyId].applications[appId].packageName"
+                    placeholder="Ex. com.android.chrome " (value)= "policies[policyId].applications[appId].packageName" >
+                  </mat-form-field>
+                  
 									<mat-form-field appearance="fill">
-										<mat-label>{{app.installType}}</mat-label>
+										<mat-label>Type d'installation</mat-label>
 										<mat-select (selectionChange)="update(policyId)" [(value)]="policies[policyId].applications[appId].installType">
 											<mat-option *ngFor="let val of installTypeValues | keyvalue" [value] = "val.value">
                          {{val.value}}
 											</mat-option>
 										</mat-select>
 									</mat-form-field>
-									<p>Selected:{{policies[policyId].applications[appId].installType}}</p>
+									<p>Selected: package:{{policies[policyId].applications[appId].packageName}} : install :{{policies[policyId].applications[appId].installType}}</p>
+                  <br>
+                  <button >Ajout application</button>
 								</div>
 							</div>
 						</mat-tab>

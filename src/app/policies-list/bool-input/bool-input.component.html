@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill">
+	<mat-label></mat-label>
+	<mat-select (selectionChange)="update()" [(value)]="value">
+		<mat-option *ngFor="let val of boolDisabledValues | keyvalue" [value]="val.value">
+			{{val.value}}
+		</mat-option>
+	</mat-select>
+</mat-form-field>
