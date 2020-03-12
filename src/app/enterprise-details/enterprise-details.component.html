@@ -1,4 +1,13 @@
 <p>
 enterprise-details works!
 </p>
-{{enterprise.name}}
+<div *ngIf ="client" >
+  <div *ngIf ="enterprise">
+Nom : {{enterprise.name}}
+DisplayName : {{enterprise.enterpriseDisplayName}}
+Notifications : {{enterprise.enabledNotificationTypes}}
+PubSub : {{enterprise.pubsubTopic}}
+logo : {{enterprise.logo}}
+appAutoApprouvalEnabled : {{enterprise.appAutoApprouvalEnabled}}
+  </div>
+</div>

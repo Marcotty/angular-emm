@@ -60,7 +60,7 @@ export class FLASKAPIService {
   }
   getEnterprise(enterprise_name): Observable<Enterprise[]> {
     return this.http
-      .get<Enterprise[]>(URL + enterprise_name + `/enterprise`)
+      .get<Enterprise[]>(URL + enterprise_name)
       .pipe(catchError(FLASKAPIService._handleError));
   }
 }

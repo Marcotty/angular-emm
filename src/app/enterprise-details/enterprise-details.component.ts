@@ -25,7 +25,7 @@ export class EnterpriseDetailsComponent implements OnInit {
       this.client = clients[+params.get("clientId")];
       this.clientId = params.get("clientId");
     });
-    this.enterpriseSubs = this.flaskApi.getEnterprise().subscribe(res => {
+    this.enterpriseSubs = this.flaskApi.getEnterprise(this.client.entreprise_name).subscribe(res => {
       this.enterprise = res;
       console.log("enterprise chargée");
     }, console.error);

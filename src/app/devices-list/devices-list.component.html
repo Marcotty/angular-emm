@@ -62,8 +62,8 @@
 														<div *ngIf="devicesList[deviceId].state == 'DISABLED'">
 															<mat-form-field appearance="fill">
 																<mat-label>Raison</mat-label>
-																<input matInput [(ngModel)]="devicesList[deviceId].disabledReason"
-                    placeholder="Ex. " (value)= "devicesList[deviceId].disabledReason" >
+																<input matInput [(ngModel)]="devicesList[deviceId].disabledReason.defaultMessage"
+                    placeholder="Ex. " (value)= "devicesList[deviceId].disabledReason.defaultMessage" >
                           </mat-form-field>
 														</div>
 														<div class="buttons">
@@ -100,6 +100,9 @@
 													</p>
 													<p class="infos-champs"> Stockage :
 														{{device.memoryInfo.totalInternalStorage}} </p>
+                          <div *ngFor="let sys of device.systemProperties |keyvalue; index as sysId">
+                            {{sys.key}} :{{sys.value}}
+                          </div>
 												</div>
 											</mat-tab>
 											<mat-tab label="Events">
