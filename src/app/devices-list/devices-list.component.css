@@ -1,13 +1,22 @@
 h1{
   text-align:center;
 }
+.formField
+{
+  width:90%;
+}
 .devicesCards
 {
   display:flex;
   flex-wrap: wrap;
   width:100%;
     min-width:200px;
-
+}
+.buttons
+{
+  display:flex;
+  flex-wrap:wrap;
+  background: rgb(209, 206, 206);
 }
 .infos
 {
@@ -15,7 +24,7 @@ h1{
 }
 .modify-tab
 {
-  height : 150px;
+  height : 200px;
   width: 100px;
   border-radius: 8px;
 

@@ -4,7 +4,7 @@ import { Subscription } from "rxjs";
 
 import { clients } from "../client-list/clients";
 import { FLASKAPIService } from "../flask-api.service";
-import { Device } from "./device.model";
+import { Device, DeviceState } from "./device.model";
 
 @Component({
   selector: "app-devices-list",
@@ -16,7 +16,9 @@ export class DevicesListComponent implements OnInit {
   clientId;
   devicesListSubs: Subscription;
   devicesList: Device[];
-
+  deviceStates = DeviceState;
+  inscription = false;
+  QR_code:string;
   constructor(
     private route: ActivatedRoute,
     private devicesApi: FLASKAPIService
@@ -28,10 +30,8 @@ export class DevicesListComponent implements OnInit {
       this.clientId = params.get("clientId");
     });
     this.getDevices();
-
   }
-  getDevices()
-  {
+  getDevices() {
     this.devicesListSubs = this.devicesApi
       .getDevices(this.client.entreprise_name)
       .subscribe(res => {
@@ -42,15 +42,28 @@ export class DevicesListComponent implements OnInit {
   refresh() {
     this.getDevices();
   }
-  new()
-  {
+  new(policy_name) {
+    if (!this.inscription) {
+      this.inscription = true;
+      this.devicesApi
+      .inscriptionPolicy(policy_name)
+      .subscribe(res => {
+        this.QR_code = res;
+        console.log('QR_code reçu');
+      }, console.error);
 
+    } else this.inscription = false;
   }
-  deleteDevice(deviceName)
-  {
-    this.devicesApi
-    .deleteDevice(deviceName)
-    .subscribe(res => {
+  updateDevice(device) {
+    this.devicesListSubs = this.devicesApi
+      .updateDevice(device)
+      .subscribe(res => {
+        console.log("Update effectuée");
+      }, console.error);
+  }
+  deleteDevice(deviceName) {
+    this.devicesApi.deleteDevice(deviceName).subscribe(res => {
+      console.log("Suppression de " + "deviceName effectuée");
     }, console.error);
   }
 }

@@ -1,9 +1,13 @@
-export enum StateValues{
-  DISPLAY_STATE_UNSPECIFIED = "UN",
+export enum DisplayStateValues{
+  DISPLAY_STATE_UNSPECIFIED = "UNSPECIFIED",
   ON = "ON",
   OFF = "OFF",
   DOZE = "DOZE",
-  SUSPENDED = "SUSP",
+  SUSPENDED = "SUSPENDED",
+}
+export enum DeviceState{
+  ACTIVE = "ACTIVE",
+  DISABLED = "DISABLED",
 }
 export class Device {
   constructor(

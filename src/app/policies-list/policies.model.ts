@@ -42,6 +42,6 @@ export class Policy {
     },
     public updatedAt?: Date,
     public enrollmentTime?: Date,
-    public lastUpdatedBy?: string
+    public lastUpdatedBy?: string,
   ) {}
 }

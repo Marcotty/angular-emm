@@ -8,11 +8,16 @@
 		<mat-card class="device-card-background">
 			<mat-card-title>
 				<button mat-button (click)="refresh()" > Actualiser</button>
-				<button mat-button (click)="new()" > Nouveau</button>
+				<button mat-button (click)="new()" > Inscription</button>
 			</mat-card-title>
+      <div *ngIf="inscription">
+        <mat-card class="inscription-card">
+          <mat-card-title> Inscription </mat-card-title>
+        </mat-card>
+      </div>
 			<mat-card class="device-card">
 				<mat-card-title>
-					Devices
+					Devices de {{client.name}}
 				</mat-card-title>
 				<mat-card-subtitle>
 					Liste devices inscrits
@@ -40,10 +45,31 @@
 										<mat-tab-group>
 											<mat-tab label="Modifier">
 												<div class="modify-tab">
-													<p> Politique : {{device.policyName}}</p>
-													<p> Etat : {{device.state}}</p>
-													<p> Raison : {{device.disabledReason}}</p>
-													<button mat-button (click)="deleteDevice(device.name)" > Supprimer</button>
+													<mat-form-field class = "formField">
+														<mat-label>Politique</mat-label>
+														<input matInput [(ngModel)]="devicesList[deviceId].policyName"
+                    placeholder="Ex. " (value)= "devicesList[deviceId].policyName" >
+                          </mat-form-field>
+														<mat-form-field>
+															<mat-label>State</mat-label>
+															<mat-select [(value)]="devicesList[deviceId].state">
+																<mat-option *ngFor="let val of deviceStates | keyvalue"
+																	[value]="val.value">
+																	{{val.value}}
+																</mat-option>
+															</mat-select>
+														</mat-form-field>
+														<div *ngIf="devicesList[deviceId].state == 'DISABLED'">
+															<mat-form-field appearance="fill">
+																<mat-label>Raison</mat-label>
+																<input matInput [(ngModel)]="devicesList[deviceId].disabledReason"
+                    placeholder="Ex. " (value)= "devicesList[deviceId].disabledReason" >
+                          </mat-form-field>
+														</div>
+														<div class="buttons">
+															<button mat-button (click)="updateDevice(device)" > Modifier</button>
+															<button mat-button (click)="deleteDevice(device.name)" > Supprimer</button>
+														</div>
 												</div>
 											</mat-tab>
 											<mat-tab label="Informations">

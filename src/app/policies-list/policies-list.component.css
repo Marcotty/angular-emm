@@ -1,4 +1,4 @@
-.infos-tab, .apps-tab, .net-tab
+.infos-tab, .apps-tab, .net-tab, .sign-tab
 {
   height:200px;
 }
@@ -14,4 +14,12 @@
 {
   display:flex;
   
+}
+.sign-tab
+{
+  text-align:center;
+}
+.formField
+{
+  width:80%;
 }

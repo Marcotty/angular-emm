@@ -12,82 +12,96 @@
 					<mat-tab-group>
 						<mat-tab label="Infos">
 							<div class="infos-tab">
-								<p>Version : {{pol.version}}</p>
-								<p>appAutoUpdate : {{pol.appAutoUpdatePolicy}}</p>
-								<p>Bluetooth désactivé : {{pol.bluetoothDisabled}}</p>
-								<p>Bluetooth désactivé : <app-bool-input></app-bool-input>
+								<mat-form-field class="formField" required>
+									<mat-label>Nom de la politique </mat-label>
+									<input matInput [(ngModel)]="policies[policyId].name"
+                    placeholder="Ex. com.android.chrome " (value)= "policies[policyId].name" >
+                </mat-form-field>
+									<p>Version : {{pol.version}}</p>
+									<p>appAutoUpdate : {{pol.appAutoUpdatePolicy}}</p>
+									<p>Bluetooth désactivé : {{pol.bluetoothDisabled}}</p>
+									<p>Bluetooth désactivé : 
+                    <app-bool-input property="Bluetooth"
+                  [value]="pol.bluetoothDisabled"
+                  (valueChanged)="policies[policyId].bluetoothDisabled = $event.value"
+                  ></app-bool-input>
 
-                </p>
-                <p>Ajouter Utilisateur :</p> 
-                <div *ngIf="(pol.addUserDisabled) !== undefined else NonDef">
-                  {{pol.addUserDisabled}}
-								</div>
-                
-								<p>Ajuster volume : {{pol.adjustVolumeDisabled}}</p>
-								<p>Factory Reset : {{pol.factoryResetDisabled}}</p>
-								<p>Instaler apps : {{pol.installAppsDisabled}}</p>
-								<p>Monter carte SD : {{pol.mountPhysicalMediaDisabled}}</p>
-								<p>Modifier compte : {{pol.modifyAccountsDisabled}}</p>
-								<p>Safe boot : {{pol.safeBootDisabled}}</p>
-								<p>Désinstaller apps : {{pol.uninstallAppsDisabled}}</p>
-								<p>Status bar : {{pol.statusBarDisabled}}</p>
-								<p>Keyguard : {{pol.keyguardDisabled}}</p>
-								<p>Min API Level : {{pol.minimumApiLevel}}</p>
-								<p>Contact Sharing : {{pol.bluetoothContactSharingDisabled}}</p>
-								<p>ShortSupportMessage : {{pol.shortSupportMessage}}</p>
-								<p>LongSupportMessage : {{pol.longSupportMessage}}</p>
-								<p>Wifi Config LockDown : {{pol.wifiConfigsLockdownEnabled}}</p>
-								<p>BluetoothConfig : {{pol.bluetoothConfigDisabled}}</p>
-								<p>Config Réseau : {{pol.cellBroadcastsConfigDisabled}}</p>
-								<p>Config crédits : {{pol.credentialsConfigDisabled}}</p>
-								<p>Config réseau mobile : {{pol.mobileNetworksConfigDisabled}}</p>
-								<p>Config VON : {{pol.vpnConfigDisabled}}</p>
-								<p>Config wif : {{pol.wifiConfigDisabled}}</p>
-								<p>CreateWindows : {{pol.createWindowsDisabled}}</p>
-								<p>NetworkReset : {{pol.networkResetDisabled}}</p>
-								<p>OutgoingBeam : {{pol.outgoingBeamDisabled}}</p>
-								<p>outgoingCalls : {{pol.outgoingCallsDisabled}}</p>
-								<p>RemoveUser : {{pol.removeUserDisabled}}</p>
-								<p>ShareLocation : {{pol.shareLocationDisabled}}</p>
-								<p>SMS : {{pol.smsDisabled}}</p>
-								<p>Unmuted Micro : {{pol.unmuteMicrophoneDisabled}}</p>
-								<p>USB File Transfer : {{pol.usbFileTransferDisabled}}</p>
-								<p>Ensure Verify Apps : {{pol.ensureVerifyAppsEnabled}}</p>
-								<p>UserIcons : {{pol.setUserIconDisabled}}</p>
-								<p>Wallpaper : {{pol.setWallpaperDisabled}}</p>
-								<p>DataRoaming : {{pol.dataRoamingDisabled}}</p>
-								<p>NetworkEscape : {{pol.networkEscapeHatchEnabled}}</p>
-								<p>Block Application : {{pol.blockApplicationsEnabled}}</p>
-								<p>InstallUnknownSources : {{pol.installUnknownSourcesAllowed}}</p>
-								<p>Fun (easterEgg) : {{pol.funDisabled}}</p>
-								<p>AutoTime : {{pol.autoTimeRequired}}</p>
-								<p>KioskCustomLauncher : {{pol.kioskCustomLauncherEnabled}}</p>
-								<p>SkipFirstUseHints : {{pol.skipFirstUseHintsEnabled}}</p>
-								<p>privateKeySelection : {{pol.privateKeySelectionEnabled}}</p>
-								<p>USB Mass Storage : {{pol.usbMassStorageEnabled}}</p>
+									</p>
+									<p>Ajouter Utilisateur :</p>
+									<div *ngIf="(pol.addUserDisabled) !== undefined else NonDef">
+										{{pol.addUserDisabled}}
+									</div>
+
+									<p>Ajuster volume : {{pol.adjustVolumeDisabled}}</p>
+									<p>Factory Reset : {{pol.factoryResetDisabled}}</p>
+									<p>Instaler apps : {{pol.installAppsDisabled}}</p>
+									<p>Monter carte SD : {{pol.mountPhysicalMediaDisabled}}</p>
+									<p>Modifier compte : {{pol.modifyAccountsDisabled}}</p>
+									<p>Safe boot : {{pol.safeBootDisabled}}</p>
+									<p>Désinstaller apps : {{pol.uninstallAppsDisabled}}</p>
+									<p>Status bar : {{pol.statusBarDisabled}}</p>
+									<p>Keyguard : {{pol.keyguardDisabled}}</p>
+									<p>Min API Level : {{pol.minimumApiLevel}}</p>
+									<p>Contact Sharing : {{pol.bluetoothContactSharingDisabled}}</p>
+									<p>ShortSupportMessage : {{pol.shortSupportMessage}}</p>
+									<p>LongSupportMessage : {{pol.longSupportMessage}}</p>
+									<p>Wifi Config LockDown : {{pol.wifiConfigsLockdownEnabled}}</p>
+									<p>BluetoothConfig : {{pol.bluetoothConfigDisabled}}</p>
+									<p>Config Réseau : {{pol.cellBroadcastsConfigDisabled}}</p>
+									<p>Config crédits : {{pol.credentialsConfigDisabled}}</p>
+									<p>Config réseau mobile : {{pol.mobileNetworksConfigDisabled}}</p>
+									<p>Config VON : {{pol.vpnConfigDisabled}}</p>
+									<p>Config wif : {{pol.wifiConfigDisabled}}</p>
+									<p>CreateWindows : {{pol.createWindowsDisabled}}</p>
+									<p>NetworkReset : {{pol.networkResetDisabled}}</p>
+									<p>OutgoingBeam : {{pol.outgoingBeamDisabled}}</p>
+									<p>outgoingCalls : {{pol.outgoingCallsDisabled}}</p>
+									<p>RemoveUser : {{pol.removeUserDisabled}}</p>
+									<p>ShareLocation : {{pol.shareLocationDisabled}}</p>
+									<p>SMS : {{pol.smsDisabled}}</p>
+									<p>Unmuted Micro : {{pol.unmuteMicrophoneDisabled}}</p>
+									<p>USB File Transfer : {{pol.usbFileTransferDisabled}}</p>
+									<p>Ensure Verify Apps : {{pol.ensureVerifyAppsEnabled}}</p>
+									<p>UserIcons : {{pol.setUserIconDisabled}}</p>
+									<p>Wallpaper : {{pol.setWallpaperDisabled}}</p>
+									<p>DataRoaming : {{pol.dataRoamingDisabled}}</p>
+									<p>NetworkEscape : {{pol.networkEscapeHatchEnabled}}</p>
+									<p>Block Application : {{pol.blockApplicationsEnabled}}</p>
+									<p>InstallUnknownSources : {{pol.installUnknownSourcesAllowed}}</p>
+									<p>Fun (easterEgg) : {{pol.funDisabled}}</p>
+									<p>AutoTime : {{pol.autoTimeRequired}}</p>
+									<p>KioskCustomLauncher : {{pol.kioskCustomLauncherEnabled}}</p>
+									<p>SkipFirstUseHints : {{pol.skipFirstUseHintsEnabled}}</p>
+									<p>privateKeySelection : {{pol.privateKeySelectionEnabled}}</p>
+									<p>USB Mass Storage : {{pol.usbMassStorageEnabled}}</p>
 							</div>
-              <ng-template #NonDef><div class ="undefined" >undefined </div></ng-template>
+							<ng-template #NonDef>
+								<div class="undefined">undefined </div>
+							</ng-template>
 						</mat-tab>
 						<mat-tab label="Applications">
 							<div class="apps-tab">
 								<div *ngFor="let app of pol.applications; index as appId">
-                  <mat-form-field appearance = "fill">
-                    <mat-label>PackageName</mat-label>
-                    <input matInput [(ngModel)]="policies[policyId].applications[appId].packageName"
+									<mat-form-field appearance="fill">
+										<mat-label>PackageName</mat-label>
+										<input matInput [(ngModel)]="policies[policyId].applications[appId].packageName"
                     placeholder="Ex. com.android.chrome " (value)= "policies[policyId].applications[appId].packageName" >
                   </mat-form-field>
-                  
-									<mat-form-field appearance="fill">
-										<mat-label>Type d'installation</mat-label>
-										<mat-select (selectionChange)="update(policyId)" [(value)]="policies[policyId].applications[appId].installType">
-											<mat-option *ngFor="let val of installTypeValues | keyvalue" [value] = "val.value">
-                         {{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-									<p>Selected: package:{{policies[policyId].applications[appId].packageName}} : install :{{policies[policyId].applications[appId].installType}}</p>
-                  <br>
-                  <button >Ajout application</button>
+
+										<mat-form-field appearance="fill">
+											<mat-label>Type d'installation</mat-label>
+											<mat-select (selectionChange)="update(policyId)"
+												[(value)]="policies[policyId].applications[appId].installType">
+												<mat-option *ngFor="let val of installTypeValues | keyvalue"
+													[value]="val.value">
+													{{val.value}}
+												</mat-option>
+											</mat-select>
+										</mat-form-field>
+										<p>Selected: package:{{policies[policyId].applications[appId].packageName}} :
+											install :{{policies[policyId].applications[appId].installType}}</p>
+										<br>
+										<button >Ajout application</button>
 								</div>
 							</div>
 						</mat-tab>
@@ -95,11 +109,23 @@
 							<div class="net-tab">
 							</div>
 						</mat-tab>
+						<mat-tab label="Inscription">
+							<div class="sign-tab">
+								<div *ngIf="!QR_code[policyId] else QR">
+									<button (click)= "inscription(policyId)"> Inscription </button>
+								</div>
+								<ng-template #QR>
+									<img id="qr" src={{QR_code[policyId]}} >
+		            </ng-template>
+							</div>
+						</mat-tab>
 					</mat-tab-group>
 				</mat-card>
 			</div>
 		</div>
-    <ng-template #loading>Chargement liste...</ng-template>
+		<ng-template #loading>Chargement liste...</ng-template>
+		<ng-template #loadingQR>Chargement QR code...</ng-template>
+
 	</mat-card>
 	<div *ngIf="policies">
 		<div *ngFor="let policy of policies | keyvalue; index as policyId">
