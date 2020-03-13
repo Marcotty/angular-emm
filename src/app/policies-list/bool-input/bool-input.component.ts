@@ -12,11 +12,11 @@ export class BoolInputComponent implements OnInit {
   @Input() property: string;
   @Output() valueChanged = new EventEmitter<string> ();
   ngOnInit() {
-    console.log( this.value);
+    console.log("Bool component base value : " + this.value);
   }
   update()
   {
-    console.log(this.property + ":" + this.value);
+    console.log("Bool component : " + this.property + ":" + this.value);
     if(this.value == "Désactivé")
     {
       this.valueChanged.emit('true');
@@ -25,10 +25,5 @@ export class BoolInputComponent implements OnInit {
     {
       this.valueChanged.emit('false');
     }
-    else
-    {
-      this.valueChanged.emit('undefined');
-    }
-    
   }
 }

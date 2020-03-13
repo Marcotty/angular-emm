@@ -29,6 +29,7 @@ import { PoliciesListComponent } from './policies-list/policies-list.component';
 import { EnterpriseDetailsComponent } from './enterprise-details/enterprise-details.component';
 import { ClientNewComponent } from './client-new/client-new.component';
 import { BoolInputComponent } from './policies-list/bool-input/bool-input.component';
+import { PolicyNewComponent } from './policy-new/policy-new.component';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { BoolInputComponent } from './policies-list/bool-input/bool-input.compon
       { path: 'client/:clientId/devices', component: DevicesListComponent },
       { path: 'client/:clientId/devices/:deviceId', component: DeviceDetailsComponent },
       { path: 'client/:clientId/policies', component: PoliciesListComponent },
+      { path: 'client/:clientId/policies/new', component: PolicyNewComponent },
       { path: 'client/:clientId/enterprise', component: EnterpriseDetailsComponent },
       { path: 'newClient', component: ClientNewComponent },
     ])
@@ -70,6 +72,7 @@ import { BoolInputComponent } from './policies-list/bool-input/bool-input.compon
     EnterpriseDetailsComponent,
     ClientNewComponent,
     BoolInputComponent,
+    PolicyNewComponent,
   ],
   bootstrap: [AppComponent],
   providers: [FLASKAPIService]

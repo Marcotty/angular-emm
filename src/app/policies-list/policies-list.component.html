@@ -2,12 +2,18 @@
 	<mat-card>
 		<mat-card-title>
 			Politiques
+			<button mat-button class ="button" (click)= "refresh()"> Rafraichir </button>
+			<button mat-button class="button" [routerLink]="['/client', clientId, 'policies', 'new']"> Créer </button>
 		</mat-card-title>
 		<div *ngIf="policies else loading">
 			<div *ngFor="let pol of policies; index as policyId">
 				<mat-card>
 					<mat-card-title>
 						{{pol.name}}
+						<button mat-button class ="devicesLink" [routerLink]="['/client', clientId, 'devices']">
+              Devices
+            </button>
+						<button mat-button id="supprimer" class="button" (click)= "delete(pol.name)"> Supprimer </button>
 					</mat-card-title>
 					<mat-tab-group>
 						<mat-tab label="Infos">
@@ -15,23 +21,25 @@
 								<mat-form-field class="formField" required>
 									<mat-label>Nom de la politique </mat-label>
 									<input matInput [(ngModel)]="policies[policyId].name"
-                    placeholder="Ex. com.android.chrome " (value)= "policies[policyId].name" >
+                    placeholder="Ex. entreprises/NomEntreprise/policies/NomPolitique " (value)= "policies[policyId].name" >
                 </mat-form-field>
 									<p>Version : {{pol.version}}</p>
 									<p>appAutoUpdate : {{pol.appAutoUpdatePolicy}}</p>
 									<p>Bluetooth désactivé : {{pol.bluetoothDisabled}}</p>
-									<p>Bluetooth désactivé : 
-                    <app-bool-input property="Bluetooth"
-                  [value]="pol.bluetoothDisabled"
-                  (valueChanged)="policies[policyId].bluetoothDisabled = $event.value"
-                  ></app-bool-input>
+									<p>Bluetooth désactivé :
+										<app-bool-input property="Bluetooth" [value]="pol.bluetoothDisabled"
+											(valueChanged)="policies[policyId].bluetoothDisabled = $event">
+										</app-bool-input>
 
 									</p>
-									<p>Ajouter Utilisateur :</p>
+									<div>Ajouter Utilisateur :
 									<div *ngIf="(pol.addUserDisabled) !== undefined else NonDef">
 										{{pol.addUserDisabled}}
+										<app-bool-input property="Bluetooth" [value]="pol.addUserDisabled"
+											(valueChanged)="policies[policyId].addUserDisabled = $event">
+										</app-bool-input>
 									</div>
-
+                  </div>
 									<p>Ajuster volume : {{pol.adjustVolumeDisabled}}</p>
 									<p>Factory Reset : {{pol.factoryResetDisabled}}</p>
 									<p>Instaler apps : {{pol.installAppsDisabled}}</p>
@@ -50,8 +58,8 @@
 									<p>Config Réseau : {{pol.cellBroadcastsConfigDisabled}}</p>
 									<p>Config crédits : {{pol.credentialsConfigDisabled}}</p>
 									<p>Config réseau mobile : {{pol.mobileNetworksConfigDisabled}}</p>
-									<p>Config VON : {{pol.vpnConfigDisabled}}</p>
-									<p>Config wif : {{pol.wifiConfigDisabled}}</p>
+									<p>Config VPN : {{pol.vpnConfigDisabled}}</p>
+									<p>Config wifi : {{pol.wifiConfigDisabled}}</p>
 									<p>CreateWindows : {{pol.createWindowsDisabled}}</p>
 									<p>NetworkReset : {{pol.networkResetDisabled}}</p>
 									<p>OutgoingBeam : {{pol.outgoingBeamDisabled}}</p>
@@ -75,20 +83,20 @@
 									<p>privateKeySelection : {{pol.privateKeySelectionEnabled}}</p>
 									<p>USB Mass Storage : {{pol.usbMassStorageEnabled}}</p>
 							</div>
-							<ng-template #NonDef>
-								<div class="undefined">undefined </div>
+							<ng-template class="undefined" #NonDef>
+								undefined
 							</ng-template>
 						</mat-tab>
 						<mat-tab label="Applications">
 							<div class="apps-tab">
 								<div *ngFor="let app of pol.applications; index as appId">
-									<mat-form-field appearance="fill">
+									<mat-form-field class="formFieldApp" appearance="standard">
 										<mat-label>PackageName</mat-label>
 										<input matInput [(ngModel)]="policies[policyId].applications[appId].packageName"
                     placeholder="Ex. com.android.chrome " (value)= "policies[policyId].applications[appId].packageName" >
                   </mat-form-field>
 
-										<mat-form-field appearance="fill">
+										<mat-form-field class="formFieldApp" appearance="standard">
 											<mat-label>Type d'installation</mat-label>
 											<mat-select (selectionChange)="update(policyId)"
 												[(value)]="policies[policyId].applications[appId].installType">
@@ -98,10 +106,9 @@
 												</mat-option>
 											</mat-select>
 										</mat-form-field>
-										<p>Selected: package:{{policies[policyId].applications[appId].packageName}} :
-											install :{{policies[policyId].applications[appId].installType}}</p>
+										<p></p>
 										<br>
-										<button >Ajout application</button>
+										<button mat-button (click)="addApp(policyId, appId)">Ajout application</button>
 								</div>
 							</div>
 						</mat-tab>
@@ -112,7 +119,7 @@
 						<mat-tab label="Inscription">
 							<div class="sign-tab">
 								<div *ngIf="!QR_code[policyId] else QR">
-									<button (click)= "inscription(policyId)"> Inscription </button>
+									<button mat-button class="button" (click)= "inscription(policyId)"> Inscription </button>
 								</div>
 								<ng-template #QR>
 									<img id="qr" src={{QR_code[policyId]}} >

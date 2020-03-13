@@ -33,7 +33,9 @@
 							<mat-card-subtitle>
 								{{device.networkInfo.wifiMacAddress}}
 								<br>
+                <a class="policyLink"[routerLink]="['/client', clientId, 'policies']" >
                 {{device.policyName}}
+                </a>
               </mat-card-subtitle>
 								<mat-card-content>
 									<mat-expansion-panel>

@@ -13,7 +13,7 @@
 .undefined
 {
   display:flex;
-  
+  float:right;
 }
 .sign-tab
 {
@@ -21,5 +21,20 @@
 }
 .formField
 {
-  width:80%;
+  width:60%;
+}
+.formFieldApp
+{
+  height:30px;
+}
+#supprimer
+{
+  margin-left:-80px;
+  float:right;
+}
+.devicesLink
+{
+   text-decoration: none;
+   cursor: pointer;
+   color:gray;
 }

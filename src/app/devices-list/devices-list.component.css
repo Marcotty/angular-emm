@@ -5,12 +5,18 @@ h1{
 {
   width:90%;
 }
+.policyLink
+{
+   text-decoration: none;
+   cursor: pointer;
+   color:gray;
+}
 .devicesCards
 {
   display:flex;
   flex-wrap: wrap;
   width:100%;
-    min-width:200px;
+  min-width:200px;
 }
 .buttons
 {

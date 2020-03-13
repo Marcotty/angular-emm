@@ -27,6 +27,10 @@ export class PoliciesListComponent implements OnInit {
       this.client = clients[+params.get("clientId")];
       this.clientId = params.get("clientId");
     });
+    this.getPolicies();
+  }
+  getPolicies()
+  {
     this.policiesListSubs = this.devicesApi
       .getPolicies(this.client.entreprise_name)
       .subscribe(res => {
@@ -41,7 +45,8 @@ export class PoliciesListComponent implements OnInit {
       }, console.error);
   }
   update(policyId) {
-    this.devicesApi.updatePolicy(this.policies[policyId]).subscribe(res => {
+    this.devicesApi.updatePolicy(this.policies[policyId])
+    .subscribe(res => {
       //this.policies[policyId] = res;
       console.log("update effectuée");
     }, console.error);
@@ -54,9 +59,24 @@ export class PoliciesListComponent implements OnInit {
         console.log("QR_code[" + policyId + "] reçu " + this.QR_code[policyId]);
       }, console.error);
   }
-  onChanged(property : string, value : string)
+  onChanged(event)
   {
-    console.log("prop : " + property + "changed : " + value);
-    property = value;
+    console.log("Parentchanged : " + event);
+  }
+  delete(policyName)
+  {
+    this.devicesApi.deletePolicy(policyName)
+    .subscribe(res =>{
+      console.log('Suppression effectuée');
+    }, console.error);
+    this.refresh();
+  }
+  refresh()
+  {
+    this.getPolicies();
+  }
+  addApp(policyId, appId)
+  {
+
   }
 }

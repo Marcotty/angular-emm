@@ -43,6 +43,11 @@ export class FLASKAPIService {
       .get<Policy[]>(URL + enterprise_name + `/policies`)
       .pipe(catchError(FLASKAPIService._handleError));
   }
+  createPolicy(policy) : Observable<Policy[]>{
+    return this.http
+    .post<Policy[]>(URL + policy.name + '/new', policy, httpOptions)
+    .pipe(catchError(FLASKAPIService._handleError));
+  }
   inscriptionPolicy(policy_name): Observable<string> {
     return this.http
       .get<string>(URL + policy_name + `/inscription`)

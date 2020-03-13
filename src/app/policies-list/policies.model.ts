@@ -12,7 +12,6 @@ export enum boolDisabled
 {
   true = "Désactivé",
   false = "Activé",
-  undefined = "Undefined"
 }
 export class Policy {
   constructor(
