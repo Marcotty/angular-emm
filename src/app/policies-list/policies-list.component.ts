@@ -3,7 +3,7 @@ import { FLASKAPIService } from "../flask-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { clients } from "../client-list/clients";
-import { Policy, installTypeValues } from "./policies.model";
+import { Policy, installTypeValues, appAutoUpdateValues, boolDisabled } from "./policies.model";
 @Component({
   selector: "app-policies-list",
   templateUrl: "./policies-list.component.html",
@@ -15,6 +15,8 @@ export class PoliciesListComponent implements OnInit {
   policiesListSubs: Subscription;
   policies: Policy[];
   installTypeValues = installTypeValues;
+  appAutoUpdateValues = appAutoUpdateValues;
+  boolDisabled = boolDisabled;
   QR_code: string[] = [];
   inscriptionAuto = false;
   constructor(
@@ -35,7 +37,7 @@ export class PoliciesListComponent implements OnInit {
       .getPolicies(this.client.entreprise_name)
       .subscribe(res => {
         this.policies = res;
-        console.log("politiques chargées");
+        console.log("politiques chargées : "+ res);
         if(this.inscriptionAuto)
         {
           for (let i = 0; i < this.policies.length; i++) {
@@ -59,9 +61,17 @@ export class PoliciesListComponent implements OnInit {
         console.log("QR_code[" + policyId + "] reçu " + this.QR_code[policyId]);
       }, console.error);
   }
-  onChanged(event)
+  onChanged(champ : string, policyId, event)
   {
-    console.log("Parentchanged : " + event);
+    console.log("champ : " + champ + ": " + event);
+    switch(champ)
+    {
+      case 'bluetooth':
+        this.policies[policyId].bluetoothDisabled = event;
+        break;
+      case 'addUser':
+        this.policies[policyId].addUserDisabled = event;
+    }
   }
   delete(policyName)
   {
@@ -75,8 +85,20 @@ export class PoliciesListComponent implements OnInit {
   {
     this.getPolicies();
   }
-  addApp(policyId, appId)
+  addApp(policyId)
   {
-
+    for(let i = this.countApps(this.policies[policyId]); i< i +1 ;i++)
+    {
+      this.policies[policyId].applications[i] = '';
+    }
+  }
+  countApps(policy)
+  {
+    let i =0;
+    while(policy.applications[i].packageName !== undefined)
+    {
+      i++;
+    }
+    return i;
   }
 }

@@ -13,6 +13,15 @@ export enum boolDisabled
   true = "Désactivé",
   false = "Activé",
 }
+export enum appAutoUpdateValues
+{
+  APP_AUTO_UDPATE_POLICY_UNSPECIFIED = "APP_AUTO_UDPATE_POLICY_UNSPECIFIED",
+  CHOICE_TO_THE_USER = "CHOICE_TO_THE_USER",
+  NEVER = "NEVER",
+  WIFI_ONLY = "WIFI_ONLY",
+  ALWAYS = "ALWAYS",
+}
+
 export class Policy {
   constructor(
     public name: string,

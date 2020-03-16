@@ -25,21 +25,40 @@
                 </mat-form-field>
 									<p>Version : {{pol.version}}</p>
 									<p>appAutoUpdate : {{pol.appAutoUpdatePolicy}}</p>
+                  <mat-form-field title="Politique update apps" class="formField" appearance="standard">
+											<mat-label>App auto update </mat-label>
+											<mat-select (selectionChange)="update(policyId)"
+												[(value)]="policies[policyId].appAutoUpdatePolicy">
+												<mat-option *ngFor="let appVal of appAutoUpdateValues | keyvalue"
+													[value]="appVal.value">
+													{{appVal.value}}
+												</mat-option>
+											</mat-select>
+										</mat-form-field>
 									<p>Bluetooth désactivé : {{pol.bluetoothDisabled}}</p>
-									<p>Bluetooth désactivé :
-										<app-bool-input property="Bluetooth" [value]="pol.bluetoothDisabled"
+									<!--<p>Bluetooth désactivé :
+										<app-bool-input property="Bluetooth" [(value)]="policies[policyId].bluetoothDisabled"
 											(valueChanged)="policies[policyId].bluetoothDisabled = $event">
 										</app-bool-input>
 
-									</p>
+									</p>-->
+                  <mat-form-field title="Activation Bluetooth" class="formField" appearance="standard">
+											<mat-label>Bluetooth </mat-label>
+											<mat-select (selectionChange)="update(policyId)"
+												[(value)]="policies[policyId].bluetoothDisabled">
+												<mat-option *ngFor="let val of boolDisabled | keyvalue"
+													[value]="val.key">
+													{{val.value}}
+												</mat-option>
+											</mat-select>
+										</mat-form-field>
+                    <!--
 									<div>Ajouter Utilisateur :
-									<div *ngIf="(pol.addUserDisabled) !== undefined else NonDef">
 										{{pol.addUserDisabled}}
-										<app-bool-input property="Bluetooth" [value]="pol.addUserDisabled"
-											(valueChanged)="policies[policyId].addUserDisabled = $event">
+										<app-bool-input property="Ajouter User" [value]="pol.addUserDisabled"
+											(valueChanged)="onChanged(champ ='addUser', policyId, event)">
 										</app-bool-input>
-									</div>
-                  </div>
+                  </div>-->
 									<p>Ajuster volume : {{pol.adjustVolumeDisabled}}</p>
 									<p>Factory Reset : {{pol.factoryResetDisabled}}</p>
 									<p>Instaler apps : {{pol.installAppsDisabled}}</p>
@@ -90,6 +109,7 @@
 						<mat-tab label="Applications">
 							<div class="apps-tab">
 								<div *ngFor="let app of pol.applications; index as appId">
+                  Application n°:{{appId}}
 									<mat-form-field class="formFieldApp" appearance="standard">
 										<mat-label>PackageName</mat-label>
 										<input matInput [(ngModel)]="policies[policyId].applications[appId].packageName"
@@ -108,8 +128,8 @@
 										</mat-form-field>
 										<p></p>
 										<br>
-										<button mat-button (click)="addApp(policyId, appId)">Ajout application</button>
 								</div>
+                <button mat-button (click)="addApp(policyId)">Ajout application</button>
 							</div>
 						</mat-tab>
 						<mat-tab label="Network">
@@ -127,6 +147,7 @@
 							</div>
 						</mat-tab>
 					</mat-tab-group>
+          <button mat-button (click)="update(policyId)"> Modifier </button>
 				</mat-card>
 			</div>
 		</div>
