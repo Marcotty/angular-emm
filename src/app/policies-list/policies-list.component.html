@@ -25,16 +25,17 @@
                 </mat-form-field>
 									<p>Version : {{pol.version}}</p>
 									<p>appAutoUpdate : {{pol.appAutoUpdatePolicy}}</p>
-                  <mat-form-field title="Politique update apps" class="formField" appearance="standard">
-											<mat-label>App auto update </mat-label>
-											<mat-select (selectionChange)="update(policyId)"
-												[(value)]="policies[policyId].appAutoUpdatePolicy">
-												<mat-option *ngFor="let appVal of appAutoUpdateValues | keyvalue"
-													[value]="appVal.value">
-													{{appVal.value}}
-												</mat-option>
-											</mat-select>
-										</mat-form-field>
+									<mat-form-field title="Politique update apps" class="formField"
+										appearance="standard">
+										<mat-label>App auto update </mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].appAutoUpdatePolicy">
+											<mat-option *ngFor="let appVal of appAutoUpdateValues | keyvalue"
+												[value]="appVal.value">
+												{{appVal.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
 									<p>Bluetooth désactivé : {{pol.bluetoothDisabled}}</p>
 									<!--<p>Bluetooth désactivé :
 										<app-bool-input property="Bluetooth" [(value)]="policies[policyId].bluetoothDisabled"
@@ -42,17 +43,28 @@
 										</app-bool-input>
 
 									</p>-->
-                  <mat-form-field title="Activation Bluetooth" class="formField" appearance="standard">
-											<mat-label>Bluetooth </mat-label>
-											<mat-select (selectionChange)="update(policyId)"
-												[(value)]="policies[policyId].bluetoothDisabled">
-												<mat-option *ngFor="let val of boolDisabled | keyvalue"
-													[value]="val.key">
-													{{val.value}}
-												</mat-option>
-											</mat-select>
-										</mat-form-field>
-                    <!--
+									<mat-form-field title="Activation Bluetooth" class="formField"
+										appearance="standard">
+										<mat-label>Bluetooth </mat-label>
+										<mat-select
+											[(ngModel)]="policies[policyId].bluetoothDisabled">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.value">
+												{{val.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+									<p>Bluetooth Config désactivé : {{pol.bluetoothConfigDisabled}}</p>
+									<mat-form-field title="Activation Config Bluetooth" class="formField"
+										appearance="standard">
+										<mat-label>Config Bluetooth </mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].bluetoothConfigDisabled">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.value">
+												{{val.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+									<!--
 									<div>Ajouter Utilisateur :
 										{{pol.addUserDisabled}}
 										<app-bool-input property="Ajouter User" [value]="pol.addUserDisabled"
@@ -109,7 +121,7 @@
 						<mat-tab label="Applications">
 							<div class="apps-tab">
 								<div *ngFor="let app of pol.applications; index as appId">
-                  Application n°:{{appId}}
+									Application n°:{{appId}}<br>
 									<mat-form-field class="formFieldApp" appearance="standard">
 										<mat-label>PackageName</mat-label>
 										<input matInput [(ngModel)]="policies[policyId].applications[appId].packageName"
@@ -126,15 +138,66 @@
 												</mat-option>
 											</mat-select>
 										</mat-form-field>
-										<p></p>
-										<br>
+
+										<mat-form-field class="formFieldApp" appearance="standard">
+											<mat-label>Permissions</mat-label>
+											<mat-select (selectionChange)="update(policyId)"
+												[(value)]="policies[policyId].applications[appId].defaultPermissionPolicy">
+												<mat-option *ngFor="let val of defaultPermissionValues | keyvalue"
+													[value]="val.value">
+													{{val.value}}
+												</mat-option>
+											</mat-select>
+										</mat-form-field>
+										<button mat-button (click)="addApp(policyId, appId)">Ajout application</button>
+										<button mat-button (click)="delApp(policyId, appId)">Supprimer application</button>
 								</div>
-                <button mat-button (click)="addApp(policyId)">Ajout application</button>
+
 							</div>
 						</mat-tab>
 						<mat-tab label="Network">
 							<div class="net-tab">
+								<div *ngIf="pol.openNetworkConfiguration !== undefined else creerNetwork">
+									<div *ngFor="let network of pol.openNetworkConfiguration.networkConfigurations; index as netId">
+										<p> Network : </p>
+                    <p> SSID : </p>
+                    {{network[netId].GUID}}
+									</div>
+								</div>
 							</div>
+							<ng-template #creerNetwork>
+								<div *ngIf="{ GUID: '', Name: '', SSID: '', Cle:'' }; let variable">
+									<mat-form-field class="formField" required>
+										<mat-label>GUID </mat-label>
+										<input matInput [(ngModel)] = "variable.GUID"
+                    placeholder="Identifier Unique " >
+                  </mat-form-field>
+                  <mat-form-field class="formField" required>
+											<mat-label>Name </mat-label>
+											<input matInput [(ngModel)] = "variable.Name"
+                    placeholder="Nom/description " >
+                  </mat-form-field>
+                  <mat-form-field class="formField" required>
+											<mat-label>Type </mat-label>
+											<mat-select>
+                        <mat-option value="WiFi">
+                          Wifi
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="formField" required>
+											<mat-label>SSID </mat-label>
+											<input matInput [(ngModel)] = "variable.SSID"
+                    placeholder="SSID - VOO-ABCDE " >
+                  </mat-form-field>
+                  <mat-form-field class="formField" required>
+											<mat-label>Clé </mat-label>
+											<input matInput [(ngModel)] = "variable.Cle"
+                    placeholder="Mot de passe" >
+                  </mat-form-field>
+                    <button mat-button (click)="createNetwork(policyId, guid = variable.GUID, name = variable.Name, ssid = variable.SSID, type=variable.type, cle = variable.Cle)"> Créer Network </button>
+								</div>
+							</ng-template>
 						</mat-tab>
 						<mat-tab label="Inscription">
 							<div class="sign-tab">
@@ -147,7 +210,7 @@
 							</div>
 						</mat-tab>
 					</mat-tab-group>
-          <button mat-button (click)="update(policyId)"> Modifier </button>
+					<button mat-button (click)="update(policyId)"> Modifier </button>
 				</mat-card>
 			</div>
 		</div>

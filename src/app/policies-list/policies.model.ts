@@ -10,8 +10,8 @@ export enum installTypeValues
 }
 export enum boolDisabled
 {
-  true = "Désactivé",
-  false = "Activé",
+  true = "true",
+  false = "false",
 }
 export enum appAutoUpdateValues
 {
@@ -21,7 +21,13 @@ export enum appAutoUpdateValues
   WIFI_ONLY = "WIFI_ONLY",
   ALWAYS = "ALWAYS",
 }
-
+export enum defaultPermissionValues
+{
+  PROMPT = "PROMPT",
+  GRANT = "GRANT",
+  DENY = "DENY",
+  PERMISSION_POLICY_UNSPECIFIED = "PERMISSION_POLICY_UNSPECIFIED"
+}
 export class Policy {
   constructor(
     public name: string,

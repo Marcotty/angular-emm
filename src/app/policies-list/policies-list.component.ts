@@ -3,7 +3,7 @@ import { FLASKAPIService } from "../flask-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { clients } from "../client-list/clients";
-import { Policy, installTypeValues, appAutoUpdateValues, boolDisabled } from "./policies.model";
+import { Policy, installTypeValues, appAutoUpdateValues, defaultPermissionValues, boolDisabled } from "./policies.model";
 @Component({
   selector: "app-policies-list",
   templateUrl: "./policies-list.component.html",
@@ -17,6 +17,7 @@ export class PoliciesListComponent implements OnInit {
   installTypeValues = installTypeValues;
   appAutoUpdateValues = appAutoUpdateValues;
   boolDisabled = boolDisabled;
+  defaultPermissionValues = defaultPermissionValues;
   QR_code: string[] = [];
   inscriptionAuto = false;
   constructor(
@@ -85,20 +86,26 @@ export class PoliciesListComponent implements OnInit {
   {
     this.getPolicies();
   }
-  addApp(policyId)
+  addApp(policyId, appId)
   {
-    for(let i = this.countApps(this.policies[policyId]); i< i +1 ;i++)
-    {
-      this.policies[policyId].applications[i] = '';
-    }
+    console.log('appId : ' + appId);
+    this.policies[policyId].applications[appId+1] = 
+    JSON.parse('{"packageName":"com.google.earth","installType": "AVAILABLE"}');
   }
-  countApps(policy)
+  delApp(policyId, appId)
   {
-    let i =0;
-    while(policy.applications[i].packageName !== undefined)
-    {
-      i++;
-    }
-    return i;
+    this.policies[policyId].applications.splice(appId, 1); 
+  }
+  createNetwork(policyId, guid: string, name: string, ssid : string, type: string, cle : string)
+  {
+    console.log('guid : ' + guid);
+    console.log('name : ' + name);
+    console.log('ssid' + ssid);
+    console.log('type : ' + type);
+    console.log('cle : ' + cle);
+    this.policies[policyId].openNetworkConfiguration = JSON.parse(
+      '{"networkConfigurations" : [{"GUID" : "guid", "Name":"name", "Type":"type", "WiFi": {"SSID":"ssid", "Security":"WPA-PSK", "Passphrase":"cle"}}]}'
+    );
+    console.log('network : ' + this.policies[policyId].openNetworkConfiguration.networkConfigurations[0].GUID);
   }
 }
