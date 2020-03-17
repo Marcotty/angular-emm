@@ -54,7 +54,7 @@
 										</mat-select>
 									</mat-form-field>
 									<p>Bluetooth Config désactivé : {{pol.bluetoothConfigDisabled}}</p>
-									<mat-form-field title="Activation Config Bluetooth" class="formField"
+									<mat-form-field title="Configuration du Bluetooth" class="formField"
 										appearance="standard">
 										<mat-label>Config Bluetooth </mat-label>
 										<mat-select (selectionChange)="update(policyId)"
@@ -218,6 +218,10 @@
 		<ng-template #loadingQR>Chargement QR code...</ng-template>
 
 	</mat-card>
+  <div >
+    <app-policies-table client = "client">
+    </app-policies-table>
+  </div>
 	<div *ngIf="policies">
 		<div *ngFor="let policy of policies | keyvalue; index as policyId">
 			Nom de la politique : {{policy.name}} <br>

@@ -16,6 +16,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 
 
 import { AppComponent } from "./app.component";
@@ -30,6 +31,7 @@ import { EnterpriseDetailsComponent } from './enterprise-details/enterprise-deta
 import { ClientNewComponent } from './client-new/client-new.component';
 import { BoolInputComponent } from './policies-list/bool-input/bool-input.component';
 import { PolicyNewComponent } from './policy-new/policy-new.component';
+import { PoliciesTableComponent } from './policies-table/policies-table.component';
 
 @NgModule({
   imports: [
@@ -50,6 +52,7 @@ import { PolicyNewComponent } from './policy-new/policy-new.component';
     MatFormFieldModule,
     MatTabsModule,
     MatSelectModule,
+    MatTableModule,
     RouterModule.forRoot([
       { path: '', component: ClientListComponent },
       { path: 'client/:clientId', component: ClientDetailsComponent },
@@ -73,6 +76,7 @@ import { PolicyNewComponent } from './policy-new/policy-new.component';
     ClientNewComponent,
     BoolInputComponent,
     PolicyNewComponent,
+    PoliciesTableComponent,
   ],
   bootstrap: [AppComponent],
   providers: [FLASKAPIService]
