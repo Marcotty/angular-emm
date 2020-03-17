@@ -121,7 +121,7 @@
 						<mat-tab label="Applications">
 							<div class="apps-tab">
 								<div *ngFor="let app of pol.applications; index as appId">
-									Application n°:{{appId}}<br>
+									Application n°{{appId}}<br>
 									<mat-form-field class="formFieldApp" appearance="standard">
 										<mat-label>PackageName</mat-label>
 										<input matInput [(ngModel)]="policies[policyId].applications[appId].packageName"
