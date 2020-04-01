@@ -24,7 +24,6 @@
                     placeholder="Ex. entreprises/NomEntreprise/policies/NomPolitique " (value)= "policies[policyId].name" >
                 </mat-form-field>
 									<p>Version : {{pol.version}}</p>
-									<p>appAutoUpdate : {{pol.appAutoUpdatePolicy}}</p>
 									<mat-form-field title="Politique update apps" class="formField"
 										appearance="standard">
 										<mat-label>App auto update </mat-label>
@@ -36,30 +35,30 @@
 											</mat-option>
 										</mat-select>
 									</mat-form-field>
-									<p>Bluetooth désactivé : {{pol.bluetoothDisabled}}</p>
-									<!--<p>Bluetooth désactivé :
+									<!--<p>Bluetooth désactivé : {{pol.bluetoothDisabled}}</p>-->
+									<p>Bluetooth désactivé :
 										<app-bool-input property="Bluetooth" [(value)]="policies[policyId].bluetoothDisabled"
 											(valueChanged)="policies[policyId].bluetoothDisabled = $event">
 										</app-bool-input>
 
-									</p>-->
+									</p>
 									<mat-form-field title="Activation Bluetooth" class="formField"
 										appearance="standard">
 										<mat-label>Bluetooth </mat-label>
 										<mat-select
 											[(ngModel)]="policies[policyId].bluetoothDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.value">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
 												{{val.value}}
 											</mat-option>
 										</mat-select>
 									</mat-form-field>
-									<p>Bluetooth Config désactivé : {{pol.bluetoothConfigDisabled}}</p>
+									<!--<p>Bluetooth Config désactivé : {{pol.bluetoothConfigDisabled}}</p>-->
 									<mat-form-field title="Configuration du Bluetooth" class="formField"
 										appearance="standard">
 										<mat-label>Config Bluetooth </mat-label>
 										<mat-select (selectionChange)="update(policyId)"
 											[(value)]="policies[policyId].bluetoothConfigDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.value">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
 												{{val.value}}
 											</mat-option>
 										</mat-select>
@@ -71,11 +70,82 @@
 											(valueChanged)="onChanged(champ ='addUser', policyId, event)">
 										</app-bool-input>
                   </div>-->
-									<p>Ajuster volume : {{pol.adjustVolumeDisabled}}</p>
+                  <mat-form-field title="Ajouter un utilisateur" class="formField"
+										appearance="standard">
+										<mat-label>Ajouter un utilisateur </mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].addUserDisabled">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
+												{{val.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+                  <mat-form-field title="Ajuster le volume" class="formField"
+										appearance="standard">
+										<mat-label>Ajuster volume </mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].adjustVolumeDisabled">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
+												{{val.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+                  <p>Ajuster volume : {{pol.adjustVolumeDisabled}}</p>
+                  <mat-form-field title="Factory reset" class="formField"
+										appearance="standard">
+										<mat-label>Factory Reset </mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].factoryResetDisabled">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
+												{{val.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
 									<p>Factory Reset : {{pol.factoryResetDisabled}}</p>
+                  <mat-form-field title="Installer applications" class="formField"
+										appearance="standard">
+										<mat-label>Installer applications </mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].installAppsDisabled">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
+												{{val.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
 									<p>Instaler apps : {{pol.installAppsDisabled}}</p>
+                  <mat-form-field title="Monter media" class="formField"
+										appearance="standard">
+										<mat-label>Mount </mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].mountPhysicalMediaDisabled">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
+												{{val.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
 									<p>Monter carte SD : {{pol.mountPhysicalMediaDisabled}}</p>
+                  <mat-form-field title="Modifier comptes" class="formField"
+										appearance="standard">
+										<mat-label>Modifier comptes </mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].modifyAccountsDisabled">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
+												{{val.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
 									<p>Modifier compte : {{pol.modifyAccountsDisabled}}</p>
+                  <mat-form-field title="Safe Boot" class="formField"
+										appearance="standard">
+										<mat-label>Safe Boot </mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].safeBootDisabled">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
+												{{val.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+
 									<p>Safe boot : {{pol.safeBootDisabled}}</p>
 									<p>Désinstaller apps : {{pol.uninstallAppsDisabled}}</p>
 									<p>Status bar : {{pol.statusBarDisabled}}</p>
@@ -121,7 +191,6 @@
 						<mat-tab label="Applications">
 							<div class="apps-tab">
 								<div *ngFor="let app of pol.applications; index as appId">
-									Application n°{{appId}}<br>
 									<mat-form-field class="formFieldApp" appearance="standard">
 										<mat-label>PackageName</mat-label>
 										<input matInput [(ngModel)]="policies[policyId].applications[appId].packageName"

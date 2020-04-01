@@ -10,8 +10,8 @@ export enum installTypeValues
 }
 export enum boolDisabled
 {
-  true = "true",
-  false = "false",
+  true = "Désactivé",
+  false = "Activé",
 }
 export enum appAutoUpdateValues
 {

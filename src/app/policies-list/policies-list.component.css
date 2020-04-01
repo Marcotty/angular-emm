@@ -1,6 +1,6 @@
 .infos-tab, .apps-tab, .net-tab, .sign-tab
 {
-  height:200px;
+  height:800px;
 }
 .apps-tab> div{
   display:flex;
@@ -25,7 +25,7 @@
 }
 .formFieldApp
 {
-  height:30px;
+  height:60px;
 }
 #supprimer
 {

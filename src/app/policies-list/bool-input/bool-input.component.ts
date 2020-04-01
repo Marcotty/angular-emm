@@ -15,16 +15,16 @@ export class BoolInputComponent implements OnInit {
     console.log("Bool component base value : " + this.value);
     if(this.value == "true")
     {
-      this.value = "Activé";
+      this.value = "Désactivé";
     }
     else
     {
-      this.value = "Désactivé";
+      this.value = "Activé";
     }
   }
   update(event)
   {
-    console.log("Bool component : " + this.property + ":" + this.value + "event : " + event);
+    console.log("Bool component update : " + this.property + ":" + this.value + "event : " + event);
     if(this.value == "Désactivé")
     {
       this.valueChanged.emit(true);
