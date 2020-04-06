@@ -20,9 +20,10 @@ h1{
 }
 .buttons
 {
-  display:flex;
-  flex-wrap:wrap;
   background: rgb(209, 206, 206);
+  text-align:left;
+  justify-content:left;
+  width:20%;
 }
 .infos
 {
@@ -69,4 +70,13 @@ device-card-header
   justify-content:left;
   width:100%;
   text-align:left;
+}
+.actions
+{
+  float : right;
+}
+.title
+{
+  display:flex;
+  flex-wrap: wrap;
 }

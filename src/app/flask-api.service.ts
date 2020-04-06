@@ -23,6 +23,12 @@ export class FLASKAPIService {
       err.message || "Error: Unable to complete request."
     );
   }
+  getClients(): Observable<any>
+  {
+    return this.http
+      .get(URL + `/clients`)
+      .pipe(catchError(FLASKAPIService._handleError));
+  }
   getDevices(enterprise_name): Observable<Device[]> {
     return this.http
       .get<Device[]>(URL + enterprise_name + `/devices`)
