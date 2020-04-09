@@ -3,7 +3,7 @@ import { FLASKAPIService } from "../flask-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { clients } from "../client-list/clients";
-import { Policy, installTypeValues, appAutoUpdateValues, defaultPermissionValues, boolDisabled } from "./policies.model";
+import { Policy, installTypeValues, appAutoUpdateValues, defaultPermissionValues, boolDisabled, KeyguardFeature } from "./policies.model";
 @Component({
   selector: "app-policies-list",
   templateUrl: "./policies-list.component.html",

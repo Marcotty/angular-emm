@@ -1,6 +1,6 @@
 .infos-tab, .apps-tab, .net-tab, .sign-tab
 {
-  height:800px;
+  height:600px;
 }
 .apps-tab> div{
   display:flex;
@@ -15,13 +15,23 @@
   display:flex;
   float:right;
 }
+.separateur
+{
+  border-bottom: 1px gray;
+}
 .sign-tab
 {
   text-align:center;
 }
 .formField
 {
-  width:60%;
+  width:15%;
+  margin-right : 15px;
+}
+.formFieldName
+{
+  width:30%;
+  margin-right : 15px;
 }
 .formFieldApp
 {
@@ -37,4 +47,8 @@
    text-decoration: none;
    cursor: pointer;
    color:gray;
+}
+.mat-card
+{
+  margin-bottom: 5px;
 }

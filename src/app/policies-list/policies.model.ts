@@ -28,6 +28,18 @@ export enum defaultPermissionValues
   DENY = "DENY",
   PERMISSION_POLICY_UNSPECIFIED = "PERMISSION_POLICY_UNSPECIFIED"
 }
+export enum KeyguardFeature
+{
+  CAMERA = "CAMERA",
+  NOTIFS = "NOTIFICATIONS",
+  UNREADNORIFS = "UNREDACTED_NOTIFICATIONS",
+  TRUS = "TRUST_AGENTS",
+  PRINT = "DISABLE_FINGERPRINT",
+  FACE = "FACE",
+  IRIS = "IRIS",
+  ALL = "ALL_FEATURES"
+}
+
 export class Policy {
   constructor(
     public name: string,
