@@ -27,7 +27,7 @@
                     placeholder="Ex. entreprises/NomEntreprise/policies/NomPolitique " (value)= "policies[policyId].name" >
                 </mat-form-field>
 							  <div class ="separateur">
-                  
+
                 </div>
 									<mat-form-field title="Politique update apps" class="formField"
 										appearance="standard">
@@ -35,6 +35,50 @@
 										<mat-select (selectionChange)="update(policyId)"
 											[(value)]="policies[policyId].appAutoUpdatePolicy">
 											<mat-option *ngFor="let appVal of appAutoUpdateValues | keyvalue"
+												[value]="appVal.value">
+												{{appVal.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+                  <mat-form-field title="Mode de localisation" class="formField"
+										appearance="standard">
+										<mat-label>Localisation</mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].locationMode">
+											<mat-option *ngFor="let appVal of locationMode | keyvalue"
+												[value]="appVal.value">
+												{{appVal.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+                  <mat-form-field title="Keyguard" class="formField"
+										appearance="standard">
+										<mat-label>KeyGuard</mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].keyguardDisabledFeature">
+											<mat-option *ngFor="let appVal of keyguardFeature | keyvalue"
+												[value]="appVal.value">
+												{{appVal.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+                  <mat-form-field title="Politique d'encryption" class="formField"
+										appearance="standard">
+										<mat-label>Encryption</mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].encryptionPolicy">
+											<mat-option *ngFor="let appVal of encryptionPolicy | keyvalue"
+												[value]="appVal.value">
+												{{appVal.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+                  <mat-form-field title="Mode du play store" class="formField"
+										appearance="standard">
+										<mat-label>Play Store</mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].playStoreMode">
+											<mat-option *ngFor="let appVal of playStoreMode | keyvalue"
 												[value]="appVal.value">
 												{{appVal.value}}
 											</mat-option>
@@ -476,6 +520,12 @@
 												{{val.value}}
 											</mat-option>
 										</mat-select>
+									</mat-form-field>
+                  <mat-form-field title="Emails utilisé pour la protection de Factory Reset" class="formField"
+										appearance="standard">
+										<mat-label>Emails admins</mat-label>
+										<input matInput [(ngModel)]="policies[policyId].frpAdminEmails"
+                    placeholder="..@gmail.com " (value)= "policies[policyId].frpAdminEmails" >
 									</mat-form-field>
                   <!-- utile ?? -->
                   <!--<mat-form-field title="clés privées ?" class="formField"

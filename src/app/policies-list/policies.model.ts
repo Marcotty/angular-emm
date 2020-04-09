@@ -28,7 +28,7 @@ export enum defaultPermissionValues
   DENY = "DENY",
   PERMISSION_POLICY_UNSPECIFIED = "PERMISSION_POLICY_UNSPECIFIED"
 }
-export enum KeyguardFeature
+export enum keyguardFeature
 {
   CAMERA = "CAMERA",
   NOTIFS = "NOTIFICATIONS",
@@ -39,7 +39,26 @@ export enum KeyguardFeature
   IRIS = "IRIS",
   ALL = "ALL_FEATURES"
 }
-
+export enum locationMode
+{
+  LOCATION_MODE_UNSPECIFIED = "LOCATION_MODE_UNSPECIFIED",
+  HIGH_ACCURACY = "HIGH_ACCURACY",
+  SENCORS_ONLY = "SENSORS_ONLY",
+  BATTERY_SAVING = "BATTERY_SAVING",
+  OFF = "OFF"
+}
+export enum encryptionPolicy
+{
+  ENCRYPTION_POLICY_UNSPECIFIED = "ENCRYPTION_POLICY_UNSPECIFIED",
+  ENABLED_WITHOUT_PASSWORD = "ENABLED_WITHOUT_PASSWORD",
+  ENABLED_WITH_PASSWORD = "ENABLED_WITH_PASSWORD"
+}
+export enum playStoreMode
+{
+  UNSPECIFIED = "PLAY_STORE_MODE_UNSPECIFIED",
+  WITHELIST = "WHITELIST",
+  BLACKLIST = "BLACKLIST"
+}
 export class Policy {
   constructor(
     public name: string,

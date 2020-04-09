@@ -3,7 +3,8 @@ import { FLASKAPIService } from "../flask-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { clients } from "../client-list/clients";
-import { Policy, installTypeValues, appAutoUpdateValues, defaultPermissionValues, boolDisabled, KeyguardFeature } from "./policies.model";
+import { Policy, installTypeValues, appAutoUpdateValues, defaultPermissionValues, 
+          boolDisabled, keyguardFeature, locationMode, encryptionPolicy, playStoreMode } from "./policies.model";
 @Component({
   selector: "app-policies-list",
   templateUrl: "./policies-list.component.html",
@@ -18,6 +19,10 @@ export class PoliciesListComponent implements OnInit {
   appAutoUpdateValues = appAutoUpdateValues;
   boolDisabled = boolDisabled;
   defaultPermissionValues = defaultPermissionValues;
+  keyguardFeature = keyguardFeature;
+  locationMode = locationMode;
+  encryptionPolicy = encryptionPolicy;
+  playStoreMode = playStoreMode;
   QR_code: string[] = [];
   inscriptionAuto = false;
   constructor(
