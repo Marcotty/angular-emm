@@ -12,10 +12,11 @@ import { Policy, installTypeValues, appAutoUpdateValues, defaultPermissionValues
   styleUrls: ["./policies-list.component.css"]
 })
 export class PoliciesListComponent implements OnInit {
-  client;
-  clientId;
-  policiesListSubs: Subscription;
-  policies: Policy[];
+  client; //infos du client
+  clientId; //id du client
+  policiesListSubs: Subscription; 
+  policies: Policy[]; //la liste des politiques
+  //Variables obligatoires pour obtenir les infos des énumérations
   installTypeValues = installTypeValues;
   appAutoUpdateValues = appAutoUpdateValues;
   boolDisabled = boolDisabled;
@@ -24,14 +25,15 @@ export class PoliciesListComponent implements OnInit {
   locationMode = locationMode;
   encryptionPolicy = encryptionPolicy;
   playStoreMode = playStoreMode;
+
   QR_code: string[] = [];
-  inscriptionAuto = false;
+  inscriptionAuto = false; //paramètre à activer pour que le code QR soit demandé automatiquement
   constructor(
     private route: ActivatedRoute,
     private devicesApi: FLASKAPIService,
     private _snackBar: MatSnackBar,
   ) {}
-
+  //Méthode appelée à la construction de la page
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.client = clients[+params.get("clientId")];
@@ -39,6 +41,7 @@ export class PoliciesListComponent implements OnInit {
     });
     this.getPolicies();
   }
+  //Récupère les politiques depuis le service
   getPolicies()
   {
     this.policiesListSubs = this.devicesApi
@@ -54,6 +57,8 @@ export class PoliciesListComponent implements OnInit {
         }
       }, console.error);
   }
+  //Permet la sauvegarde des modifications appliquées à une politique
+  //ARGUMENT : l'id de la politique
   update(policyId) {
     this.openSnackBar("Mise à jour en cours", "Fermer");
     this.devicesApi.updatePolicy(this.policies[policyId])
@@ -63,12 +68,16 @@ export class PoliciesListComponent implements OnInit {
     }, console.error);
     this.openSnackBar("Mise à jour réussie", "Fermer");
   }
+  // Message affiché en bas d'écran
+  // ARGs : le message et une action
   openSnackBar(message : string, action : string)
   {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
   }
+  // Demande de code QR pour une inscriton à une politique
+  // ARG : l'id de la politique
   inscription(policyId) {
     this.devicesApi
       .inscriptionPolicy(this.policies[policyId].name)
@@ -89,6 +98,8 @@ export class PoliciesListComponent implements OnInit {
         this.policies[policyId].addUserDisabled = event;
     }
   }
+  //méthode de suppression d'une politique
+  //ARG : nom de la politique
   delete(policyName)
   {
     this.devicesApi.deletePolicy(policyName)
@@ -97,24 +108,32 @@ export class PoliciesListComponent implements OnInit {
     }, console.error);
     this.refresh();
   }
+  //méthode qui recharge les politiques
   refresh()
   {
     this.getPolicies();
   }
+  
   addApp(policyId, appId)
   {
     console.log('appId : ' + appId);
     this.policies[policyId].applications[appId+1] = 
     JSON.parse('{"packageName":"com.google.earth","installType": "AVAILABLE"}');
   }
+  //méthode d'ajout d'application en dernière position
+  // ARG : id de la politique
   addAppli(policyId)
   {
     this.policies[policyId].applications.push(JSON.parse('{"packageName":"com.google.earth","installType": "AVAILABLE"}'));
   }
+  //supprime une application, et regroupe le reste des applications
+  //ARGS : id de la politique, id de l'application
   delApp(policyId, appId)
   {
     this.policies[policyId].applications.splice(appId, 1); 
   }
+  //méthode de création de réseau wifi DEBUG
+  // ARGS :  infos du réseau
   createNetwork(policyId, guid: string, name: string, ssid : string, type: string, cle : string)
   {
     console.log('guid : ' + guid);
