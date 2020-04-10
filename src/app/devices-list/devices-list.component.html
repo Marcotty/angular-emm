@@ -18,14 +18,14 @@
 			<mat-card class="device-card">
 				<mat-card-title>
           <div>
-					Devices de {{client.name}}
+					Appareils de {{client.name}}
           </div>
           <div>
             <button mat-button (click)="deleteDevices()" > Supprimer devices</button>
           </div>
 				</mat-card-title>
 				<mat-card-subtitle>
-					Liste devices inscrits
+					Liste des appareils de ce client
 				</mat-card-subtitle>
 				<div *ngIf="devicesList else loading">
 					<div *ngFor="let device of devicesList; index as deviceId">
@@ -34,12 +34,12 @@
 								<div>
 									{{device.hardwareInfo.brand}}
 									{{device.hardwareInfo.model}}
-								</div>
+								</div><!--
 								<div class = "actions">
 									<button mat-button (click)="deleteDevice(device.name)" > LOCK</button>
 									<button mat-button (click)="deleteDevice(device.name)" > RESET_PASSWORD</button>
 									<button mat-button (click)="deleteDevice(device.name)" > REBOOT</button>
-								</div>
+								</div>-->
 							</mat-card-title>
 							<mat-card-subtitle>
 								{{device.networkInfo.wifiMacAddress}}

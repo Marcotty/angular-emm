@@ -25,9 +25,10 @@
 }
 .formField
 {
-  width:15%;
+  width:20%;
   margin-right : 15px;
   margin-bottom : -20px;
+  margin-top:-10px;
 }
 .formFieldName
 {
