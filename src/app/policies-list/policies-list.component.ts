@@ -3,6 +3,7 @@ import { FLASKAPIService } from "../flask-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { clients } from "../client-list/clients";
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { Policy, installTypeValues, appAutoUpdateValues, defaultPermissionValues, 
           boolDisabled, keyguardFeature, locationMode, encryptionPolicy, playStoreMode } from "./policies.model";
 @Component({
@@ -27,7 +28,8 @@ export class PoliciesListComponent implements OnInit {
   inscriptionAuto = false;
   constructor(
     private route: ActivatedRoute,
-    private devicesApi: FLASKAPIService
+    private devicesApi: FLASKAPIService,
+    private _snackBar: MatSnackBar,
   ) {}
 
   ngOnInit() {
@@ -53,11 +55,19 @@ export class PoliciesListComponent implements OnInit {
       }, console.error);
   }
   update(policyId) {
+    this.openSnackBar("Mise à jour en cours", "Fermer");
     this.devicesApi.updatePolicy(this.policies[policyId])
     .subscribe(res => {
       //this.policies[policyId] = res;
       console.log("update effectuée");
     }, console.error);
+    this.openSnackBar("Mise à jour réussie", "Fermer");
+  }
+  openSnackBar(message : string, action : string)
+  {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
   inscription(policyId) {
     this.devicesApi
@@ -97,6 +107,10 @@ export class PoliciesListComponent implements OnInit {
     this.policies[policyId].applications[appId+1] = 
     JSON.parse('{"packageName":"com.google.earth","installType": "AVAILABLE"}');
   }
+  addAppli(policyId)
+  {
+    this.policies[policyId].applications.push(JSON.parse('{"packageName":"com.google.earth","installType": "AVAILABLE"}'));
+  }
   delApp(policyId, appId)
   {
     this.policies[policyId].applications.splice(appId, 1); 
@@ -108,9 +122,9 @@ export class PoliciesListComponent implements OnInit {
     console.log('ssid' + ssid);
     console.log('type : ' + type);
     console.log('cle : ' + cle);
-    this.policies[policyId].openNetworkConfiguration = JSON.parse(
-      '{"networkConfigurations" : [{"GUID" : "guid", "Name":"name", "Type":"type", "WiFi": {"SSID":"ssid", "Security":"WPA-PSK", "Passphrase":"cle"}}]}'
-    );
+    this.policies[policyId].openNetworkConfiguration.networkConfigurations.push(JSON.parse(
+      '{"GUID" : "a", "Name":"a", "Type":"WiFi", "WiFi": {"SSID":"ssid", "Security":"WPA-PSK", "Passphrase":"cle"}}'
+    ));
     console.log('network : ' + this.policies[policyId].openNetworkConfiguration.networkConfigurations[0].GUID);
   }
 }

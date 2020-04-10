@@ -17,6 +17,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 import { AppComponent } from "./app.component";
@@ -53,6 +55,7 @@ import { PoliciesTableComponent } from './policies-table/policies-table.componen
     MatTabsModule,
     MatSelectModule,
     MatTableModule,
+    MatSnackBarModule,
     RouterModule.forRoot([
       { path: '', component: ClientListComponent },
       { path: 'client/:clientId', component: ClientDetailsComponent },

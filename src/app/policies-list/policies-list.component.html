@@ -87,6 +87,7 @@
                   <div class="separateur">
                     <p>Paramètres :</p>
                   </div>
+                  <!-- ++ KIOSK CUSTOMISATION -->
 									<!--<p>Bluetooth désactivé : {{pol.bluetoothDisabled}}</p>
 									<p>Bluetooth désactivé :
 										<app-bool-input property="Bluetooth" [(value)]="policies[policyId].bluetoothDisabled"
@@ -584,10 +585,20 @@
 												</mat-option>
 											</mat-select>
 										</mat-form-field>
-										<button mat-button (click)="addApp(policyId, appId)">Ajout application</button>
-										<button mat-button (click)="delApp(policyId, appId)">Supprimer application</button>
+                    <mat-form-field class="formFieldApp" appearance="standard">
+											<mat-label>Activée</mat-label>
+											<mat-select (selectionChange)="update(policyId)"
+												[(value)]="policies[policyId].applications[appId].disabled">
+												<mat-option *ngFor="let val of boolDisabled | keyvalue"
+													[value]="val.key">
+													{{val.value}}
+												</mat-option>
+											</mat-select>
+										</mat-form-field>
+										<!--<button mat-button (click)="addApp(policyId, appId)">Ajout application</button>-->
+										<button mat-button (click)="delApp(policyId, appId)">Supprimer</button>
 								</div>
-
+              <button mat-button (click)="addAppli(policyId)">Ajouter</button>
 							</div>
 						</mat-tab>
 						<mat-tab label="Network">
