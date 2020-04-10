@@ -3,7 +3,7 @@
 		<mat-card-title>
 			Politiques
 			<button mat-button class ="button" (click)= "refresh()"> Rafraichir </button>
-			<button mat-button class="button" [routerLink]="['/client', clientId, 'policies', 'new']"> Créer </button>
+			<!--<button mat-button class="button" [routerLink]="['/client', clientId, 'policies', 'new']"> Créer </button>-->
 		</mat-card-title>
 		<div *ngIf="policies else loading">
 			<div *ngFor="let pol of policies; index as policyId">
@@ -21,7 +21,7 @@
                 <div class ="field">
 									<p>Version : {{pol.version}}</p>
                 </div>
-								<mat-form-field class="formFieldName" required>
+								<mat-form-field title="Changer le nom de la politique en créera une identique avec le nouveau nom entré" class="formFieldName" required>
 									<mat-label>Nom de la politique </mat-label>
 									<input matInput [(ngModel)]="policies[policyId].name"
                     placeholder="Ex. entreprises/NomEntreprise/policies/NomPolitique " (value)= "policies[policyId].name" >

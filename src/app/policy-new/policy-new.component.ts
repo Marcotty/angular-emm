@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FLASKAPIService } from "../flask-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { clients } from "../client-list/clients";
-import { Policy, installTypeValues } from "../policies-list/policies.model";
+import { Policy } from "../policies-list/policies.model";
 
 @Component({
   selector: "app-policy-new",
@@ -29,8 +29,7 @@ export class PolicyNewComponent implements OnInit {
   }
   Envoyer()
   {
-    console.log(this.policy.name);
-    this.devicesApi.createPolicy(this.policy)
+    this.devicesApi.updatePolicy(this.policy)
     ._subscribe(res => {
       console.log(res);
     }, console.error);
