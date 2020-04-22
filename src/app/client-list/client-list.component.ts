@@ -27,7 +27,7 @@ export class ClientListComponent implements OnInit {
         this.clientsDB = res;
         console.log("clients chargés depuis DB" + this.clientsDB);
       }, console.error);
-  }
+  }  
   //Méthode lancée à l'appui sur le bouton Rafraichir
   refresh() {
     this.getClients();
