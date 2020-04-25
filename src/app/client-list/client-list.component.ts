@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-
-import { clients } from "./clients";
+import { Client } from "./clients";
 import { FLASKAPIService } from "../flask-api.service";
 import { Subscription } from "rxjs";
 
@@ -10,9 +9,8 @@ import { Subscription } from "rxjs";
   styleUrls: ["./client-list.component.css"]
 })
 export class ClientListComponent implements OnInit {
-  clients = clients; // clients locaux de tests
-  clientsDB; //clients chargés depuis la base de données
-  clientsDBSub;
+  clientsDB : Client[]; //clients chargés depuis la base de données
+  clientsDBSub : Subscription;
   constructor(private devicesApi: FLASKAPIService) {}
   //Méthode appelée à la construction de la page
   ngOnInit() {

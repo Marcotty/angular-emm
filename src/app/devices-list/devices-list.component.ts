@@ -18,6 +18,8 @@ export class DevicesListComponent implements OnInit {
   devicesList: Device[];
   deviceStates = DeviceState;
   inscription = false;
+  enterprise_name;
+  name;
   QR_code:string;
   constructor(
     private route: ActivatedRoute,
@@ -26,17 +28,19 @@ export class DevicesListComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.client = clients[+params.get("clientId")];
-      this.clientId = params.get("clientId");
+      this.enterprise_name = params.get("enterprise_name");
+      this.name = params.get("name");
+      //this.client = clients[+params.get("clientId")];
+      //this.clientId = params.get("clientId");
     });
     this.getDevices();
   }
   getDevices() {
     this.devicesListSubs = this.devicesApi
-      .getDevices(this.client.entreprise_name)
+      .getDevices(this.enterprise_name)
       .subscribe(res => {
         this.devicesList = res;
-        console.log("devices de " + this.client.entreprise_name + " chargés");
+        console.log("devices de " + this.enterprise_name + " chargés");
       }, console.error);
   }
   refresh() {

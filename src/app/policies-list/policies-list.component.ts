@@ -64,9 +64,8 @@ export class PoliciesListComponent implements OnInit {
     this.devicesApi.updatePolicy(this.policies[policyId])
     .subscribe(res => {
       //this.policies[policyId] = res;
-      console.log("update effectuée");
-    }, console.error);
     this.openSnackBar("Mise à jour réussie", "Fermer");
+    }, console.error);
   }
   // Message affiché en bas d'écran
   // ARGs : le message et une action

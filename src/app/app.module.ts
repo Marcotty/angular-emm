@@ -59,7 +59,7 @@ import { PoliciesTableComponent } from './policies-table/policies-table.componen
     RouterModule.forRoot([
       { path: '', component: ClientListComponent },
       { path: 'client/:clientId', component: ClientDetailsComponent },
-      { path: 'client/:clientId/devices', component: DevicesListComponent },
+      { path: 'client/:name/:enterprise_name/devices', component: DevicesListComponent },
       { path: 'client/:clientId/devices/:deviceId', component: DeviceDetailsComponent },
       { path: 'client/:clientId/policies', component: PoliciesListComponent },
       { path: 'client/:clientId/policies/new', component: PolicyNewComponent },

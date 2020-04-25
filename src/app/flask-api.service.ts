@@ -4,14 +4,15 @@ import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { throwError } from 'rxjs';
 
-import { Device } from "../devices-list/device.model";
+import { Device } from "./devices-list/device.model";
 import { Policy } from "./policies-list/policies.model";
 import { Enterprise } from "./enterprise-details/enterprise.model";
-
+import { Client } from "./client-list/clients"
 const URL = "http://localhost:5000/";
 const httpOptions = {
   headers: new HttpHeaders ({
   'Content-Type': 'application/json',
+  'Accept': 'application/json',
   })
 };
 @Injectable()
@@ -23,10 +24,16 @@ export class FLASKAPIService {
       err.message || "Error: Unable to complete request."
     );
   }
-  getClients(): Observable<any>
+  newClient(client : Client) : Observable<Client>
   {
     return this.http
-      .get(URL + `/clients`)
+    .post<Client>(URL + `/clients/new`, client, httpOptions)
+    .pipe(catchError(FLASKAPIService._handleError));
+  }
+  getClients(): Observable<Client>
+  {
+    return this.http
+      .get<Client>(URL + `/clients`)
       .pipe(catchError(FLASKAPIService._handleError));
   }
   getDevices(enterprise_name): Observable<Device[]> {

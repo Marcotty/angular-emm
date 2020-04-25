@@ -27,3 +27,15 @@ export let clients = [
     gmail:'',
   }
 ];
+export class Client {
+  constructor(
+    public name: string,
+    public ent: string,
+    public desc: string,
+    public icone:string,
+    public key_path:string,
+    public mail:string,
+    public count:number
+  )
+  {}
+}

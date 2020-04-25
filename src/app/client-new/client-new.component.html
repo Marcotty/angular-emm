@@ -1,47 +1,75 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      <h1> Nouveau client</h1>
+      <h1> Ajout d'un client</h1>
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <button mat-raised-button (click)="isEditable = !isEditable">
+   <!-- <button mat-raised-button (click)="isEditable = !isEditable">
   {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
-</button>
+</button>-->
 
 <mat-vertical-stepper linear #stepper>
   <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Entrez le nom du client</ng-template>
+      <ng-template class="titre" matStepLabel>Entrez le nom du client</ng-template>
       <mat-form-field>
         <mat-label>Nom</mat-label>
-        <input matInput formControlName="firstCtrl" placeholder="Client" required>
+        <input matInput formControlName="name" placeholder="Client" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="desc" placeholder="Description de l'entreprise" required>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Entrez l'id du projet</ng-template>
+      <ng-template class="titre" matStepLabel>Entrez le nom d'entreprise</ng-template>
       <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+        <mat-label>Mail</mat-label>
+        <input matInput formControlName="mail" placeholder="splus.beir.test@gmail.com"
+               required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Id projet</mat-label>
+        <input matInput formControlName="ent" placeholder="enterprises/LC0430y1qm"
+               required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Key Path</mat-label>
+        <input matInput formControlName="key" placeholder="C:\key.json"
                required>
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Retour</button>
+        <button mat-button matStepperNext>Suivant</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template class="titre" matStepLabel>Entrez le lien d'une icone</ng-template>
+      <mat-form-field>
+        <mat-label>Lien icone</mat-label>
+        <input matInput formControlName="icone" placeholder="https://img.icons8.com/pastel-glyph/64/000000/test-tube.png"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Retour</button>
+        <button mat-button matStepperNext>Suivant</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+    <ng-template matStepLabel>Fin</ng-template>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperPrevious>Retour</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="addClient()">Confirmer</button>
     </div>
   </mat-step>
 </mat-vertical-stepper>
