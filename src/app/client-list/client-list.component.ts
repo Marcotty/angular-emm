@@ -14,7 +14,7 @@ export class ClientListComponent implements OnInit {
   constructor(private devicesApi: FLASKAPIService) {}
   //Méthode appelée à la construction de la page
   ngOnInit() {
-    console.log("Clients chargés");
+    //console.log("Clients chargés");
     this.getClients();
   }
   //Méthode qui permet d'appeler le service qui récupère les infos des clients depuis la base de données clients

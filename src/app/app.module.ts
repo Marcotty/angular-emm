@@ -58,12 +58,12 @@ import { PoliciesTableComponent } from './policies-table/policies-table.componen
     MatSnackBarModule,
     RouterModule.forRoot([
       { path: '', component: ClientListComponent },
-      { path: 'client/:clientId', component: ClientDetailsComponent },
+      { path: 'client/:name', component: ClientDetailsComponent },
       { path: 'client/:name/:enterprise_name/devices', component: DevicesListComponent },
       { path: 'client/:clientId/devices/:deviceId', component: DeviceDetailsComponent },
-      { path: 'client/:clientId/policies', component: PoliciesListComponent },
+      { path: 'client/:name/:enterprise_name/policies', component: PoliciesListComponent },
       { path: 'client/:clientId/policies/new', component: PolicyNewComponent },
-      { path: 'client/:clientId/enterprise', component: EnterpriseDetailsComponent },
+      { path: 'client/:name/:enterprise_name/enterprise', component: EnterpriseDetailsComponent },
       { path: 'newClient', component: ClientNewComponent },
     ])
   ],

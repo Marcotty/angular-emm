@@ -13,7 +13,7 @@
               <!-- Nom du client -->
 							<mat-card-title class="titleCard">
 								<a class="lienDetails" [title]="client.NAME + ' details'"
-									[routerLink]="['/client', clientId]">
+									[routerLink]="['/client', client.NAME]">
 									{{ client.NAME }}
 								</a>
 							</mat-card-title>
@@ -40,13 +40,13 @@
 							</a>
 						</mat-card>
 						<mat-card class="gererMenuElem">
-							<a title="Gérer politiques" [routerLink]="['/client', clientId, 'policies']">
+							<a title="Gérer politiques" [routerLink]="['/client', client.NAME, client.ENTERPRISE_NAME, 'policies']">
 								Politiques
 							</a>
 						</mat-card>
 
 						<mat-card class="gererMenuElem">
-							<a title="Gérer entreprise" [routerLink]="['/client', clientId, 'enterprise']">
+							<a title="Gérer entreprise" [routerLink]="['/client', client.NAME, client.ENTERPRISE_NAME, 'enterprise']">
 								Entreprise
 							</a>
 						</mat-card>

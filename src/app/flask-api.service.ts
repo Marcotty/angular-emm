@@ -36,6 +36,12 @@ export class FLASKAPIService {
       .get<Client>(URL + `/clients`)
       .pipe(catchError(FLASKAPIService._handleError));
   }
+  getClient(name): Observable<Client>
+  {
+    return this.http
+      .get<Client>(URL + `/clients/` + name)
+      .pipe(catchError(FLASKAPIService._handleError));
+  }
   getDevices(enterprise_name): Observable<Device[]> {
     return this.http
       .get<Device[]>(URL + enterprise_name + `/devices`)
@@ -58,7 +64,7 @@ export class FLASKAPIService {
   }
   createPolicy(policy) : Observable<Policy[]>{
     return this.http
-    .post<Policy[]>(URL + policy.name + '/new', policy, httpOptions)
+    .post<Policy[]>(URL + policy.name, policy, httpOptions)
     .pipe(catchError(FLASKAPIService._handleError));
   }
   inscriptionPolicy(policy_name): Observable<string> {

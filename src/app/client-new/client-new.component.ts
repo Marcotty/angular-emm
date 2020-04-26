@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { FLASKAPIService } from "../flask-api.service";
 import { Client } from "../client-list/clients";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-client-new",

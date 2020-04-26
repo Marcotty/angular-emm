@@ -14,6 +14,7 @@ import { Policy, installTypeValues, appAutoUpdateValues, defaultPermissionValues
 export class PoliciesListComponent implements OnInit {
   client; //infos du client
   clientId; //id du client
+  enterprise_name;
   policiesListSubs: Subscription; 
   policies: Policy[]; //la liste des politiques
   //Variables obligatoires pour obtenir les infos des énumérations
@@ -36,8 +37,8 @@ export class PoliciesListComponent implements OnInit {
   //Méthode appelée à la construction de la page
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.client = clients[+params.get("clientId")];
-      this.clientId = params.get("clientId");
+      this.enterprise_name = params.get("enterprise_name");
+      //this.clientId = params.get("clientId");
     });
     this.getPolicies();
   }
@@ -45,7 +46,7 @@ export class PoliciesListComponent implements OnInit {
   getPolicies()
   {
     this.policiesListSubs = this.devicesApi
-      .getPolicies(this.client.entreprise_name)
+      .getPolicies(this.enterprise_name)
       .subscribe(res => {
         this.policies = res;
         console.log("politiques chargées : "+ res);

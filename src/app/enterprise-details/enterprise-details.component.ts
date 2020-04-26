@@ -14,7 +14,7 @@ export class EnterpriseDetailsComponent implements OnInit {
   clientId;
   enterpriseSubs: Subscription;
   enterprise: Enterprise[];
-
+  enterprise_name;
   constructor(
     private route: ActivatedRoute,
     private flaskApi: FLASKAPIService
@@ -22,10 +22,10 @@ export class EnterpriseDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.client = clients[+params.get("clientId")];
-      this.clientId = params.get("clientId");
+      //this.client = clients[+params.get("clientId")];
+      this.enterprise_name = params.get("enterprise_name");
     });
-    this.enterpriseSubs = this.flaskApi.getEnterprise(this.client.entreprise_name).subscribe(res => {
+    this.enterpriseSubs = this.flaskApi.getEnterprise(this.enterprise_name).subscribe(res => {
       this.enterprise = res;
       console.log("enterprise chargée");
     }, console.error);
