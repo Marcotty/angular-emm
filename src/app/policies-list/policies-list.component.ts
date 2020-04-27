@@ -15,6 +15,7 @@ export class PoliciesListComponent implements OnInit {
   client; //infos du client
   clientId; //id du client
   enterprise_name;
+  name;
   policiesListSubs: Subscription; 
   policies: Policy[]; //la liste des politiques
   //Variables obligatoires pour obtenir les infos des énumérations
@@ -38,6 +39,7 @@ export class PoliciesListComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.enterprise_name = params.get("enterprise_name");
+      this.name = params.get('name');
       //this.clientId = params.get("clientId");
     });
     this.getPolicies();
@@ -86,18 +88,7 @@ export class PoliciesListComponent implements OnInit {
         console.log("QR_code[" + policyId + "] reçu " + this.QR_code[policyId]);
       }, console.error);
   }
-  onChanged(champ : string, policyId, event)
-  {
-    console.log("champ : " + champ + ": " + event);
-    switch(champ)
-    {
-      case 'bluetooth':
-        this.policies[policyId].bluetoothDisabled = event;
-        break;
-      case 'addUser':
-        this.policies[policyId].addUserDisabled = event;
-    }
-  }
+
   //méthode de suppression d'une politique
   //ARG : nom de la politique
   delete(policyName)
@@ -113,24 +104,17 @@ export class PoliciesListComponent implements OnInit {
   {
     this.getPolicies();
   }
-  
-  addApp(policyId, appId)
-  {
-    console.log('appId : ' + appId);
-    this.policies[policyId].applications[appId+1] = 
-    JSON.parse('{"packageName":"com.google.earth","installType": "AVAILABLE"}');
-  }
   //méthode d'ajout d'application en dernière position
   // ARG : id de la politique
   addAppli(policyId)
   {
-    this.policies[policyId].applications.push(JSON.parse('{"packageName":"com.google.earth","installType": "AVAILABLE"}'));
+    this.policies[policyId].applications.push(JSON.parse('{"packageName":"com.tcx.sipphone14","installType": "AVAILABLE"}'));
   }
   //supprime une application, et regroupe le reste des applications
   //ARGS : id de la politique, id de l'application
   delApp(policyId, appId)
   {
-    this.policies[policyId].applications.splice(appId, 1); 
+    this.policies[policyId].applications.splice(appId, 1);
   }
   //méthode de création de réseau wifi DEBUG
   // ARGS :  infos du réseau
@@ -141,9 +125,10 @@ export class PoliciesListComponent implements OnInit {
     console.log('ssid' + ssid);
     console.log('type : ' + type);
     console.log('cle : ' + cle);
-    this.policies[policyId].openNetworkConfiguration.networkConfigurations.push(JSON.parse(
-      '{"GUID" : "a", "Name":"a", "Type":"WiFi", "WiFi": {"SSID":"ssid", "Security":"WPA-PSK", "Passphrase":"cle"}}'
+    this.policies[policyId]
+    .openNetworkConfiguration.NetworkConfigurations.push(JSON.parse(
+      '{"guid" : "a", "Name":"a", "Type":"WiFi", "WiFi": {"SSID":"ssid", "Security":"WPA-PSK", "Passphrase":"cle"}}'
     ));
-    console.log('network : ' + this.policies[policyId].openNetworkConfiguration.networkConfigurations[0].GUID);
+    console.log('network : ' + this.policies[policyId].openNetworkConfiguration.NetworkConfigurations[0].GUID);
   }
 }

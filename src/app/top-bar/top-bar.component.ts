@@ -13,7 +13,7 @@ export class TopBarComponent implements OnInit {
   }
   menu()
   {
-    window.alert("bouton works");
+    //window.alert("bouton works");
   }
 
 }

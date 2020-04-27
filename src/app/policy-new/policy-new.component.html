@@ -1,20 +1,16 @@
 <mat-card>
-	<button mat-button class = "buttonRetour" [routerLink]="['/client', clientId, 'policies']" > Retour </button>
+	<button mat-button class = "buttonRetour" [routerLink]="['/client', name, enterprise_name, 'policies']" > Retour </button>
 	<br>
 	<mat-card-title>Nouvelle politique</mat-card-title>
 	<mat-form-field class="formField" required>
 		<mat-label>Nom de la politique </mat-label>
-		<input matInput [(ngModel)]="policy.name"
+		<input matInput [(ngModel)]="policy_name"
                     placeholder={{policy_name}} (value)= "policy_name" >
-		<mat-hint>{{policy_name}}</mat-hint>
+		<mat-hint>{{policy_name_temp}}</mat-hint>
 
 	</mat-form-field>
-	<br>
-		Name : {{policy.name}}
-    <p>
-    </p>
-    
+
 	<mat-divider></mat-divider>
 	<br>
-	<button mat-button type = "submit" class = "buttonEnvoyer" (click)="Envoyer()"[routerLink]="['/client', clientId, 'policies']" > Créer </button>
+	<button mat-button type = "submit" class = "buttonEnvoyer" (click)="Envoyer()"[routerLink]="['/client', name, enterprise_name, 'policies']" > Créer </button>
 </mat-card>

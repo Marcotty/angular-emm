@@ -10,10 +10,11 @@ import { Policy } from "../policies-list/policies.model";
   styleUrls: ["./policy-new.component.css"]
 })
 export class PolicyNewComponent implements OnInit {
-  client;
-  clientId;
+  name;
+  enterprise_name;
   policy : Policy[];
   policy_name;
+  policy_name_temp;
   constructor(
     private route: ActivatedRoute,
     private devicesApi: FLASKAPIService
@@ -21,17 +22,17 @@ export class PolicyNewComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.client = clients[+params.get("clientId")];
-      this.clientId = params.get("clientId");
+      this.enterprise_name = params.get("enterprise_name");
+      this.name = params.get("name");
     });
-    this.policy = new Policy();
-    this.policy_name = this.client.entreprise_name + "/policies/POLICY_NAME";
+    this.policy_name = this.enterprise_name + "/policies/POLICY_NAME";
+    this.policy_name_temp = this.policy_name;
   }
   Envoyer()
   {
-    this.devicesApi.updatePolicy(this.policy)
-    ._subscribe(res => {
-      console.log(res);
+    this.devicesApi.createPolicy(this.policy_name)
+    .subscribe(res => {
+      console.log('Requete nouvelle politique envoyee');
     }, console.error);
   }
 }

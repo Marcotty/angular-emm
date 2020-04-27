@@ -1,35 +1,30 @@
-export enum installTypeValues
-{
+export enum installTypeValues {
   KIOSK = "KIOSK",
   PREINSTALLED = "PREINSTALLED",
   FORCE_INSTALLED = "FORCE_INSTALLED",
   BLOCKED = "BLOCKED",
   AVAILABLE = "AVAILABLE",
   REQUIRED_FOR_SETUP = "REQUIRED_FOR_SETUP",
-  INSTALL_TYPE_UNSPECIFIED = "INSTALL_TYPE_UNSPECIFIED",
+  INSTALL_TYPE_UNSPECIFIED = "INSTALL_TYPE_UNSPECIFIED"
 }
-export enum boolDisabled
-{
+export enum boolDisabled {
   true = "Désactivé",
-  false = "Activé",
+  false = "Activé"
 }
-export enum appAutoUpdateValues
-{
+export enum appAutoUpdateValues {
   APP_AUTO_UDPATE_POLICY_UNSPECIFIED = "APP_AUTO_UDPATE_POLICY_UNSPECIFIED",
   CHOICE_TO_THE_USER = "CHOICE_TO_THE_USER",
   NEVER = "NEVER",
   WIFI_ONLY = "WIFI_ONLY",
-  ALWAYS = "ALWAYS",
+  ALWAYS = "ALWAYS"
 }
-export enum defaultPermissionValues
-{
+export enum defaultPermissionValues {
   PROMPT = "PROMPT",
   GRANT = "GRANT",
   DENY = "DENY",
   PERMISSION_POLICY_UNSPECIFIED = "PERMISSION_POLICY_UNSPECIFIED"
 }
-export enum keyguardFeature
-{
+export enum keyguardFeature {
   CAMERA = "CAMERA",
   NOTIFS = "NOTIFICATIONS",
   UNREADNORIFS = "UNREDACTED_NOTIFICATIONS",
@@ -39,33 +34,46 @@ export enum keyguardFeature
   IRIS = "IRIS",
   ALL = "ALL_FEATURES"
 }
-export enum locationMode
-{
+export enum locationMode {
   LOCATION_MODE_UNSPECIFIED = "LOCATION_MODE_UNSPECIFIED",
   HIGH_ACCURACY = "HIGH_ACCURACY",
   SENCORS_ONLY = "SENSORS_ONLY",
   BATTERY_SAVING = "BATTERY_SAVING",
   OFF = "OFF"
 }
-export enum encryptionPolicy
-{
+export enum encryptionPolicy {
   ENCRYPTION_POLICY_UNSPECIFIED = "ENCRYPTION_POLICY_UNSPECIFIED",
   ENABLED_WITHOUT_PASSWORD = "ENABLED_WITHOUT_PASSWORD",
   ENABLED_WITH_PASSWORD = "ENABLED_WITH_PASSWORD"
 }
-export enum playStoreMode
-{
+export enum playStoreMode {
   UNSPECIFIED = "PLAY_STORE_MODE_UNSPECIFIED",
   WITHELIST = "WHITELIST",
   BLACKLIST = "BLACKLIST"
 }
+export interface WiFi {
+        SSID: string;
+        Security: string;
+        AutoConnect: boolean;
+        Passphrase: string;
+    }
+
+    export interface NetworkConfiguration {
+        GUID: string;
+        Name: string;
+        Type: string;
+        WiFi: WiFi;
+    }
+    export interface OpenNetworkConfiguration {
+        NetworkConfigurations: NetworkConfiguration[];
+    }
 export class Policy {
   constructor(
     public name: string,
-    public version : string,
+    public version: string,
     public userName: string,
     public appAutoUpdatePolicy: string,
-    public bluetoothDisabled : boolean,
+    public bluetoothDisabled: boolean,
     public applications: {
       packageName: string;
       installType: string;
@@ -78,15 +86,17 @@ export class Policy {
       imei: string;
       wifiMacAddress: string;
     },
-    public kioskCustomization :
-    {
+    public kioskCustomization: {
       powerButtonActions: string;
       systemNavigation: string;
       statusBar: string;
       deviceSettings: string;
     },
+    public openNetworkConfiguration: {
+      NetworkConfigurations:NetworkConfiguration[];
+    },
     public updatedAt?: Date,
     public enrollmentTime?: Date,
-    public lastUpdatedBy?: string,
+    public lastUpdatedBy?: string
   ) {}
 }

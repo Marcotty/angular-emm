@@ -7,7 +7,7 @@ import { throwError } from 'rxjs';
 import { Device } from "./devices-list/device.model";
 import { Policy } from "./policies-list/policies.model";
 import { Enterprise } from "./enterprise-details/enterprise.model";
-import { Client } from "./client-list/clients"
+import { Client } from "./client-list/clients";
 const URL = "http://localhost:5000/";
 const httpOptions = {
   headers: new HttpHeaders ({
@@ -26,14 +26,15 @@ export class FLASKAPIService {
   }
   newClient(client : Client) : Observable<Client>
   {
+    console.log(client.name);
     return this.http
     .post<Client>(URL + `/clients/new`, client, httpOptions)
     .pipe(catchError(FLASKAPIService._handleError));
   }
-  getClients(): Observable<Client>
+  getClients(): Observable<Client[]>
   {
     return this.http
-      .get<Client>(URL + `/clients`)
+      .get<Client[]>(URL + `/clients`)
       .pipe(catchError(FLASKAPIService._handleError));
   }
   getClient(name): Observable<Client>
@@ -62,9 +63,9 @@ export class FLASKAPIService {
       .get<Policy[]>(URL + enterprise_name + `/policies`)
       .pipe(catchError(FLASKAPIService._handleError));
   }
-  createPolicy(policy) : Observable<Policy[]>{
+  createPolicy(policy_name) : Observable<Policy[]>{
     return this.http
-    .post<Policy[]>(URL + policy.name, policy, httpOptions)
+    .get<Policy[]>(URL + policy_name + `/new`)
     .pipe(catchError(FLASKAPIService._handleError));
   }
   inscriptionPolicy(policy_name): Observable<string> {

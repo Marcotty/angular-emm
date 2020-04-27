@@ -62,7 +62,7 @@ import { PoliciesTableComponent } from './policies-table/policies-table.componen
       { path: 'client/:name/:enterprise_name/devices', component: DevicesListComponent },
       { path: 'client/:clientId/devices/:deviceId', component: DeviceDetailsComponent },
       { path: 'client/:name/:enterprise_name/policies', component: PoliciesListComponent },
-      { path: 'client/:clientId/policies/new', component: PolicyNewComponent },
+      { path: 'client/:name/:enterprise_name/policies/new', component: PolicyNewComponent },
       { path: 'client/:name/:enterprise_name/enterprise', component: EnterpriseDetailsComponent },
       { path: 'newClient', component: ClientNewComponent },
     ])
