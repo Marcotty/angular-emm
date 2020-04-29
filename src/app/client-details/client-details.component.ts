@@ -10,24 +10,23 @@ import { Subscription } from "rxjs";
   styleUrls: ["./client-details.component.css"]
 })
 export class ClientDetailsComponent implements OnInit {
-  clientDB: Client; //clients chargés depuis la base de données
-  clientDBSub: Subscription;
+  client: Client; //client chargé depuis la base de données
+  clientSub: Subscription;
+  name;
   constructor(
     private route: ActivatedRoute,
     private devicesApi: FLASKAPIService
   ) {}
-  name;
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.name = params.get("name");
     });
+    this.getClient();
   }
-  getClients() {
-    this.clientDBSub = this.devicesApi
-      .getClient(this.name)
-      .subscribe(res => {
-        this.clientDB = res;
-        console.log("client chargé depuis DB" + this.clientDB);
-      }, console.error);
+  getClient() {
+    this.clientSub = this.devicesApi.getClient(this.name).subscribe(res => {
+      this.client = res;
+      console.log("client " + res.name+" chargé depuis DB" + JSON.stringify(this.client));
+    }, console.error);
   }
 }

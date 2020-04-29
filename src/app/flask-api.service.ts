@@ -26,7 +26,6 @@ export class FLASKAPIService {
   }
   newClient(client : Client) : Observable<Client>
   {
-    console.log(client.name);
     return this.http
     .post<Client>(URL + `/clients/new`, client, httpOptions)
     .pipe(catchError(FLASKAPIService._handleError));

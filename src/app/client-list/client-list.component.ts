@@ -23,7 +23,7 @@ export class ClientListComponent implements OnInit {
       .getClients()
       .subscribe(res => {
         this.clientsDB = res;
-        console.log("clients chargés depuis DB" + this.clientsDB);
+        console.log("clients chargés depuis DB" + JSON.stringify(this.clientsDB));
       }, console.error);
   }  
   //Méthode lancée à l'appui sur le bouton Rafraichir

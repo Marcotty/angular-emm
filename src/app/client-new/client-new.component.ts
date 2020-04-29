@@ -37,16 +37,17 @@ export class ClientNewComponent implements OnInit {
   addClient() {
     //console.log(this.firstFormGroup.get('name').value);
 
-      this.client = {
-      name: this.firstFormGroup.get('name').value,
-      ent: this.secondFormGroup.get('ent').value,
-      desc: this.firstFormGroup.get('desc').value,
-      key_path: this.secondFormGroup.get('key').value,
-      icone : this.thirdFormGroup.get('icone').value,
-      mail : this.secondFormGroup.get('mail').value,
-      count : 0
+      var obj = {
+      "name": this.firstFormGroup.get('name').value,
+      "ent": this.secondFormGroup.get('ent').value,
+      "desc": this.firstFormGroup.get('desc').value,
+      "key_path": this.secondFormGroup.get('key').value,
+      "icone" : this.thirdFormGroup.get('icone').value,
+      "mail" : this.secondFormGroup.get('mail').value,
+      "count" : 0
     };
-    this.Api.newClient(this.client)
+    //this.client = JSON.parse(obj);
+    this.Api.newClient(obj)
         .subscribe(res => {
           this.client = res;
           console.log('Requete envoyee');

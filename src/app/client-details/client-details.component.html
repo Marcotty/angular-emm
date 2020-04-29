@@ -1,6 +1,6 @@
 <div *ngIf="client">
 	<h1>
-		Détails du client {{client.name}}
+		Détails du client {{client.NAME}}
 	</h1>
 
 	<mat-card class="detail-card">
@@ -9,35 +9,35 @@
 				<img src={{client.icone}}>
         </div>
 				<mat-card-title>
-					Nom client : {{ client.name }}
+					Nom client : {{ client.NAME }}
 				</mat-card-title>
 				<mat-card-subtitle>Titre : Subtitle</mat-card-subtitle>
 
 		</mat-card-header>
 		<mat-card-content>
 			<p>
-				Description : {{ client.description }}
+				Description : {{ client.DESCRIPTION }}
 			</p>
 			<p>
-				Téléphones : {{ client.count }} devices gérés
+				Téléphones : {{ client.COUNT }} devices gérés
 			</p>
 			<p>
-				lien icone : {{client.icone}}
+				lien icone : {{client.ICONE}}
 			</p>
 			<p>
-				Nom de l'entreprise : {{client.entreprise_name}}
+				Nom de l'entreprise : {{client.ENTERPRISE_NAME}}
 			</p>
 			<p>
-				Chemin vers clé compte de service : {{client.path_key}}
+				Chemin vers clé compte de service : {{client.KEY_PATH}}
 			</p>
 			<p>
-				Compte gmail : {{client.gmail}}
+				Compte gmail : {{client.GMAIL}}
 			</p>
 
       <form class="details-form">
         <mat-form-field class="champForm">
 					<mat-label>Nom du client</mat-label>
-					<input matInput placeholder="Entrez le nom du client " value={{client.name}}>
+					<input matInput placeholder="Entrez le nom du client " value={{client.NAME}}>
         </mat-form-field>
       </form>
 
@@ -49,7 +49,7 @@
 					<a title="Modifier ce client" [routerLink]="['/client', clientId/modify]">
 						Modifier
 					</a>
-					<a title="Supprimer ce client (Ne peut être annulé)" [routerLink]="['/client', clientId/delete]">
+					<a title="Supprimer ce client" [routerLink]="['/client', clientId/delete]">
 						Supprimer
 					</a>
 				</div>
