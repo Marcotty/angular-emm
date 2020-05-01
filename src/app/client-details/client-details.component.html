@@ -1,3 +1,4 @@
+<div *ngIf="errorGet else notFound">
 <div *ngIf="client">
 	<h1>
 		Détails du client {{client.NAME}}
@@ -56,7 +57,7 @@
 			</mat-card>
 		</mat-card-actions>
 	</mat-card>
-
+</div>
 </div>
 <ng-template #notFound>
 	Une erreur est survenue.

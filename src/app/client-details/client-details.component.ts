@@ -13,6 +13,7 @@ export class ClientDetailsComponent implements OnInit {
   client: Client; //client chargé depuis la base de données
   clientSub: Subscription;
   name;
+  errorGet = false;
   constructor(
     private route: ActivatedRoute,
     private devicesApi: FLASKAPIService
@@ -23,10 +24,12 @@ export class ClientDetailsComponent implements OnInit {
     });
     this.getClient();
   }
+  error()
+  {this.errorGet=true}
   getClient() {
     this.clientSub = this.devicesApi.getClient(this.name).subscribe(res => {
       this.client = res;
       console.log("client " + res.name+" chargé depuis DB" + JSON.stringify(this.client));
-    }, console.error);
+    }, this.error);
   }
 }

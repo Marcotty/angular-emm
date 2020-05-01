@@ -33,7 +33,6 @@ import { EnterpriseDetailsComponent } from './enterprise-details/enterprise-deta
 import { ClientNewComponent } from './client-new/client-new.component';
 import { BoolInputComponent } from './policies-list/bool-input/bool-input.component';
 import { PolicyNewComponent } from './policy-new/policy-new.component';
-import { PoliciesTableComponent } from './policies-table/policies-table.component';
 
 @NgModule({
   imports: [
@@ -79,7 +78,6 @@ import { PoliciesTableComponent } from './policies-table/policies-table.componen
     ClientNewComponent,
     BoolInputComponent,
     PolicyNewComponent,
-    PoliciesTableComponent,
   ],
   bootstrap: [AppComponent],
   providers: [FLASKAPIService]

@@ -12,9 +12,10 @@ import { Subscription } from "rxjs";
 export class ClientNewComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
   isEditable = true;
   client : Client;
+  iconeurl = "https://img.icons8.com/pastel-glyph/64/000000/test-tube.png";
+  fileToUpload: File = null;
   constructor(
     private _formBuilder: FormBuilder,
     private Api: FLASKAPIService
@@ -23,17 +24,25 @@ export class ClientNewComponent implements OnInit {
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       name: ["", Validators.required],
-      desc: ["", Validators.required]
+      desc: ["", Validators.required],
+      icone: ["", ]
     });
     this.secondFormGroup = this._formBuilder.group({
       ent: ["", Validators.required],
       key: ["", Validators.required],
       mail: ["", Validators.required]
     });
-    this.thirdFormGroup = this._formBuilder.group({
-      icone: ["", Validators.required]
-    });
   }
+  uploadFileToActivity() {
+    this.Api.postFile(this.fileToUpload).subscribe(data => {
+      // do something, if upload success
+      }, error => {
+        console.log(error);
+      });
+  }
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+}
   addClient() {
     //console.log(this.firstFormGroup.get('name').value);
 
@@ -42,7 +51,7 @@ export class ClientNewComponent implements OnInit {
       "ent": this.secondFormGroup.get('ent').value,
       "desc": this.firstFormGroup.get('desc').value,
       "key_path": this.secondFormGroup.get('key').value,
-      "icone" : this.thirdFormGroup.get('icone').value,
+      "icone" : this.secondFormGroup.get('icone').value,
       "mail" : this.secondFormGroup.get('mail').value,
       "count" : 0
     };

@@ -24,6 +24,14 @@ export class FLASKAPIService {
       err.message || "Error: Unable to complete request."
     );
   }
+  postFile(fileToUpload: File): Observable<any> {
+    const endpoint = 'your-destination-url';
+    const formData: FormData = new FormData();
+    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    return this.http
+      .post(URL + `/file`, formData, httpOptions)
+      .pipe(catchError(FLASKAPIService._handleError));
+}
   newClient(client : Client) : Observable<Client>
   {
     return this.http
