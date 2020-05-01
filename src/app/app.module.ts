@@ -33,9 +33,11 @@ import { EnterpriseDetailsComponent } from './enterprise-details/enterprise-deta
 import { ClientNewComponent } from './client-new/client-new.component';
 import { BoolInputComponent } from './policies-list/bool-input/bool-input.component';
 import { PolicyNewComponent } from './policy-new/policy-new.component';
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

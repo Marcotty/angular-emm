@@ -31,7 +31,7 @@ export class Device {
     {
       height: string;
       width: string;
-      state: StateValues;
+      state: DisplayStateValues;
     },
     public updatedAt?: Date,
     public enrollmentTime?: Date,
