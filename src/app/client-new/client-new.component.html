@@ -63,7 +63,6 @@
       <mat-form-field>
         <mat-label></mat-label>
         <!--https://console.developers.google.com/iam-admin-->
-        <!-- crack-meridian-269516 -->
         <mat-label>Id de projet</mat-label>
         <input matInput formControlName="idProjet" placeholder="id du projet Google"
                required>
@@ -78,20 +77,35 @@
       <input type="file" id="file"
            (change)="handleFileInput($event.target.files)">
       <div>
-        <mat-label>5. Cliquez sur le bouton "Créer une entreprise"
+        <mat-label>5. Cliquez sur le bouton "S'inscire"
           <br>
           Si un lien d'inscription apparaît, tout s'est bien déroulé
         </mat-label>
-         <button mat-button (click)="createEntreprise()">Créer une entreprise</button>
+        <br>
+         <button mat-button (click)="getSignupUrl()">S'inscrire</button>
          <div *ngIf="lienSub">
-        <p> Visitez le <a href= {{lienSub}} >lien d'inscription</a>
+        <p> Visitez le <a href= {{lienSub}} target="_blank">lien d'inscription et suivez les instructions</a>
         </p> 
+        <br>
+         <mat-label>6. Entrez le token obtenu </mat-label>
+         <br>
+        <mat-form-field>
+        <mat-label>Entrez le token :</mat-label>
+        <input matInput formControlName="token" placeholder=""
+               required>
+      </mat-form-field>
+       <br>
+      <mat-label>Appuyez sur "Créer l'entreprise"</mat-label>
+      <br> 
+      <button mat-button (click)="createEntreprise()">Créer l'entreprise</button>
         </div>
+        <br>
       <mat-form-field>
         <mat-label>Entrez le nom d'entreprise :</mat-label>
         <input matInput formControlName="ent" placeholder="enterprise/.."
                required>
       </mat-form-field>
+      <br>
       <button mat-button matStepperPrevious>Retour</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
       <button mat-button (click)="addClient()">Confirmer</button>

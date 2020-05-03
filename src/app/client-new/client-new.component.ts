@@ -18,6 +18,8 @@ export class ClientNewComponent implements OnInit {
   fileToUpload: File = null;
   idProjet;
   lienSub = "";
+  lienName ="";
+  token;
   constructor(
     private _formBuilder: FormBuilder,
     private Api: FLASKAPIService
@@ -32,6 +34,7 @@ export class ClientNewComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       ent: ["", Validators.required],
       idProjet: ["", Validators.required],
+      token: ["", Validators.required],
       key: ["", Validators.required],
       mail: ["", Validators.required]
     });
@@ -55,12 +58,24 @@ export class ClientNewComponent implements OnInit {
         JSON.stringify(this.fileToUpload)
     );
   }
-  createEntreprise() {
+  createEntreprise()
+  {
     var name = this.firstFormGroup.get("name").value;
     var id = this.secondFormGroup.get("idProjet").value;
-    this.Api.createEntreprise(name, id, this.fileToUpload.name, this.fileToUpload).subscribe(res => {
+    this.Api.createEntreprise(name, id, this.fileToUpload.name, this.token).subscribe(res => {
       console.log("Requete envoyee");
       console.log(res);
+      console.log(JSON.stringify(res))
+    }, console.error);
+    console.log("entreprise crée");
+  }
+  getSignupUrl() {
+    var name = this.firstFormGroup.get("name").value;
+    var id = this.secondFormGroup.get("idProjet").value;
+    this.Api.getSignupUrl(name, id, this.fileToUpload.name, this.fileToUpload).subscribe(res => {
+      console.log("Requete envoyee");
+      console.log(res);
+      this.token = res;
       this.lienSub = res.url;
       console.log("lien : " + this.lienSub);
       console.log(JSON.stringify(res))
