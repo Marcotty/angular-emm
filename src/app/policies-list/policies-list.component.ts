@@ -55,7 +55,7 @@ export class PoliciesListComponent implements OnInit {
     });
     this.getPolicies();
   }
-  //Récupère les politiques depuis le service
+  //Récupère les politiques depuis le serveur backend
   getPolicies() {
     this.policiesListSubs = this.devicesApi
       .getPolicies(this.enterprise_name)
@@ -64,6 +64,7 @@ export class PoliciesListComponent implements OnInit {
           if (res.toString() == "Pas de politiques") {
             console.log("pas de politiques");
             this.noPolitiques = true;
+            this.openSnackBar("Pas de politiques trouvées.", "Fermer");
           } else {
             this.noPolitiques = false;
             this.policies = res;

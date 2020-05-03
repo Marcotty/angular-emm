@@ -35,7 +35,12 @@ export class ClientDetailsComponent implements OnInit {
   }
   modifier()
   {
-    this.Api.modifyClient(this.client[0])
+    var body = {
+      "name" : this.client[0].NAME,
+      "desc" : this.client[0].DESCRIPTION,
+      "icone" : this.client[0].ICONE
+    }
+    this.Api.modifyClient(this.name, body)
         .subscribe(res => {
           console.log('Requete envoyee');
       }, console.error);
@@ -43,7 +48,7 @@ export class ClientDetailsComponent implements OnInit {
   }
   supprimer()
   {
-     this.Api.deleteClient(this.client[0].NAME)
+     this.Api.deleteClient(this.name)
         .subscribe(res => {
           console.log('Requete envoyee');
       }, console.error);

@@ -7,10 +7,11 @@
 					<img src={{client[0].ICONE}}>
         </div>
 					<mat-card-title class="title">
-						Détails du client
+						Détails du client {{client[0].NAME}}
 					</mat-card-title>
           <mat-card-subtitle title ="Nom d'entreprise Google Android Management" id="ent" class="title">
-            Nom d'entreprise : {{client[0].ENTERPRISE_NAME}}
+            <p>Nom d'entreprise : {{client[0].ENTERPRISE_NAME}}</p>
+            <p>Id du projet : {{client[0].IDPROJET}}</p>
           </mat-card-subtitle>
 			</mat-card-header>
 			<mat-card-content class="contenu">
@@ -36,30 +37,13 @@
                     placeholder="https://img.icons8.com/pastel-glyph/64/000000/test-tube.png" (value)= "client[0].ICONE" >
 					</mat-form-field>
           <br>
-          Téléchargez une clé de compte de service 
-          <a href="https://console.developers.google.com/iam-admin/serviceaccounts">Google</a>
-          <br>
-          <mat-form-field title="Fichier de clé" class="formFieldlong"
-						appearance="standard">
-						<mat-label>Fichier de clé </mat-label>
-						<input matInput [(ngModel)]="client[0].KEY_PATH"
-                    placeholder="...json" (value)= "client[0].KEY_PATH" >
-					</mat-form-field>
-          <br>
-          <mat-form-field title="Adresse GMAIL :" class="formFieldlong"
-						appearance="standard">
-						<mat-label>Adresse gmail</mat-label>
-						<input matInput [(ngModel)]="client[0].GMAIL"
-                    placeholder="..@gmail.com " (value)= "client[0].GMAIL" >
-					</mat-form-field>
-
 			</mat-card-content>
 
 			<mat-card-actions>
 				<mat-card class="boutons-card">
 					<div class="boutons">
-            <button mat-raised-button color="primary" [routerLink]="['/']" (click)="modifier()">Modifier</button>
-            <button mat-raised-button color="primary" [routerLink]="['/']" (click)="supprimer()">Supprimer</button>
+            <button mat-raised-button color="primary" (click)="modifier()">Modifier</button>
+            <button mat-raised-button color="primary" (click)="supprimer()">Supprimer</button>
 					</div>
 				</mat-card>
 			</mat-card-actions>

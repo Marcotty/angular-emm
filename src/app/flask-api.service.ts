@@ -32,6 +32,16 @@ export class FLASKAPIService {
       .post(URL + `/file`, fileToUpload, httpOptions)
       .pipe(catchError(FLASKAPIService._handleError));
   }
+  modifyClient(name, body) : Observable<any>{
+    return this.http
+      .post(URL + `/clients/` + name + `/modify`, body,httpOptions)
+      .pipe(catchError(FLASKAPIService._handleError));
+  }
+  deleteClient(name) : Observable<any>{
+    return this.http
+      .post(URL + `/clients/` + name + `/delete/`,httpOptions)
+      .pipe(catchError(FLASKAPIService._handleError));
+  }
   createEntreprise(name, id, nameFile, token, signupName) : Observable<any>{
     return this.http
       .post(URL + `/clients/new/` + name + `/` + id + `/file/` + nameFile + `/create/` + token + `/` + signupName, httpOptions)
