@@ -1,10 +1,12 @@
+
 <div *ngIf="clientsDB">
 	<div class="flex-container">
-    <mat-card class="boutons-card">
-      <mat-card-header>
-        <button mat-raised-button class="bouton"[routerLink]="['/newClient']" title="Ajouter un client">Nouveau Client</button>
-        <button mat-raised-button class="bouton" (click)="getClients()" title="Rafraîchir la liste des clients">Actualiser</button>
-      </mat-card-header>
+    <mat-card class="title-card">
+      <mat-card-title>
+        Clients
+        <button mat-button class="bouton"[routerLink]="['/newClient']" title="Ajouter un client">Nouveau Client</button>
+        <button mat-button class="bouton" (click)="getClients()" title="Rafraîchir la liste des clients">Actualiser</button>
+      </mat-card-title>
       <mat-card-content>
         
       </mat-card-content>

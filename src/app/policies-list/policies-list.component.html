@@ -1,18 +1,22 @@
+
 <div *ngIf="enterprise_name">
-	<mat-card>
+	<mat-card class ="card">
 		<mat-card-title>
 			Politiques
 			<button mat-button class ="button" (click)= "refresh()"> Rafraichir </button>
 			<button mat-button class="button" [routerLink]="['/client', name, enterprise_name, 'policies', 'new']"> Nouvelle politique </button>
 		</mat-card-title>
+    
+    
 		<div *ngIf="policies else loading">
 			<div *ngFor="let pol of policies; index as policyId">
-				<mat-card>
+				<mat-card class = "mat-cardPol">
 					<mat-card-title>
 						{{pol.name}}
 						<button mat-button class ="devicesLink" [routerLink]="['/client', clientId, 'devices']">
               Devices
             </button>
+            <button mat-button (click)="update(policyId)"> Modifier </button>
 						<button mat-button id="supprimer" class="button" (click)= "delete(pol.name)"> Supprimer </button>
 					</mat-card-title>
 					<mat-tab-group>
@@ -660,11 +664,17 @@
 							</div>
 						</mat-tab>
 					</mat-tab-group>
-					<button mat-button (click)="update(policyId)"> Modifier </button>
 				</mat-card>
 			</div>
 		</div>
-		<ng-template #loading>Chargement liste...</ng-template>
+		<ng-template #loading>
+      <div *ngIf="noPolitiques else load">
+        Pas de politiques
+      </div>
+      <ng-template #load>
+        Chargement liste...
+      </ng-template>
+      </ng-template>
 		<ng-template #loadingQR>Chargement QR code...</ng-template>
 
 	</mat-card>

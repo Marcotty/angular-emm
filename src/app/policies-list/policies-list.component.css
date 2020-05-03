@@ -1,10 +1,18 @@
 .infos-tab, .apps-tab, .net-tab, .sign-tab
 {
   height:600px;
+  margin-left:60px;
+  margin-top:30px;
 }
 .apps-tab> div{
   display:flex;
   flex-wrap:wrap;
+}
+.card
+{
+  width:90%;
+  justify-content: center;
+  margin-left:3%;
 }
 .select 
 {
@@ -50,7 +58,9 @@
    cursor: pointer;
    color:gray;
 }
-.mat-card
+.mat-cardPol
 {
   margin-bottom: 5px;
+  width:90%;
+  margin-left:3%;
 }
