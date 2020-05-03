@@ -70,7 +70,7 @@ export class ClientNewComponent implements OnInit {
       this.enterprise_name = res.name; 
       console.log(JSON.stringify(res))
     }, console.error);
-    console.log("entreprise crée");
+    console.log("entreprise créee");
   }
   getSignupUrl() {
     var name = this.firstFormGroup.get("name").value;
@@ -94,7 +94,7 @@ export class ClientNewComponent implements OnInit {
       ENTERPRISE_NAME: this.secondFormGroup.get("ent").value,
       DESCRIPTION: this.firstFormGroup.get("desc").value,
       KEY_PATH: this.fileToUpload.name,
-      ICONE: this.secondFormGroup.get("icone").value,
+      ICONE: this.firstFormGroup.get("icone").value,
       GMAIL: this.secondFormGroup.get("mail").value,
       COUNT: 0,
       IDPROJET :  this.secondFormGroup.get("idProjet").value,
