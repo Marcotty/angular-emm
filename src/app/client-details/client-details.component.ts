@@ -44,7 +44,7 @@ export class ClientDetailsComponent implements OnInit {
         .subscribe(res => {
           console.log('Requete envoyee');
       }, console.error);
-    console.log('client ajouté');
+    console.log('client modifié');
   }
   supprimer()
   {
@@ -52,6 +52,6 @@ export class ClientDetailsComponent implements OnInit {
         .subscribe(res => {
           console.log('Requete envoyee');
       }, console.error);
-    console.log('client ajouté');
+    console.log('client supprimé');
   }
 }
