@@ -63,13 +63,13 @@ export class ClientNewComponent implements OnInit {
     //console.log(this.firstFormGroup.get('name').value);
 
     var obj: Client = {
-      name: this.firstFormGroup.get("name").value,
-      ent: this.secondFormGroup.get("ent").value,
-      desc: this.firstFormGroup.get("desc").value,
-      key_path: this.secondFormGroup.get("key").value,
-      icone: this.secondFormGroup.get("icone").value,
-      mail: this.secondFormGroup.get("mail").value,
-      count: 0
+      NAME: this.firstFormGroup.get("name").value,
+      ENTERPRISE_NAME: this.secondFormGroup.get("ent").value,
+      DESCRIPTION: this.firstFormGroup.get("desc").value,
+      KEY_PATH: this.secondFormGroup.get("key").value,
+      ICONE: this.secondFormGroup.get("icone").value,
+      GMAIL: this.secondFormGroup.get("mail").value,
+      COUNT: 0
     };
     //this.client = JSON.parse(obj);
     this.Api.newClient(obj).subscribe(res => {

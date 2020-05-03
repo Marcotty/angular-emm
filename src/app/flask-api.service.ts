@@ -34,7 +34,7 @@ export class FLASKAPIService {
   }
   createEntreprise(clientName, fileName, fileToUpload: File) :Observable<any>{
     return this.http
-      .post(URL + `/clients/new/` + clientName + `/file` + fileName, fileToUpload, httpOptions)
+      .post(URL + `/clients/new/` + clientName + `/file/` + fileName, fileToUpload, httpOptions)
       .pipe(catchError(FLASKAPIService._handleError));
   } 
   newClient(client : Client) : Observable<Client>
