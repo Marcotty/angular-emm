@@ -20,6 +20,7 @@ export class ClientNewComponent implements OnInit {
   lienSub = "";
   lienName ="";
   token;
+  enterprise_name;
   constructor(
     private _formBuilder: FormBuilder,
     private Api: FLASKAPIService
@@ -62,9 +63,11 @@ export class ClientNewComponent implements OnInit {
   {
     var name = this.firstFormGroup.get("name").value;
     var id = this.secondFormGroup.get("idProjet").value;
-    this.Api.createEntreprise(name, id, this.fileToUpload.name, this.token).subscribe(res => {
+    var token = this.secondFormGroup.get("token").value;
+    this.Api.createEntreprise(name, id, this.fileToUpload.name, token, this.lienName).subscribe(res => {
       console.log("Requete envoyee");
       console.log(res);
+      this.enterprise_name = res.name; 
       console.log(JSON.stringify(res))
     }, console.error);
     console.log("entreprise crée");
@@ -77,6 +80,7 @@ export class ClientNewComponent implements OnInit {
       console.log(res);
       this.token = res;
       this.lienSub = res.url;
+      this.lienName = res.name;
       console.log("lien : " + this.lienSub);
       console.log(JSON.stringify(res))
     }, console.error);
@@ -89,7 +93,7 @@ export class ClientNewComponent implements OnInit {
       NAME: this.firstFormGroup.get("name").value,
       ENTERPRISE_NAME: this.secondFormGroup.get("ent").value,
       DESCRIPTION: this.firstFormGroup.get("desc").value,
-      KEY_PATH: this.secondFormGroup.get("key").value,
+      KEY_PATH: this.fileToUpload.name,
       ICONE: this.secondFormGroup.get("icone").value,
       GMAIL: this.secondFormGroup.get("mail").value,
       COUNT: 0,

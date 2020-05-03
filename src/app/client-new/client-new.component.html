@@ -86,6 +86,7 @@
          <div *ngIf="lienSub">
         <p> Visitez le <a href= {{lienSub}} target="_blank">lien d'inscription et suivez les instructions</a>
         </p> 
+        </div>
         <br>
          <mat-label>6. Entrez le token obtenu </mat-label>
          <br>
@@ -98,11 +99,11 @@
       <mat-label>Appuyez sur "Créer l'entreprise"</mat-label>
       <br> 
       <button mat-button (click)="createEntreprise()">Créer l'entreprise</button>
-        </div>
+        
         <br>
       <mat-form-field>
-        <mat-label>Entrez le nom d'entreprise :</mat-label>
-        <input matInput formControlName="ent" placeholder="enterprise/.."
+        <mat-label>Nom d'entreprise obtenu:</mat-label>
+        <input matInput formControlName="ent" placeholder="enterprise/.." value={{enterprise_name}}
                required>
       </mat-form-field>
       <br>

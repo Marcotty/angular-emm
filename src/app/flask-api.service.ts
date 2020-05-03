@@ -32,9 +32,9 @@ export class FLASKAPIService {
       .post(URL + `/file`, fileToUpload, httpOptions)
       .pipe(catchError(FLASKAPIService._handleError));
   }
-  createEntreprise(name, id, nameFile, signup) : Observable<any>{
+  createEntreprise(name, id, nameFile, token, signupName) : Observable<any>{
     return this.http
-      .post(URL + `/clients/new/` + name + `/` + id + `/file/` + nameFile + `/create`, signup, httpOptions)
+      .post(URL + `/clients/new/` + name + `/` + id + `/file/` + nameFile + `/create/` + token + `/` + signupName, httpOptions)
       .pipe(catchError(FLASKAPIService._handleError));
   }
   getSignupUrl(clientName, idProjet, fileName, fileToUpload: File) :Observable<any>{
