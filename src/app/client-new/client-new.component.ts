@@ -16,6 +16,7 @@ export class ClientNewComponent implements OnInit {
   client: Client;
   iconeurl = "https://img.icons8.com/pastel-glyph/64/000000/test-tube.png";
   fileToUpload: File = null;
+  idProjet;
   constructor(
     private _formBuilder: FormBuilder,
     private Api: FLASKAPIService
@@ -29,6 +30,7 @@ export class ClientNewComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       ent: ["", Validators.required],
+      idProjet: ["", Validators.required],
       key: ["", Validators.required],
       mail: ["", Validators.required]
     });
@@ -54,7 +56,8 @@ export class ClientNewComponent implements OnInit {
   }
   createEntreprise() {
     var name = this.firstFormGroup.get("name").value;
-    this.Api.createEntreprise(name, this.fileToUpload.name, this.fileToUpload).subscribe(res => {
+    var id = this.secondFormGroup.get("idProjet").value;
+    this.Api.createEntreprise(name, id, this.fileToUpload.name, this.fileToUpload).subscribe(res => {
       console.log("Requete envoyee");
     }, console.error);
     console.log("client ajouté");
