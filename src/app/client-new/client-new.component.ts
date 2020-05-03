@@ -17,6 +17,7 @@ export class ClientNewComponent implements OnInit {
   iconeurl = "https://img.icons8.com/pastel-glyph/64/000000/test-tube.png";
   fileToUpload: File = null;
   idProjet;
+  lienSub = "";
   constructor(
     private _formBuilder: FormBuilder,
     private Api: FLASKAPIService
@@ -59,6 +60,10 @@ export class ClientNewComponent implements OnInit {
     var id = this.secondFormGroup.get("idProjet").value;
     this.Api.createEntreprise(name, id, this.fileToUpload.name, this.fileToUpload).subscribe(res => {
       console.log("Requete envoyee");
+      console.log(res);
+      this.lienSub = res.url;
+      console.log("lien : " + this.lienSub);
+      console.log(JSON.stringify(res))
     }, console.error);
     console.log("client ajouté");
   }
@@ -72,7 +77,8 @@ export class ClientNewComponent implements OnInit {
       KEY_PATH: this.secondFormGroup.get("key").value,
       ICONE: this.secondFormGroup.get("icone").value,
       GMAIL: this.secondFormGroup.get("mail").value,
-      COUNT: 0
+      COUNT: 0,
+      IDPROJET :  this.secondFormGroup.get("idProjet").value,
     };
     //this.client = JSON.parse(obj);
     this.Api.newClient(obj).subscribe(res => {

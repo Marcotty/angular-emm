@@ -74,17 +74,24 @@
         <mat-label>4. Créer et téléchargez un fichier de clé JSON.</mat-label><br>
         <mat-label>Ajoutez le fichier obtenu.</mat-label><br>
       <br>
-      <mat-form-field>
-        <!--https://console.developers.google.com/iam-admin/serviceaccounts-->
-        <mat-label>Entrez un nom de fichier</mat-label>
-        <input matInput formControlName="key" placeholder="C:\key.json"
-               required>
-      </mat-form-field>
       <br>
       <input type="file" id="file"
            (change)="handleFileInput($event.target.files)">
       <div>
-        <button mat-button (click)="createEntreprise()">Créer une entreprise</button>
+        <mat-label>5. Cliquez sur le bouton "Créer une entreprise"
+          <br>
+          Si un lien d'inscription apparaît, tout s'est bien déroulé
+        </mat-label>
+         <button mat-button (click)="createEntreprise()">Créer une entreprise</button>
+         <div *ngIf="lienSub">
+        <p> Visitez le <a href= {{lienSub}} >lien d'inscription</a>
+        </p> 
+        </div>
+      <mat-form-field>
+        <mat-label>Entrez le nom d'entreprise :</mat-label>
+        <input matInput formControlName="ent" placeholder="enterprise/.."
+               required>
+      </mat-form-field>
       <button mat-button matStepperPrevious>Retour</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
       <button mat-button (click)="addClient()">Confirmer</button>

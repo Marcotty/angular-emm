@@ -6,7 +6,8 @@ export class Client {
     public ICONE:string,
     public KEY_PATH:string,
     public GMAIL:string,
-    public COUNT:number
+    public COUNT:number,
+    public IDPROJET:string,
   )
   {}
 }
