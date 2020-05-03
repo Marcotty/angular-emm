@@ -1,63 +1,70 @@
 <div *ngIf="errorGet else notFound">
-<div *ngIf="client">
-	<h1>
-		Détails du client {{client.NAME}}
-	</h1>
+	<div *ngIf="client">
 
-	<mat-card class="detail-card">
-		<mat-card-header>
-			<div mat-card-avatar class="detail-header-image">
-				<img src={{client.icone}}>
+		<mat-card class="detail-card">
+			<mat-card-header class="titres">
+				<div mat-card-avatar class="detail-header-image">
+					<img src={{client[0].ICONE}}>
         </div>
-				<mat-card-title>
-					Nom client : {{ client.NAME }}
-				</mat-card-title>
-				<mat-card-subtitle>Titre : Subtitle</mat-card-subtitle>
+					<mat-card-title class="title">
+						Détails du client
+					</mat-card-title>
+          <mat-card-subtitle title ="Nom d'entreprise Google Android Management" id="ent" class="title">
+            Nom d'entreprise : {{client[0].ENTERPRISE_NAME}}
+          </mat-card-subtitle>
+			</mat-card-header>
+			<mat-card-content class="contenu">
+        <br>
+					<mat-form-field title="Nom du client" class="formFieldlong"
+						appearance="standard">
+						<mat-label>Nom du client</mat-label>
+						<input matInput [(ngModel)]="client[0].NAME"
+                    placeholder="Nom du client" (value)= "client[0].NAME" >
+					</mat-form-field>
+          <br>
+          <mat-form-field title="Description du client" class="formFieldlong"
+						appearance="standard">
+						<mat-label >Description du client</mat-label>
+						<input matInput [(ngModel)]="client[0].DESCRIPTION"
+                    placeholder="Description courte du client" (value)= "client[0].DESCRIPTION" >
+					</mat-form-field>
+          <br>
+          <mat-form-field title="Nom du client :" class="formFieldlong"
+						appearance="standard">
+						<mat-label>Icone</mat-label>
+						<input matInput [(ngModel)]="client[0].ICONE"
+                    placeholder="https://img.icons8.com/pastel-glyph/64/000000/test-tube.png" (value)= "client[0].ICONE" >
+					</mat-form-field>
+          <br>
+          Téléchargez une clé de compte de service 
+          <a href="https://console.developers.google.com/iam-admin/serviceaccounts">Google</a>
+          <br>
+          <mat-form-field title="Fichier de clé" class="formFieldlong"
+						appearance="standard">
+						<mat-label>Fichier de clé </mat-label>
+						<input matInput [(ngModel)]="client[0].KEY_PATH"
+                    placeholder="...json" (value)= "client[0].KEY_PATH" >
+					</mat-form-field>
+          <br>
+          <mat-form-field title="Adresse GMAIL :" class="formFieldlong"
+						appearance="standard">
+						<mat-label>Adresse gmail</mat-label>
+						<input matInput [(ngModel)]="client[0].GMAIL"
+                    placeholder="..@gmail.com " (value)= "client[0].GMAIL" >
+					</mat-form-field>
 
-		</mat-card-header>
-		<mat-card-content>
-			<p>
-				Description : {{ client.DESCRIPTION }}
-			</p>
-			<p>
-				Téléphones : {{ client.COUNT }} devices gérés
-			</p>
-			<p>
-				lien icone : {{client.ICONE}}
-			</p>
-			<p>
-				Nom de l'entreprise : {{client.ENTERPRISE_NAME}}
-			</p>
-			<p>
-				Chemin vers clé compte de service : {{client.KEY_PATH}}
-			</p>
-			<p>
-				Compte gmail : {{client.GMAIL}}
-			</p>
+			</mat-card-content>
 
-      <form class="details-form">
-        <mat-form-field class="champForm">
-					<mat-label>Nom du client</mat-label>
-					<input matInput placeholder="Entrez le nom du client " value={{client.NAME}}>
-        </mat-form-field>
-      </form>
-
-		</mat-card-content>
-
-		<mat-card-actions>
-			<mat-card class="gererMenu">
-				<div class="gererMenu">
-					<a title="Modifier ce client" [routerLink]="['/client', clientId/modify]">
-						Modifier
-					</a>
-					<a title="Supprimer ce client" [routerLink]="['/client', clientId/delete]">
-						Supprimer
-					</a>
-				</div>
-			</mat-card>
-		</mat-card-actions>
-	</mat-card>
-</div>
+			<mat-card-actions>
+				<mat-card class="boutons-card">
+					<div class="boutons">
+            <button mat-raised-button color="primary" [routerLink]="['/']" (click)="modifier()">Modifier</button>
+            <button mat-raised-button color="primary" [routerLink]="['/']" (click)="supprimer()">Supprimer</button>
+					</div>
+				</mat-card>
+			</mat-card-actions>
+		</mat-card>
+	</div>
 </div>
 <ng-template #notFound>
 	Une erreur est survenue.

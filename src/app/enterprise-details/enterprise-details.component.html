@@ -1,10 +1,40 @@
-<div *ngIf ="enterprise_name" >
-  <div *ngIf ="enterprise">
-Nom : {{enterprise.name}}
-DisplayName : {{enterprise.enterpriseDisplayName}}
-Notifications : {{enterprise.enabledNotificationTypes}}
-PubSub : {{enterprise.pubsubTopic}}
-logo : {{enterprise.logo}}
-appAutoApprouvalEnabled : {{enterprise.appAutoApprouvalEnabled}}
-  </div>
+<div *ngIf="enterprise_name">
+	<div *ngIf="enterprise">
+    <mat-card>
+      <mat-card-title>Entreprise {{enterprise.name}}</mat-card-title>
+      <mat-card-content>
+        <p>L'entreprise Google dispose de plusieurs fonctionnalités </p>
+        <p> Visitez le site de développement pour avoir plus d'informations sur l'activation des apis nécessaires. </p>
+        <a href="https://developers.google.com/android/management/notifications"> Pub/Sub Notifications API</a>
+      </mat-card-content>
+    </mat-card>
+    <div *ngIf="enterprise.enterpriseDisplayName else notActivedEnterpriseDisplayName">
+      DisplayName : {{enterprise.enterpriseDisplayName}}
+    </div>
+    <div *ngIf="enterprise.pubsubTopic">
+      DisplayName : {{enterprise.pubsubTopic}}
+    </div>
+    <div *ngIf="enterprise.enabledNotificationTypes else notNotifications">
+      DisplayName : {{enterprise.enabledNotificationTypes}}
+    </div>
+    <div *ngIf="enterprise.logo">
+      DisplayName : {{enterprise.logo}}
+    </div>
+    <div *ngIf="enterprise.appAutoApprouvalEnabled">
+      DisplayName : {{enterprise.appAutoApprouvalEnabled}}
+    </div>
+    <ng-template #notActivedEnterpriseDisplayName >
+      <p class= "infos"> Pas de DisplayName <p>
+    </ng-template>
+    <ng-template #notNotifications >
+      <p class ="infos"> Pas de Notifications <p>
+    </ng-template>
+    <!--
+		DisplayName : {{enterprise.enterpriseDisplayName}}
+		Notifications : {{enterprise.enabledNotificationTypes}}
+		PubSub : {{enterprise.pubsubTopic}}
+		logo : {{enterprise.logo}}
+		appAutoApprouvalEnabled : {{enterprise.appAutoApprouvalEnabled}}
+    -->
+	</div>
 </div>

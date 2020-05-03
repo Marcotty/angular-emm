@@ -13,7 +13,7 @@ export class EnterpriseDetailsComponent implements OnInit {
   client;
   clientId;
   enterpriseSubs: Subscription;
-  enterprise: Enterprise[];
+  enterprise: Enterprise[] = [];
   enterprise_name;
   constructor(
     private route: ActivatedRoute,

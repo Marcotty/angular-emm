@@ -13,10 +13,10 @@ export class ClientDetailsComponent implements OnInit {
   client: Client; //client chargé depuis la base de données
   clientSub: Subscription;
   name;
-  errorGet = false;
+  errorGet = true;
   constructor(
     private route: ActivatedRoute,
-    private devicesApi: FLASKAPIService
+    private Api: FLASKAPIService
   ) {}
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -24,12 +24,29 @@ export class ClientDetailsComponent implements OnInit {
     });
     this.getClient();
   }
-  error()
-  {this.errorGet=true}
+  error() {
+    this.errorGet=false;
+    }
   getClient() {
-    this.clientSub = this.devicesApi.getClient(this.name).subscribe(res => {
+    this.clientSub = this.Api.getClient(this.name).subscribe(res => {
       this.client = res;
-      console.log("client " + res.name+" chargé depuis DB" + JSON.stringify(this.client));
+      console.log("Détails du client " + res[0].NAME+" chargé depuis DB" + JSON.stringify(this.client) + " name : " + this.client[0].NAME);
     }, this.error);
+  }
+  modifier()
+  {
+    this.Api.modifyClient(this.client[0])
+        .subscribe(res => {
+          console.log('Requete envoyee');
+      }, console.error);
+    console.log('client ajouté');
+  }
+  supprimer()
+  {
+     this.Api.deleteClient(this.client[0].NAME)
+        .subscribe(res => {
+          console.log('Requete envoyee');
+      }, console.error);
+    console.log('client ajouté');
   }
 }

@@ -13,8 +13,10 @@ const httpOptions = {
   headers: new HttpHeaders ({
   'Content-Type': 'application/json',
   'Accept': 'application/json',
+  'Access-Control-Allow-Origin':'*',
   })
 };
+
 @Injectable()
 export class FLASKAPIService {
   constructor(private http: HttpClient) {}
@@ -25,13 +27,16 @@ export class FLASKAPIService {
     );
   }
   postFile(fileToUpload: File): Observable<any> {
-    const endpoint = 'your-destination-url';
-    const formData: FormData = new FormData();
-    formData.append('fileKey', fileToUpload, fileToUpload.name);
+
     return this.http
-      .post(URL + `/file`, formData, httpOptions)
+      .post(URL + `/file`, fileToUpload, httpOptions)
       .pipe(catchError(FLASKAPIService._handleError));
-}
+  }
+  createEntreprise(clientName, fileName, fileToUpload: File) :Observable<any>{
+    return this.http
+      .post(URL + `/clients/new/` + clientName + `/file` + fileName, fileToUpload, httpOptions)
+      .pipe(catchError(FLASKAPIService._handleError));
+  } 
   newClient(client : Client) : Observable<Client>
   {
     return this.http

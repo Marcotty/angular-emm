@@ -3,6 +3,17 @@ mat-card-header
   justify-content: center;
 
 }
+.boutons-card
+{
+  width:90%;
+  height: 30px;
+  margin-top:5px;
+  justify-content: left;
+}
+.bouton
+{
+  margin-right:10px;
+}
 .gererButton
 {
   background: rgb(216, 216, 216);
@@ -20,7 +31,7 @@ mat-card-header
 .flex-container {
   display: flex;
   flex-wrap: wrap;
-  background-color: rgb(173, 173, 173);
+  background-color: rgba(247, 246, 246, 0.699);
   margin:20px;
   justify-content: center;
 }
@@ -51,7 +62,7 @@ mat-card-header
 .gererMenuElem {
   line-height: 1px;
   margin:1px;
-  background-color:rgb(245, 235, 220);
+  background-color:rgb(230, 229, 229);
 }
 .lienDetails
 {

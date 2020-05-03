@@ -1,12 +1,12 @@
 export class Client {
   constructor(
-    public name: string,
-    public ent: string,
-    public desc: string,
-    public icone:string,
-    public key_path:string,
-    public mail:string,
-    public count:number
+    public NAME: string,
+    public ENTERPRISE_NAME: string,
+    public DESCRIPTION: string,
+    public ICONE:string,
+    public KEY_PATH:string,
+    public GMAIL:string,
+    public COUNT:number
   )
   {}
 }

@@ -44,26 +44,46 @@
   <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
     <form [formGroup]="secondFormGroup">
       <ng-template class="titre" matStepLabel>Entrez le nom d'entreprise</ng-template>
+      <mat-label>Pour ajouter un client, il faut posséder une adresse mail Google valide et qui ne possède pas déjà d'entreprise.</mat-label>
+      <br>
       <mat-form-field>
         <mat-label>Mail</mat-label>
         <input matInput formControlName="mail" placeholder="splus.beir.test@gmail.com"
                required>
       </mat-form-field>
+      <br>
+      <mat-label>Visitez la <a href="https://console.developers.google.com/" >console d'administration de Google </a>
+      et suivez les étapes suivantes :
+      </mat-label>
+      <br>
+      <mat-label>1. Ajouter l'<a href="https://console.cloud.google.com/apis/library" >API Android management.</a></mat-label><br>
+      <mat-label>2. Créer un <a href="https://console.cloud.google.com/project"> projet</a> </mat-label><br>
+      <mat-label>Notez l'id de projet :</mat-label>
+      <br>
       <mat-form-field>
+        <mat-label></mat-label>
         <!--https://console.developers.google.com/iam-admin-->
         <mat-label>Id de projet</mat-label>
         <input matInput formControlName="ent" placeholder="id du projet Google"
                required>
       </mat-form-field>
+      <br>
+      <mat-label>3. Créer un <a href="https://console.cloud.google.com/iam-admin" > compte de service </a>
+        avec les autorisations : Propriétaire, Utilisateur(Owner, User)</mat-label><br>
+        <mat-label>4. Créer et téléchargez un fichier de clé JSON.</mat-label><br>
+        <mat-label>Ajoutez le fichier obtenu.</mat-label><br>
+      <br>
       <mat-form-field>
         <!--https://console.developers.google.com/iam-admin/serviceaccounts-->
-        <mat-label>Key Path</mat-label>
+        <mat-label>Entrez un nom de fichier</mat-label>
         <input matInput formControlName="key" placeholder="C:\key.json"
                required>
       </mat-form-field>
+      <br>
       <input type="file" id="file"
            (change)="handleFileInput($event.target.files)">
       <div>
+        <button mat-button (click)="createEntreprise()">Créer une entreprise</button>
       <button mat-button matStepperPrevious>Retour</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
       <button mat-button (click)="addClient()">Confirmer</button>

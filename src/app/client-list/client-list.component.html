@@ -1,9 +1,19 @@
 <div *ngIf="clientsDB">
 	<div class="flex-container">
+    <mat-card class="boutons-card">
+      <mat-card-header>
+        <button mat-raised-button class="bouton"[routerLink]="['/newClient']" title="Ajouter un client">Nouveau Client</button>
+        <button mat-raised-button class="bouton" (click)="getClients()" title="Rafraîchir la liste des clients">Actualiser</button>
+      </mat-card-header>
+      <mat-card-content>
+        
+      </mat-card-content>
+    </mat-card>
+    
     <!-- ngFor agit comme une boucle pour itérer chaque élément de la liste ici clientsDB-->
 		<div *ngFor="let client of clientsDB; index as clientId">
       <!-- Mat card qui définit la fiche du client avec ses infos-->
-			<mat-card class="example-card">
+			<mat-card class="card">
 				<mat-card-header>
           <!-- Logo du client -->
 					<div mat-card-avatar class="example-header-image">
@@ -49,8 +59,7 @@
 							<a title="Gérer l'entreprise" [routerLink]="['/client', client.NAME, client.ENTERPRISE_NAME, 'enterprise']">
 								Entreprise
 							</a>
-						</mat-card>
-
+						</mat-card>              
 					</div>
 				</mat-card-actions>
 			</mat-card>

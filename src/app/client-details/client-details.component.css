@@ -1,0 +1,33 @@
+.image
+{
+  float:right;
+  margin-left:15px;
+  margin-right:50px;
+}
+.formFieldlong
+{
+  margin:15px;
+}
+.formFieldlong
+{
+  min-width:500px;
+}
+.titres, .contenu, .boutons-card
+{
+  text-align:center;
+  justify-content: center;
+}
+.detail-card
+{
+  width:80%;
+  height:80%;
+  margin-left:8%;
+}
+#ent
+{
+  line-height:30px;
+}
+.detail-header-image
+{
+  margin-right:20px;
+}

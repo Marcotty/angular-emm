@@ -31,7 +31,6 @@ import { DeviceDetailsComponent } from './device-details/device-details.componen
 import { PoliciesListComponent } from './policies-list/policies-list.component';
 import { EnterpriseDetailsComponent } from './enterprise-details/enterprise-details.component';
 import { ClientNewComponent } from './client-new/client-new.component';
-import { BoolInputComponent } from './policies-list/bool-input/bool-input.component';
 import { PolicyNewComponent } from './policy-new/policy-new.component';
 import { CommonModule } from "@angular/common";
 
@@ -66,6 +65,7 @@ import { CommonModule } from "@angular/common";
       { path: 'client/:name/:enterprise_name/policies/new', component: PolicyNewComponent },
       { path: 'client/:name/:enterprise_name/enterprise', component: EnterpriseDetailsComponent },
       { path: 'newClient', component: ClientNewComponent },
+      { path: '**', redirectTo:'/' },
     ])
   ],
   declarations: [
@@ -78,7 +78,6 @@ import { CommonModule } from "@angular/common";
     PoliciesListComponent,
     EnterpriseDetailsComponent,
     ClientNewComponent,
-    BoolInputComponent,
     PolicyNewComponent,
   ],
   bootstrap: [AppComponent],
