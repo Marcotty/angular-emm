@@ -66,6 +66,7 @@
 														</mat-option>
 													</mat-select>
 												</mat-form-field>
+                        <!-- DISABLED REASON CANNOT READ VALUE OF UNDEFINED
 												<div *ngIf="devicesList[deviceId].state == 'DISABLED'">
 													<mat-form-field appearance="fill">
 														<mat-label>Raison</mat-label>
@@ -73,6 +74,7 @@
                     placeholder="Ex. " (value)= "devicesList[deviceId].disabledReason.defaultMessage" >
                           </mat-form-field>
 												</div>
+                        -->
 												<div class="buttons">
 													<button mat-button (click)="updateDevice(device)" > Modifier</button>
 													<button mat-button (click)="deleteDevice(device.name)" > Supprimer</button>

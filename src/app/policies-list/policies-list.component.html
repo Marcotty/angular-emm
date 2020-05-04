@@ -13,9 +13,9 @@
 				<mat-card class = "mat-cardPol">
 					<mat-card-title>
 						{{pol.name}}
-						<button mat-button class ="devicesLink" [routerLink]="['/client', clientId, 'devices']">
+						<!--<button mat-button class ="devicesLink" [routerLink]="['/client', clientId, 'devices']">
               Devices
-            </button>
+            </button>-->
             <button mat-button (click)="update(policyId)"> Modifier </button>
 						<button mat-button id="supprimer" class="button" (click)= "delete(pol.name)"> Supprimer </button>
 					</mat-card-title>
@@ -33,7 +33,7 @@
 							  <div class ="separateur">
 
                 </div>
-									<mat-form-field title="Politique update apps" class="formField"
+									<mat-form-field title="Politique de mise à jour des applications &#013; CHOICE_TO_THE_USER - L'utilisateur choisit &#013; ALWAYS - Mises à jour automatiques &#013; WIFI_ONLY - Uniquement en wifi &#013; NEVER - Pas de mises à jour" class="formField"
 										appearance="standard">
 										<mat-label>App auto update </mat-label>
 										<mat-select (selectionChange)="update(policyId)"
@@ -44,7 +44,7 @@
 											</mat-option>
 										</mat-select>
 									</mat-form-field>
-                  <mat-form-field title="Mode de localisation" class="formField"
+                  <mat-form-field title="Mode de localisation &#013; HIGH ACCURACY - Haute précision &#013; SENSORS ONLY - Pas de GPS &#013; BATTERY-SAVING - Economie de la batterie &#013; OFF - Pas de localisation" class="formField"
 										appearance="standard">
 										<mat-label>Localisation</mat-label>
 										<mat-select (selectionChange)="update(policyId)"
@@ -55,7 +55,7 @@
 											</mat-option>
 										</mat-select>
 									</mat-form-field>
-                  <mat-form-field title="Keyguard" class="formField"
+                  <mat-form-field title="Désactivation de fonctionalités du déverouillage du téléphone &#013; CAMERA - Par caméra &#013; FACE - Visage &#013; DISABLE_FINGERPRINT - Pas d'empreinte &#013; IRIS - Yeux" class="formField"
 										appearance="standard">
 										<mat-label>KeyGuard</mat-label>
 										<mat-select (selectionChange)="update(policyId)"
@@ -66,7 +66,7 @@
 											</mat-option>
 										</mat-select>
 									</mat-form-field>
-                  <mat-form-field title="Politique d'encryption" class="formField"
+                  <mat-form-field title="Politique d'encryption &#013; ENABLED_WITH_PASSWORD - Cryptage avec mot de passe au démarrage &#013; ENABLED_WITHOUT_PASSWORD - Cryptage sans mot de passe au démarrage" class="formField"
 										appearance="standard">
 										<mat-label>Encryption</mat-label>
 										<mat-select (selectionChange)="update(policyId)"
@@ -77,7 +77,7 @@
 											</mat-option>
 										</mat-select>
 									</mat-form-field>
-                  <mat-form-field title="Mode du play store" class="formField"
+                  <mat-form-field title="Mode du play store &#013; BLACKLIST - Les applications à bloquer doivent être BLOCKED explicitement dans la liste des applications &#013; WHITELIST - Uniquement les applications dans la liste" class="formField"
 										appearance="standard">
 										<mat-label>Play Store</mat-label>
 										<mat-select (selectionChange)="update(policyId)"

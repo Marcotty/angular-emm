@@ -109,7 +109,7 @@
       <br>
       <button mat-button matStepperPrevious>Retour</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button (click)="addClient()">Confirmer</button>
+      <button mat-button (click)="addClient()" [routerLink]="['/']">Confirmer</button>
     </div>
     </form>
   </mat-step>
