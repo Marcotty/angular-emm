@@ -85,6 +85,11 @@ export class FLASKAPIService {
       .delete<Device[]>(URL + device_name)
       .pipe(catchError(FLASKAPIService._handleError));
   }
+  commandDevice(device_name, command): Observable<any>{
+    return this.http
+      .post<any>(URL + device_name + `/command`, command,  httpOptions)
+      .pipe(catchError(FLASKAPIService._handleError));
+  }
   getPolicies(enterprise_name): Observable<Policy[]> {
     return this.http
       .get<Policy[]>(URL + enterprise_name + `/policies`)

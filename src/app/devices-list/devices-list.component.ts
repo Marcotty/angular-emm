@@ -46,18 +46,7 @@ export class DevicesListComponent implements OnInit {
   refresh() {
     this.getDevices();
   }
-  new(policy_name) {
-    if (!this.inscription) {
-      this.inscription = true;
-      this.devicesApi
-      .inscriptionPolicy(policy_name)
-      .subscribe(res => {
-        this.QR_code = res;
-        console.log('QR_code reçu');
-      }, console.error);
 
-    } else this.inscription = false;
-  }
   updateDevice(device) {
     this.devicesListSubs = this.devicesApi
       .updateDevice(device)
@@ -67,6 +56,36 @@ export class DevicesListComponent implements OnInit {
   }
   deleteDevice(deviceName) {
     this.devicesApi.deleteDevice(deviceName).subscribe(res => {
+      console.log("Suppression de " + "deviceName effectuée");
+    }, console.error);
+    this.getDevices();
+  }
+  lockDevice(name)
+  {
+    var now = (new Date()).toISOString();
+    var command = {
+      "type": "LOCK",
+      "createTime": now
+    }
+    this.devicesApi.commandDevice(name, command).subscribe(res => {
+      console.log("Suppression de " + "deviceName effectuée");
+    }, console.error);
+  }
+  rebootDevice(name)
+  {
+    var command = {
+      "type": "REBOOT"
+    }
+    this.devicesApi.commandDevice(name, command).subscribe(res => {
+      console.log("Suppression de " + "deviceName effectuée");
+    }, console.error);
+  }
+  resetPasswordDevice(name)
+  {
+    var command = {
+      "type": "RESET_PASSWORD"
+    }
+    this.devicesApi.commandDevice(name, command).subscribe(res => {
       console.log("Suppression de " + "deviceName effectuée");
     }, console.error);
   }

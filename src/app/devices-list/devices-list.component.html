@@ -8,7 +8,6 @@
 		<mat-card class="device-card-background">
 			<mat-card-title>
 				<button mat-button (click)="refresh()" > Actualiser</button>
-				<button mat-button (click)="new()" > Inscription</button>
 			</mat-card-title>
 			<div *ngIf="inscription">
 				<mat-card class="inscription-card">
@@ -34,12 +33,12 @@
 								<div>
 									{{device.hardwareInfo.brand}}
 									{{device.hardwareInfo.model}}
-								</div><!--
+								</div>
 								<div class = "actions">
-									<button mat-button (click)="deleteDevice(device.name)" > LOCK</button>
-									<button mat-button (click)="deleteDevice(device.name)" > RESET_PASSWORD</button>
-									<button mat-button (click)="deleteDevice(device.name)" > REBOOT</button>
-								</div>-->
+									<button mat-button (click)="lockDevice(device.name)" > Verrouiller</button>
+									<button mat-button (click)="resetPasswordDevice(device.name)" > Réinitialiser le mot de passe</button>
+									<button mat-button (click)="rebootDevice(device.name)" > Redémarrer</button>
+								</div>
 							</mat-card-title>
 							<mat-card-subtitle>
 								{{device.networkInfo.wifiMacAddress}}
@@ -58,7 +57,7 @@
                     placeholder="Ex. " (value)= "devicesList[deviceId].policyName" >
                           </mat-form-field>
 												<mat-form-field>
-													<mat-label>State</mat-label>
+													<mat-label>Status</mat-label>
 													<mat-select [(value)]="devicesList[deviceId].state">
 														<mat-option *ngFor="let val of deviceStates | keyvalue"
 															[value]="val.value">
@@ -84,6 +83,7 @@
 									<mat-tab label="Informations">
 										<div class="infos">
 											<p class="infos-champs"> Nom : {{device.name}} </p>
+                      <p class="infos-champs"> Nom d'utilisateur : {{device.userName}} </p>
 											<p class="infos-champs"> Marque : {{device.hardwareInfo.brand}}
 											</p>
 											<p class="infos-champs"> Modèle : {{device.hardwareInfo.model}}
@@ -107,6 +107,10 @@
 											<p class="infos-champs"> API Level : {{device.apiLevel}} </p>
 											<p class="infos-champs"> RAM : {{device.memoryInfo.totalRam}}
 											</p>
+                      <p class ="infos-champs"> Dernière synchronisation de la politique : <br>
+                      {{device.enrollmentTime}} </p>
+                      <p class ="infos-champs"> Date d'inscription : <br>
+                      {{device.enrollmentTime}} </p>
 											<p class="infos-champs"> Stockage :
 												{{device.memoryInfo.totalInternalStorage}} </p>
 											<div *ngFor="let sys of device.systemProperties |keyvalue; index as sysId">
