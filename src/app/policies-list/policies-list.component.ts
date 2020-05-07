@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { clients } from "../client-list/clients";
 import { MatSnackBar } from "@angular/material/snack-bar";
+
 import {
   Policy,
   installTypeValues,
@@ -37,7 +38,7 @@ export class PoliciesListComponent implements OnInit {
   encryptionPolicy = encryptionPolicy;
   playStoreMode = playStoreMode;
   noPolitiques: boolean = false;
-
+  checked = false;
   QR_code: string[] = [];
   inscriptionAuto = false; //paramètre à activer pour que le code QR soit demandé automatiquement
   constructor(

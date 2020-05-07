@@ -19,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 import { AppComponent } from "./app.component";
