@@ -38,7 +38,7 @@
 										<mat-label>App auto update </mat-label>
 										<mat-select (selectionChange)="update(policyId)"
 											[(value)]="policies[policyId].appAutoUpdatePolicy">
-											<mat-option *ngFor="let appVal of appAutoUpdateValues | keyvalue"
+											<mat-option title="Politique de mise à jour des applications &#013; CHOICE_TO_THE_USER - L'utilisateur choisit &#013; ALWAYS - Mises à jour automatiques &#013; WIFI_ONLY - Uniquement en wifi &#013; NEVER - Pas de mises à jour" *ngFor="let appVal of appAutoUpdateValues | keyvalue"
 												[value]="appVal.value">
 												{{appVal.value}}
 											</mat-option>
@@ -99,16 +99,6 @@
 										</app-bool-input>
 
 									</p>-->
-									<mat-form-field title="Activation Bluetooth" class="formField"
-										appearance="standard">
-										<mat-label>Bluetooth </mat-label>
-										<mat-select
-											[(ngModel)]="policies[policyId].bluetoothDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
                   
                   <mat-card class="parametres">
                     <mat-card-content>
@@ -148,80 +138,54 @@
                             title="Ajout d'un utilisateur sur l'appareil">
                           Ajout d'un utilisateur :
                         </mat-slide-toggle>
+                        <!-- Ajuster le volume -->
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Ajuster le son', policies[policyId].adjustVolumeDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].adjustVolumeDisabled"
+                            [checked]="policies[policyId].adjustVolumeDisabled"
+                            title="Ajuster le niveau de volume sonore ou bloquer la barre de niveau son">
+                          Ajuster le volume :
+                        </mat-slide-toggle>
+                        <!-- Factory reset -->
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Réinitialisation depuis les paramètres', policies[policyId].factoryResetDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].factoryResetDisabled"
+                            [checked]="policies[policyId].factoryResetDisabled"
+                            title="Permettre la réinitialisation aux paramètres d'usine depuis les paramètres du téléphone">
+                          Factory reset :
+                        </mat-slide-toggle>
+                        <!-- Installer applications -->
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Installer des applications', policies[policyId].installAppsDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].installAppsDisabled"
+                            [checked]="policies[policyId].installAppsDisabled"
+                            title="Permettre l'installation d'applications">
+                          Installer des applications :
+                        </mat-slide-toggle>
+                        <!-- Installer applications -->
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Brancher le téléphone en USB', policies[policyId].mountPhysicalMediaDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].mountPhysicalMediaDisabled"
+                            [checked]="policies[policyId].mountPhysicalMediaDisabled"
+                            title="Permettre au téléphone d'être branché en USB à un PC.">
+                          Branchement USB :
+                        </mat-slide-toggle>
+
                       </section>
                     </mat-card-content>
                   </mat-card>
-									<!--<p>Bluetooth Config désactivé : {{pol.bluetoothConfigDisabled}}</p>-->
-									<mat-form-field title="Configuration du Bluetooth" class="formField"
-										appearance="standard">
-										<mat-label>Config Bluetooth </mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].bluetoothConfigDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-									<!--
-									<div>Ajouter Utilisateur :
-										{{pol.addUserDisabled}}
-										<app-bool-input property="Ajouter User" [value]="pol.addUserDisabled"
-											(valueChanged)="onChanged(champ ='addUser', policyId, event)">
-										</app-bool-input>
-                  </div>-->
-                  <mat-form-field title="Ajouter un utilisateur" class="formField"
-										appearance="standard">
-										<mat-label>Ajouter un utilisateur </mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].addUserDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Ajuster le volume" class="formField"
-										appearance="standard">
-										<mat-label>Ajuster volume </mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].adjustVolumeDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <!--<p>Ajuster volume : {{pol.adjustVolumeDisabled}}</p>-->
-                  <mat-form-field title="Factory reset" class="formField"
-										appearance="standard">
-										<mat-label>Factory Reset </mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].factoryResetDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-									<!--<p>Factory Reset : {{pol.factoryResetDisabled}}</p>-->
-                  <mat-form-field title="Installer applications" class="formField"
-										appearance="standard">
-										<mat-label>Installer applications </mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].installAppsDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-									<!--<p>Instaler apps : {{pol.installAppsDisabled}}</p>-->
-                  <mat-form-field title="Monter media" class="formField"
-										appearance="standard">
-										<mat-label>Mount </mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].mountPhysicalMediaDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
 									<!--<p>Monter carte SD : {{pol.mountPhysicalMediaDisabled}}</p>-->
                   <mat-form-field title="Modifier comptes" class="formField"
 										appearance="standard">

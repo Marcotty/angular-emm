@@ -69,6 +69,7 @@ export class PoliciesListComponent implements OnInit {
           } else {
             this.noPolitiques = false;
             this.policies = res;
+            this.openSnackBar("Politiques chargées", "Fermer");
             console.log("politiques chargées : " + res);
             if (this.inscriptionAuto) {
               for (let i = 0; i < this.policies.length; i++) {
