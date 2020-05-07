@@ -83,7 +83,6 @@ export class PoliciesListComponent implements OnInit {
   //Permet la sauvegarde des modifications appliquées à une politique
   //ARGUMENT : l'id de la politique
   update(policyId) {
-    this.openSnackBar("Mise à jour en cours", "Fermer");
     this.devicesApi.updatePolicy(this.policies[policyId]).subscribe(res => {
       //this.policies[policyId] = res;
       this.openSnackBar("Mise à jour réussie", "Fermer");
@@ -106,12 +105,14 @@ export class PoliciesListComponent implements OnInit {
         console.log("QR_code[" + policyId + "] reçu " + this.QR_code[policyId]);
       }, console.error);
   }
-  messageUpdate(message, val)
+  messageUpdate(message, val, policyId)
   {
-    if(val)
+    if(val == true)
       this.openSnackBar(message + " désactivé !", "Fermer");
     else
       this.openSnackBar(message + " activé !", "Fermer");
+
+    this.update(policyId);
   }
   //méthode de suppression d'une politique
   //ARG : nom de la politique à supprimer

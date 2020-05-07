@@ -110,19 +110,43 @@
 										</mat-select>
 									</mat-form-field>
                   
-                  <mat-card class="result">
+                  <mat-card class="parametres">
                     <mat-card-content>
-                      <h2 class="example-h2">Config : {{policies[policyId].bluetoothDisabled}}</h2>
+                      <h2 class="example-h2">Paramètres :</h2>
 
                       <section class="section-parametres">
+                        <!-- Bluetooth -->
                         <mat-slide-toggle
-                            class="example-margin"
-                            [color]="warn"
+                            class="parametres-slider"
+                            [color]="accent"
                             labelPosition= 'before' 
-                            (change)="messageUpdate('Bluetooth', policies[policyId].bluetoothConfigDisabled)"
+                            (change)="messageUpdate('Bluetooth', policies[policyId].bluetoothDisabled, policyId)"
                             [(ngModel)]="policies[policyId].bluetoothDisabled"
-                            [checked]="policies[policyId].bluetoothDisabled">
+                            [checked]="policies[policyId].bluetoothDisabled"
+                             title="Activation du bluetooth ">
+                          Activation du bluetooth :
+                        </mat-slide-toggle>
+                        <!-- Bluetooth Config -->
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Configuration du Bluetooth', policies[policyId].bluetoothConfigDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].bluetoothConfigDisabled"
+                            [checked]="policies[policyId].bluetoothConfigDisabled"
+                            title="Configuration possible du bluetooth">
                           Configuration du bluetooth :
+                        </mat-slide-toggle>
+                        <!-- Ajouter un utilisateur -->
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Ajouter un utilisateur', policies[policyId].addUserDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].addUserDisabled"
+                            [checked]="policies[policyId].addUserDisabled"
+                            title="Ajout d'un utilisateur sur l'appareil">
+                          Ajout d'un utilisateur :
                         </mat-slide-toggle>
                       </section>
                     </mat-card-content>
