@@ -106,7 +106,13 @@ export class PoliciesListComponent implements OnInit {
         console.log("QR_code[" + policyId + "] reçu " + this.QR_code[policyId]);
       }, console.error);
   }
-
+  messageUpdate(message, val)
+  {
+    if(val)
+      this.openSnackBar(message + " désactivé !", "Fermer");
+    else
+      this.openSnackBar(message + " activé !", "Fermer");
+  }
   //méthode de suppression d'une politique
   //ARG : nom de la politique à supprimer
   delete(policyName) {

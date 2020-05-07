@@ -57,6 +57,7 @@ import { CommonModule } from "@angular/common";
     MatSelectModule,
     MatTableModule,
     MatSnackBarModule,
+    MatSlideToggleModule,
     RouterModule.forRoot([
       { path: '', component: ClientListComponent },
       { path: 'client/:name', component: ClientDetailsComponent },

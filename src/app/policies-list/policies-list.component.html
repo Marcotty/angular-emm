@@ -109,21 +109,24 @@
 											</mat-option>
 										</mat-select>
 									</mat-form-field>
-                  <!--
+                  
                   <mat-card class="result">
                     <mat-card-content>
-                      <h2 class="example-h2">Result</h2>
+                      <h2 class="example-h2">Config : {{policies[policyId].bluetoothConfigDisabled}}</h2>
 
                       <section class="example-section">
                         <mat-slide-toggle
                             class="example-margin"
-                            [color]="color"
-                            [checked]="true">
-                          Slide me!
+                            [color]="warn"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Bluetooth', policies[policyId].bluetoothConfigDisabled)"
+                            [(ngModel)]="policies[policyId].bluetoothConfigDisabled"
+                            [checked]="policies[policyId].bluetoothConfigDisabled">
+                          Configuration du bluetooth :
                         </mat-slide-toggle>
                       </section>
                     </mat-card-content>
-                  </mat-card>-->
+                  </mat-card>
 									<!--<p>Bluetooth Config désactivé : {{pol.bluetoothConfigDisabled}}</p>-->
 									<mat-form-field title="Configuration du Bluetooth" class="formField"
 										appearance="standard">
