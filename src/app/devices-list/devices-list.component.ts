@@ -5,6 +5,7 @@ import { Subscription } from "rxjs";
 import { clients } from "../client-list/clients";
 import { FLASKAPIService } from "../flask-api.service";
 import { Device, DeviceState } from "./device.model";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-devices-list",
@@ -17,14 +18,15 @@ export class DevicesListComponent implements OnInit {
   devicesListSubs: Subscription;
   devicesList: Device[];
   deviceStates = DeviceState;
-  inscription = false;
   enterprise_name;
   name;
-  QR_code:string;
+  noDevices: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
-    private devicesApi: FLASKAPIService
-  ) {}
+    private devicesApi: FLASKAPIService,
+    private _snackBar: MatSnackBar
+  ) {this.noDevices = false;}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -39,9 +41,24 @@ export class DevicesListComponent implements OnInit {
     this.devicesListSubs = this.devicesApi
       .getDevices(this.enterprise_name)
       .subscribe(res => {
-        this.devicesList = res;
-        console.log("devices de " + this.enterprise_name + " chargés");
-      }, console.error);
+        if (res.toString() == "Pas de devices") {
+          this.noDevices = true;
+          this.openSnackBar("Pas de devices trouvés !", "Fermer");
+        }
+        else
+        {
+          this.noDevices = true;
+          this.devicesList = res;
+          this.openSnackBar("Devices chargés", "Fermer");
+        }
+      }, err => console.error);
+  }
+  // Message affiché en bas d'écran
+  // ARGs : le message et une action
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000
+    });
   }
   refresh() {
     this.getDevices();
@@ -51,42 +68,38 @@ export class DevicesListComponent implements OnInit {
     this.devicesListSubs = this.devicesApi
       .updateDevice(device)
       .subscribe(res => {
-        console.log("Update effectuée");
-      }, console.error);
+        this.openSnackBar("Update effectuée !", "Fermer");
+        
+      }, err => this.openSnackBar("Erreur de requete ", "Fermer"));
   }
   deleteDevice(deviceName) {
     this.devicesApi.deleteDevice(deviceName).subscribe(res => {
-      console.log("Suppression de " + "deviceName effectuée");
+      this.openSnackBar("Appareil supprimé !", "Fermer");
     }, console.error);
     this.getDevices();
   }
-  lockDevice(name)
-  {
-    var now = (new Date()).toISOString();
+  lockDevice(name) {
     var command = {
-      "type": "LOCK",
-      "createTime": now
-    }
+      type: "LOCK",
+    };
     this.devicesApi.commandDevice(name, command).subscribe(res => {
-      console.log("Suppression de " + "deviceName effectuée");
-    }, console.error);
+      this.openSnackBar("Verrouillage appliqué !", "Fermer");
+    }, err => this.openSnackBar("Erreur de lock", "Fermer"));
   }
-  rebootDevice(name)
-  {
+  rebootDevice(name) {
     var command = {
-      "type": "REBOOT"
-    }
+      type: "REBOOT"
+    };
     this.devicesApi.commandDevice(name, command).subscribe(res => {
-      console.log("Suppression de " + "deviceName effectuée");
-    }, console.error);
+      this.openSnackBar("Reboot effectué", "Fermer");
+    }, err => this.openSnackBar("Erreur de reboot", "Fermer"));
   }
-  resetPasswordDevice(name)
-  {
+  resetPasswordDevice(name) {
     var command = {
-      "type": "RESET_PASSWORD"
-    }
+      type: "RESET_PASSWORD"
+    };
     this.devicesApi.commandDevice(name, command).subscribe(res => {
-      console.log("Suppression de " + "deviceName effectuée");
-    }, console.error);
+      this.openSnackBar("Password réinitialisé !", "Fermer");
+    }, err => this.openSnackBar("Erreur de password reset", "Fermer"));
   }
 }

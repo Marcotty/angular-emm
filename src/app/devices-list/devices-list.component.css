@@ -11,6 +11,11 @@ h1{
    cursor: pointer;
    color:gray;
 }
+.supp
+{
+  float : right;
+  margin-left:20px;
+}
 .devicesCards
 {
   display:flex;
@@ -20,7 +25,7 @@ h1{
 }
 .buttons
 {
-  background: rgb(209, 206, 206);
+  background-color: #f1f1f1;
   text-align:left;
   justify-content:left;
 }
@@ -48,8 +53,7 @@ h1{
   min-width:200px;
   min-height: 100px;
   margin:15px;
-  background: rgb(192, 189, 189);
-  
+  background-color: #e6e6e6;  
 }
 .device-card
 {

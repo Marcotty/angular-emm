@@ -8,6 +8,7 @@ export enum DisplayStateValues{
 export enum DeviceState{
   ACTIVE = "ACTIVE",
   DISABLED = "DISABLED",
+  //PROVISIONING = "PROVISIONING",
 }
 export class Device {
   constructor(

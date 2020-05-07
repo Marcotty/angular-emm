@@ -1,27 +1,17 @@
 <div *ngIf="enterprise_name">
-	<header>
-		<!--<app-client-details></app-client-details>-->
-	</header>
-
 	<body>
-
 		<mat-card class="device-card-background">
 			<mat-card-title>
 				<button mat-button (click)="refresh()" > Actualiser</button>
 			</mat-card-title>
-			<div *ngIf="inscription">
-				<mat-card class="inscription-card">
-					<mat-card-title> Inscription </mat-card-title>
-				</mat-card>
-			</div>
 			<mat-card class="device-card">
 				<mat-card-title>
-          <div>
-					Appareils de {{name}}
-          </div>
-          <div>
-            <button mat-button (click)="deleteDevices()" > Supprimer devices</button>
-          </div>
+					<div>
+						Appareils de {{name}}
+					</div>
+					<div>
+						<button mat-button (click)="deleteDevices()" > Supprimer devices</button>
+					</div>
 				</mat-card-title>
 				<mat-card-subtitle>
 					Liste des appareils de ce client
@@ -29,23 +19,16 @@
 				<div *ngIf="devicesList else loading">
 					<div *ngFor="let device of devicesList; index as deviceId">
 						<mat-card>
-							<mat-card-title class = "title">
+							<mat-card-title class="title">
 								<div>
 									{{device.hardwareInfo.brand}}
 									{{device.hardwareInfo.model}}
+                  <button class="supp" mat-button (click)="deleteDevice(device.name)" > Supprimer</button>
 								</div>
-								<div class = "actions">
-									<button mat-button (click)="lockDevice(device.name)" > Verrouiller</button>
-									<button mat-button (click)="resetPasswordDevice(device.name)" > Réinitialiser le mot de passe</button>
-									<button mat-button (click)="rebootDevice(device.name)" > Redémarrer</button>
-								</div>
+
 							</mat-card-title>
 							<mat-card-subtitle>
-								{{device.networkInfo.wifiMacAddress}}
-								<br>
-								<a class="policyLink" [routerLink]="['/client', clientId, 'policies']">
-									{{device.policyName}}
-								</a>
+								Mac Wifi : {{device.networkInfo.wifiMacAddress}}
 							</mat-card-subtitle>
 							<mat-card-content>
 								<mat-tab-group>
@@ -65,7 +48,7 @@
 														</mat-option>
 													</mat-select>
 												</mat-form-field>
-                        <!-- DISABLED REASON CANNOT READ VALUE OF UNDEFINED
+												<!-- DISABLED REASON CANNOT READ VALUE OF UNDEFINED
 												<div *ngIf="devicesList[deviceId].state == 'DISABLED'">
 													<mat-form-field appearance="fill">
 														<mat-label>Raison</mat-label>
@@ -76,14 +59,16 @@
                         -->
 												<div class="buttons">
 													<button mat-button (click)="updateDevice(device)" > Modifier</button>
-													<button mat-button (click)="deleteDevice(device.name)" > Supprimer</button>
+                          <button mat-button (click)="rebootDevice(device.name)" > Redémarrer</button>
+													<button mat-button (click)="resetPasswordDevice(device.name)" > Réinitialiser le mot de passe</button>
+                          <button mat-button (click)="lockDevice(device.name)" > Eteindre l'écran</button>
 												</div>
 										</div>
 									</mat-tab>
 									<mat-tab label="Informations">
 										<div class="infos">
 											<p class="infos-champs"> Nom : {{device.name}} </p>
-                      <p class="infos-champs"> Nom d'utilisateur : {{device.userName}} </p>
+											<p class="infos-champs"> Nom d'utilisateur : {{device.userName}} </p>
 											<p class="infos-champs"> Marque : {{device.hardwareInfo.brand}}
 											</p>
 											<p class="infos-champs"> Modèle : {{device.hardwareInfo.model}}
@@ -107,15 +92,16 @@
 											<p class="infos-champs"> API Level : {{device.apiLevel}} </p>
 											<p class="infos-champs"> RAM : {{device.memoryInfo.totalRam}}
 											</p>
-                      <p class ="infos-champs"> Dernière synchronisation de la politique : <br>
+											<p class="infos-champs"> Dernière synchronisation de la politique : <br>
                       {{device.enrollmentTime}} </p>
-                      <p class ="infos-champs"> Date d'inscription : <br>
+												<p class="infos-champs"> Date d'inscription : <br>
                       {{device.enrollmentTime}} </p>
-											<p class="infos-champs"> Stockage :
-												{{device.memoryInfo.totalInternalStorage}} </p>
-											<div *ngFor="let sys of device.systemProperties |keyvalue; index as sysId">
-												{{sys.key}} :{{sys.value}}
-											</div>
+													<p class="infos-champs"> Stockage :
+														{{device.memoryInfo.totalInternalStorage}} </p>
+													<div
+														*ngFor="let sys of device.systemProperties |keyvalue; index as sysId">
+														{{sys.key}} :{{sys.value}}
+													</div>
 										</div>
 									</mat-tab>
 									<mat-tab label="Events">

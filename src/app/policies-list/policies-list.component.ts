@@ -76,7 +76,7 @@ export class PoliciesListComponent implements OnInit {
             }
           }
         },
-        err => console.log("erreur")
+        err => this.openSnackBar("Erreur de requête", "Fermer")
       );
   }
   //Permet la sauvegarde des modifications appliquées à une politique
@@ -86,7 +86,7 @@ export class PoliciesListComponent implements OnInit {
     this.devicesApi.updatePolicy(this.policies[policyId]).subscribe(res => {
       //this.policies[policyId] = res;
       this.openSnackBar("Mise à jour réussie", "Fermer");
-    }, console.error);
+    }, err => this.openSnackBar("Erreur de mise à jour ", "Fermer"));
   }
   // Message affiché en bas d'écran
   // ARGs : le message et une action
