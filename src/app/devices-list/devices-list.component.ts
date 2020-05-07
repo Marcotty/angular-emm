@@ -51,7 +51,7 @@ export class DevicesListComponent implements OnInit {
           this.devicesList = res;
           this.openSnackBar("Devices chargés", "Fermer");
         }
-      }, err => console.error);
+      }, err => this.openSnackBar("Erreur de chargement", "Fermer"));
   }
   // Message affiché en bas d'écran
   // ARGs : le message et une action
@@ -75,7 +75,13 @@ export class DevicesListComponent implements OnInit {
   deleteDevice(deviceName) {
     this.devicesApi.deleteDevice(deviceName).subscribe(res => {
       this.openSnackBar("Appareil supprimé !", "Fermer");
-    }, console.error);
+    }, err => this.openSnackBar("Erreur dans la suppression de l'appareil", "Fermer"));
+    this.getDevices();
+  }
+  deleteAllDevices() {
+    this.devicesApi.deleteAllDevices(this.enterprise_name, this.devicesList).subscribe(res => {
+      this.openSnackBar("Tous les appareils ont été supprimés !", "Fermer");
+    }, err => this.openSnackBar("Erreur dans la suppression des devices", "Fermer"));
     this.getDevices();
   }
   lockDevice(name) {

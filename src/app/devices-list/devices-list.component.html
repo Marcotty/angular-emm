@@ -1,25 +1,20 @@
 <div *ngIf="enterprise_name">
 	<body>
-		<mat-card class="device-card-background">
-			<mat-card-title>
-				<button mat-button (click)="refresh()" > Actualiser</button>
-			</mat-card-title>
-			<mat-card class="device-card">
-				<mat-card-title>
+			<mat-card class="devices-card-background">
+				<mat-card-title class="titre-card">
 					<div>
 						Appareils de {{name}}
-					</div>
-					<div>
-						<button mat-button (click)="deleteDevices()" > Supprimer devices</button>
+            <button mat-button (click)="refresh()" > Actualiser</button>
+            <button class="suppAll" mat-button (click)="deleteAllDevices()" > Supprimer devices</button>
 					</div>
 				</mat-card-title>
-				<mat-card-subtitle>
+				<mat-card-subtitle class="subtitre-card">
 					Liste des appareils de ce client
 				</mat-card-subtitle>
 				<div *ngIf="devicesList else loading">
 					<div *ngFor="let device of devicesList; index as deviceId">
-						<mat-card>
-							<mat-card-title class="title">
+						<mat-card class="device-card">
+							<mat-card-title class="title-device">
 								<div>
 									{{device.hardwareInfo.brand}}
 									{{device.hardwareInfo.model}}
@@ -27,7 +22,7 @@
 								</div>
 
 							</mat-card-title>
-							<mat-card-subtitle>
+							<mat-card-subtitle class="title-device">
 								Mac Wifi : {{device.networkInfo.wifiMacAddress}}
 							</mat-card-subtitle>
 							<mat-card-content>
@@ -39,6 +34,7 @@
 												<input matInput [(ngModel)]="devicesList[deviceId].policyName"
                     placeholder="Ex. " (value)= "devicesList[deviceId].policyName" >
                           </mat-form-field>
+                          <br>
 												<mat-form-field>
 													<mat-label>Status</mat-label>
 													<mat-select [(value)]="devicesList[deviceId].state">
@@ -58,10 +54,10 @@
 												</div>
                         -->
 												<div class="buttons">
-													<button mat-button (click)="updateDevice(device)" > Modifier</button>
-                          <button mat-button (click)="rebootDevice(device.name)" > Redémarrer</button>
-													<button mat-button (click)="resetPasswordDevice(device.name)" > Réinitialiser le mot de passe</button>
-                          <button mat-button (click)="lockDevice(device.name)" > Eteindre l'écran</button>
+													<button mat-raised-button (click)="updateDevice(device)" > Modifier</button>
+                          <button mat-raised-button (click)="rebootDevice(device.name)" > Redémarrer</button>
+													<button mat-raised-button (click)="resetPasswordDevice(device.name)" > Réinitialiser le mot de passe</button>
+                          <button mat-raised-button (click)="lockDevice(device.name)" > Eteindre l'écran</button>
 												</div>
 										</div>
 									</mat-tab>
@@ -144,7 +140,13 @@
 					</div>
 				</div>
 			</mat-card>
-		</mat-card>
-		<ng-template #loading>Chargement liste...</ng-template>
+		<ng-template #loading>
+      <div *ngIf="noDevices else load">
+        Pas de devices
+      </div>
+      <ng-template #load>
+        Chargement liste...
+      </ng-template>
+      </ng-template>
 	</body>
 </div>
