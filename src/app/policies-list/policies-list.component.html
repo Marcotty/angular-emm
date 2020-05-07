@@ -335,111 +335,162 @@
                             title="Autoriser à passer des appels">
                           Appels :
                         </mat-slide-toggle>
-                        
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Supprimer compte utilisateur', policies[policyId].removeUserDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].removeUserDisabled"
+                            [checked]="policies[policyId].removeUserDisabled"
+                            title="Permet de supprimer des utilisateurs">
+                          Suprimer utilisateurs :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Partage de localisation', policies[policyId].shareLocationDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].shareLocationDisabled"
+                            [checked]="policies[policyId].shareLocationDisabled"
+                            title="Permet de supprimer des utilisateurs">
+                          Localisation :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Envoi de SMS', policies[policyId].smsDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].smsDisabled"
+                            [checked]="policies[policyId].smsDisabled"
+                            title="Permet d'envoyer et recevoir des SMS">
+                          SMS :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Micro', policies[policyId].unmuteMicrophoneDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].unmuteMicrophoneDisabled"
+                            [checked]="policies[policyId].unmuteMicrophoneDisabled"
+                            title="Permet d'activer le micro">
+                          Microphone :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Transfert de fichiers en USB', policies[policyId].usbFileTransferDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].usbFileTransferDisabled"
+                            [checked]="policies[policyId].usbFileTransferDisabled"
+                            title="Permet le transfert de fichiers en USB">
+                          Transfert de fichiers USB :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Vérification des applications', policies[policyId].ensureVerifyAppsEnabled, policyId)"
+                            [(ngModel)]="policies[policyId].ensureVerifyAppsEnabled"
+                            [checked]="policies[policyId].ensureVerifyAppsEnabled"
+                            title="Vérification des applications">
+                          Vérification des applications :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Icones utilisateurs', policies[policyId].setUserIconDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].setUserIconDisabled"
+                            [checked]="policies[policyId].setUserIconDisabled"
+                            title="Permet de changer l'icone des utilisateurs">
+                          Icones des utilisateurs :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Changer image de fond', policies[policyId].setWallpaperDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].setWallpaperDisabled"
+                            [checked]="policies[policyId].setWallpaperDisabled"
+                            title="Permet de changer le fond d'écran">
+                          Changer le fond de l'écran :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Data roaming', policies[policyId].dataRoamingDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].dataRoamingDisabled"
+                            [checked]="policies[policyId].dataRoamingDisabled"
+                            title="Autorise le data roaming">
+                          Data roaming :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Data roaming', policies[policyId].networkEscapeHatchEnabled, policyId)"
+                            [(ngModel)]="policies[policyId].networkEscapeHatchEnabled"
+                            [checked]="policies[policyId].networkEscapeHatchEnabled"
+                            title="Demande à l'utilisateur de se connecter à un réseau wifi si l'appareil n'a pu se connecter lors du démarrage">
+                          Hatch réseau :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Easter egg', policies[policyId].funDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].funDisabled"
+                            [checked]="policies[policyId].funDisabled"
+                            title="Easter egg accessible depuis les paramètres">
+                          Secret :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Date et Heure automatique', policies[policyId].funDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].funDisabled"
+                            [checked]="policies[policyId].funDisabled"
+                            title="Date et heure automatiques">
+                          Date et heure automatiques :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Kiosk launcher Custom', policies[policyId].kioskCustomLauncherEnabled, policyId)"
+                            [(ngModel)]="policies[policyId].kioskCustomLauncherEnabled"
+                            [checked]="policies[policyId].kioskCustomLauncherEnabled"
+                            title="Permet de définir des paramètres supplémentaires si une application est en mode kiosk">
+                          Kiosk launcher custom :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Kiosk launcher Custom', policies[policyId].skipFirstUseHintsEnabled, policyId)"
+                            [(ngModel)]="policies[policyId].skipFirstUseHintsEnabled"
+                            [checked]="policies[policyId].skipFirstUseHintsEnabled"
+                            title="Cacher les indices s'affichant lors de la première utilisation d'un appareilk">
+                          Kiosk launcher custom :
+                        </mat-slide-toggle>
                       </section>
                     </mat-card-content>
                   </mat-card>
 
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
+                  <mat-form-field title="Cacher les indices s'affichant lors de la première utilisation d'un appareil" class="formField"
 										appearance="standard">
-										<mat-label>Enlever utilisateur</mat-label>
+										<mat-label>Cacher indices</mat-label>
 										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].removeUserDisabled">
+											[(value)]="policies[policyId].skipFirstUseHintsEnabled">
 											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
 												{{val.value}}
 											</mat-option>
 										</mat-select>
 									</mat-form-field>
-                  <mat-form-field title="Partage localisation" class="formField"
-										appearance="standard">
-										<mat-label>Partage localisation</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].shareLocationDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>SMS</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].smsDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Micro unmute</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].unmuteMicrophoneDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Transfert de fichiers USB</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].usbFileTransferDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Vérifications apps</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].ensureVerifyAppsEnabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Définir icone utilisateur</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].setUserIconDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Changer fond d'écran</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].setWallpaperDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Data roaming</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].dataRoamingDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Demande à l'utilisateur de se connecter à un réseau wifi si l'appareil n'a pu se connecter lors du démarrage" class="formField"
-										appearance="standard">
-										<mat-label>Hatch réseau</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].networkEscapeHatchEnabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
+
+
                   <mat-form-field title="Niveau de l'API minimal autorisé " class="formField"
 										appearance="standard">
 										<mat-label>API Level</mat-label>
@@ -484,74 +535,13 @@
 											</mat-option>
 										</mat-select>
 									</mat-form-field>-->
-                  <mat-form-field title="Easter egg accessible depuis les paramètres" class="formField"
-										appearance="standard">
-										<mat-label>Easter egg</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].funDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="" class="formField"
-										appearance="standard">
-										<mat-label>Date et heure automatique</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].autoTimeRequired">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Custom kiosk launcher</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].kioskCustomLauncherEnabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Cacher les indices s'affichant lors de la première utilisation d'un appareil" class="formField"
-										appearance="standard">
-										<mat-label>Cacher indices</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].skipFirstUseHintsEnabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
+                  
                   <mat-form-field title="Emails utilisé pour la protection de Factory Reset" class="formField"
 										appearance="standard">
 										<mat-label>Emails admins</mat-label>
 										<input matInput [(ngModel)]="policies[policyId].frpAdminEmails"
                     placeholder="..@gmail.com " (value)= "policies[policyId].frpAdminEmails" >
 									</mat-form-field>
-                  <!-- utile ?? -->
-                  <!--<mat-form-field title="clés privées ?" class="formField"
-										appearance="standard">
-										<mat-label>private Key ?</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].privateKeySelectionEnabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>-->
-                  <!-- DEPRECATED -->
-                  <!--<mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Config réseau mobile</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].usbMassStorageEnabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>-->
 							</div>
 							<ng-template class="undefined" #NonDef>
 								undefined
