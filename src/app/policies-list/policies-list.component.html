@@ -127,6 +127,7 @@
                             title="Configuration possible du bluetooth">
                           Configuration du bluetooth :
                         </mat-slide-toggle>
+                        <br>
                         <!-- Ajouter un utilisateur -->
                         <mat-slide-toggle
                             class="parametres-slider"
@@ -149,6 +150,7 @@
                             title="Ajuster le niveau de volume sonore ou bloquer la barre de niveau son">
                           Ajuster le volume :
                         </mat-slide-toggle>
+                        <br>
                         <!-- Factory reset -->
                         <mat-slide-toggle
                             class="parametres-slider"
@@ -171,206 +173,173 @@
                             title="Permettre l'installation d'applications">
                           Installer des applications :
                         </mat-slide-toggle>
-                        <!-- Installer applications -->
+                        <br>
+                        <!-- Monter la carte sd -->
                         <mat-slide-toggle
                             class="parametres-slider"
                             [color]="accent"
                             labelPosition= 'before' 
-                            (change)="messageUpdate('Brancher le téléphone en USB', policies[policyId].mountPhysicalMediaDisabled, policyId)"
+                            (change)="messageUpdate('Monter la carte SD', policies[policyId].mountPhysicalMediaDisabled, policyId)"
                             [(ngModel)]="policies[policyId].mountPhysicalMediaDisabled"
                             [checked]="policies[policyId].mountPhysicalMediaDisabled"
-                            title="Permettre au téléphone d'être branché en USB à un PC.">
-                          Branchement USB :
+                            title="Permettre à l'utilisateur de monter une carte SD.">
+                          Carte SD :
                         </mat-slide-toggle>
-
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Mode sans échec', policies[policyId].safeBootDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].safeBootDisabled"
+                            [checked]="policies[policyId].safeBootDisabled"
+                            title="Permettre le démarrage en mode sans échec.">
+                          Safe Boot :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Désinstaller des applications', policies[policyId].uninstallAppsDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].uninstallAppsDisabled"
+                            [checked]="policies[policyId].uninstallAppsDisabled"
+                            title="Désinstaller des applications">
+                          Désinstaller des applications :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Barre de status', policies[policyId].statusBarDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].statusBarDisabled"
+                            [checked]="policies[policyId].statusBarDisabled"
+                            title="Barre de status déroulable">
+                          Barre de status :
+                        </mat-slide-toggle>
+                         <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Keyguard ', policies[policyId].keyguardDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].keyguardDisabled"
+                            [checked]="policies[policyId].keyguardDisabled"
+                            title="Désactiver password ou code de déverrouillage">
+                          Mot de passe :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Partager les contacts en bluetooth', policies[policyId].bluetoothContactSharingDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].bluetoothContactSharingDisabled"
+                            [checked]="policies[policyId].bluetoothContactSharingDisabled"
+                            title="Partager les contacts en bluetooth">
+                          Mot de passe :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Partager les contacts en bluetooth', policies[policyId].bluetoothContactSharingDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].bluetoothContactSharingDisabled"
+                            [checked]="policies[policyId].bluetoothContactSharingDisabled"
+                            title="Partager les contacts en bluetooth">
+                          Partge de contacts :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Configuration diffusion cellulaire', policies[policyId].cellBroadcastsConfigDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].cellBroadcastsConfigDisabled"
+                            [checked]="policies[policyId].cellBroadcastsConfigDisabled"
+                            title="Désactiver la diffusion cellulaire">
+                          Diffusion cellulaire :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Configuration des crédits', policies[policyId].credentialsConfigDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].credentialsConfigDisabled"
+                            [checked]="policies[policyId].credentialsConfigDisabled"
+                            title="Désactiver la configurations des crédits">
+                          Crédits :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Configuration du réseau mobile', policies[policyId].mobileNetworksConfigDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].mobileNetworksConfigDisabled"
+                            [checked]="policies[policyId].mobileNetworksConfigDisabled"
+                            title="Désactiver la configuration du réseau mobile">
+                          Configuration réseaux :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Configuration du VPN', policies[policyId].vpnConfigDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].vpnConfigDisabled"
+                            [checked]="policies[policyId].vpnConfigDisabled"
+                            title="Désactiver la configuration du VPN">
+                          Configuration VPN :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Configuration du Wifi', policies[policyId].wifiConfigDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].wifiConfigDisabled"
+                            [checked]="policies[policyId].wifiConfigDisabled"
+                            title="Désactiver la configuration du Wifi">
+                          Configuration Wifi :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Créer des fenêtres', policies[policyId].createWindowsDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].createWindowsDisabled"
+                            [checked]="policies[policyId].createWindowsDisabled"
+                            title="Désactiver la configuration du Wifi">
+                          Créer des fenêtres :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Réinitialiser le réseau', policies[policyId].networkResetDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].networkResetDisabled"
+                            [checked]="policies[policyId].networkResetDisabled"
+                            title="Réinitialiser le réseau">
+                          Créer des fenêtres :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('NFC', policies[policyId].outgoingBeamDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].outgoingBeamDisabled"
+                            [checked]="policies[policyId].outgoingBeamDisabled"
+                            title="Autoriser le transfert de données en NFC">
+                          NFC :
+                        </mat-slide-toggle>
+                        <mat-slide-toggle
+                            class="parametres-slider"
+                            [color]="accent"
+                            labelPosition= 'before' 
+                            (change)="messageUpdate('Appels', policies[policyId].outgoingCallsDisabled, policyId)"
+                            [(ngModel)]="policies[policyId].outgoingCallsDisabled"
+                            [checked]="policies[policyId].outgoingCallsDisabled"
+                            title="Autoriser à passer des appels">
+                          Appels :
+                        </mat-slide-toggle>
+                        
                       </section>
                     </mat-card-content>
                   </mat-card>
-									<!--<p>Monter carte SD : {{pol.mountPhysicalMediaDisabled}}</p>-->
-                  <mat-form-field title="Modifier comptes" class="formField"
-										appearance="standard">
-										<mat-label>Modifier comptes </mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].modifyAccountsDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-									<!--<p>Modifier compte : {{pol.modifyAccountsDisabled}}</p>-->
-                  <mat-form-field title="Safe Boot" class="formField"
-										appearance="standard">
-										<mat-label>Safe Boot </mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].safeBootDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Désinstaller des applications" class="formField"
-										appearance="standard">
-										<mat-label>Désinstaller Apps </mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].uninstallAppsDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Barre de status utilisable" class="formField"
-										appearance="standard">
-										<mat-label>Barre de status</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].statusBarDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Désactiver password ou code de déverrouillage" class="formField"
-										appearance="standard">
-										<mat-label>Keyguard désactivé</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].keyguardDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Niveau de l'API minimal autorisé " class="formField"
-										appearance="standard">
-										<mat-label>API Level</mat-label>
-										<input matInput [(ngModel)]="policies[policyId].minimumApiLevel"
-                    placeholder="24" (value)= "policies[policyId].minimumApiLevel" >
-									</mat-form-field>
-                  <mat-form-field title="Partager les contacts en bluetooth" class="formField"
-										appearance="standard">
-										<mat-label>Partage de contacts bluetooth</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].bluetoothContactSharingDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Message court affiché quand une fonctionnalité est désactivée (<200 caractères)" class="formField"
-										appearance="standard">
-										<mat-label>Message court</mat-label>
-										<input matInput [(ngModel)]="policies[policyId].shortSupportMessage"
-                    placeholder="" (value)= "policies[policyId].shortSupportMessage" >
-									</mat-form-field>
-                  <mat-form-field title="Message affiché à l'utilisateur sur l'écran de paramètres administrateurs de l'appareil" class="formField"
-										appearance="standard">
-										<mat-label>Message paramètres</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].longSupportMessage">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <!-- DEPRECATED -->
-                  <!--<mat-form-field title="Config lockdown wifi" class="formField"
-										appearance="standard">
-										<mat-label>Lockdown wifi</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].wifiConfigsLockdownEnabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>-->
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Config diffusion cellulaire</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].cellBroadcastsConfigDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config crédits" class="formField"
-										appearance="standard">
-										<mat-label>Config crédits</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].credentialsConfigDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config réseau mobile" class="formField"
-										appearance="standard">
-										<mat-label>Config réseau mobile</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].mobileNetworksConfigDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config vpn" class="formField"
-										appearance="standard">
-										<mat-label>Config vpn</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].vpnConfigDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config wifi" class="formField"
-										appearance="standard">
-										<mat-label>Config wifi</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].wifiConfigDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Créer fenêtres" class="formField"
-										appearance="standard">
-										<mat-label>Créer fenêtres</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].createWindowsDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Reset du réseau</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].networkResetDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>OutgoingBeam</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].outgoingBeamDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
-                  <mat-form-field title="Config diffusion cellulaire" class="formField"
-										appearance="standard">
-										<mat-label>Outgoing calls</mat-label>
-										<mat-select (selectionChange)="update(policyId)"
-											[(value)]="policies[policyId].outgoingCallsDisabled">
-											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
-												{{val.value}}
-											</mat-option>
-										</mat-select>
-									</mat-form-field>
+
                   <mat-form-field title="Config diffusion cellulaire" class="formField"
 										appearance="standard">
 										<mat-label>Enlever utilisateur</mat-label>
@@ -466,6 +435,28 @@
 										<mat-label>Hatch réseau</mat-label>
 										<mat-select (selectionChange)="update(policyId)"
 											[(value)]="policies[policyId].networkEscapeHatchEnabled">
+											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
+												{{val.value}}
+											</mat-option>
+										</mat-select>
+									</mat-form-field>
+                  <mat-form-field title="Niveau de l'API minimal autorisé " class="formField"
+										appearance="standard">
+										<mat-label>API Level</mat-label>
+										<input matInput [(ngModel)]="policies[policyId].minimumApiLevel"
+                    placeholder="24" (value)= "policies[policyId].minimumApiLevel" >
+									</mat-form-field>
+                  <mat-form-field title="Message court affiché quand une fonctionnalité est désactivée (<200 caractères)" class="formField"
+										appearance="standard">
+										<mat-label>Message court</mat-label>
+										<input matInput [(ngModel)]="policies[policyId].shortSupportMessage"
+                    placeholder="" (value)= "policies[policyId].shortSupportMessage" >
+									</mat-form-field>
+                  <mat-form-field title="Message affiché à l'utilisateur sur l'écran de paramètres administrateurs de l'appareil" class="formField"
+										appearance="standard">
+										<mat-label>Message paramètres</mat-label>
+										<mat-select (selectionChange)="update(policyId)"
+											[(value)]="policies[policyId].longSupportMessage">
 											<mat-option *ngFor="let val of boolDisabled | keyvalue" [value]="val.key">
 												{{val.value}}
 											</mat-option>
